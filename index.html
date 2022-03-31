@@ -145,6 +145,208 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/03/31/python%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2022/03/31/python%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">python的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-31 16:54:15 / 修改时间：16:58:29" itemprop="dateCreated datePublished" datetime="2022-03-31T16:54:15+08:00">2022-03-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="conda的常用命令"><a href="#conda的常用命令" class="headerlink" title="conda的常用命令"></a>conda的常用命令</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hejp_123/article/details/92151293">https://blog.csdn.net/hejp_123/article/details/92151293</a></p>
+<h2 id="Resource-punkt-not-found"><a href="#Resource-punkt-not-found" class="headerlink" title="Resource punkt not found."></a>Resource punkt not found.</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24263553/article/details/105726751">https://blog.csdn.net/qq_24263553/article/details/105726751</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/03/23/JetsonTX2%E7%9A%84%E4%BA%8B%E6%83%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2022/03/23/JetsonTX2%E7%9A%84%E4%BA%8B%E6%83%85/" class="post-title-link" itemprop="url">JetsonTX2的事情</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-23 19:38:04" itemprop="dateCreated datePublished" datetime="2022-03-23T19:38:04+08:00">2022-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-31 21:33:49" itemprop="dateModified" datetime="2022-03-31T21:33:49+08:00">2022-03-31</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="APT换源"><a href="#APT换源" class="headerlink" title="APT换源"></a>APT换源</h2><p>注意使用hostnamectl查看系统架构是arm64</p>
+<p>使用阿里云\清华大学\北京外国语大学的ubuntu ports开源软件镜像站都存在问题</p>
+<p>使用中科大镜像站即可</p>
+<h2 id="控制风扇转速"><a href="#控制风扇转速" class="headerlink" title="控制风扇转速"></a>控制风扇转速</h2><p>在任意路径下，输入：</p>
+<p>sudo nvpmodel –query<br>显示工作在m2模式下，即15w模式，此时风扇默认不开，此时输入：<br>sudo jetson_clocks<br>会听到风扇转起来了，声音很大，再次查看当前Xavier的工作模式：<br>sudo nvpmodel –query<br>输出m0模式，也就是全速模式。</p>
+<p>查看及更改风扇转速文件（要失败的话，重启试下）：<br>cat /sys/devices/pwm-fan/target_pwm<br>正常情况下会显示 0，此时风扇不转。如果用了上文的全速模式jetson_clocks会显示255。</p>
+<p>我们尝试更改一下数字：<br>sudo gedit /sys/devices/pwm-fan/target_pwm<br>将转速改为200，保存，转速立即发生变化。重启后失效。</p>
+<h3 id="温度检测"><a href="#温度检测" class="headerlink" title="温度检测"></a>温度检测</h3><p>安装硬件温度检测工具sensors。sudo apt install lm-sensors<br>安装成功以后，输入：<br>sensors<br>系统会显示当前温度，一般不开风扇的话系统温度能达到40度左右。</p>
+<h2 id="查看L4T版本"><a href="#查看L4T版本" class="headerlink" title="查看L4T版本"></a>查看L4T版本</h2><pre><code>head -n 1 /etc/nv_tegra_release
+</code></pre>
+<h2 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h2><h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/greepex/article/details/103876921">https://blog.csdn.net/greepex/article/details/103876921</a></p>
+<p>先下载文件系统</p>
+<p>进入Linux_for_Tegra目录，执行一次（以后要用就不执行了）<code>sudo ./apply_binaries.sh</code></p>
+<p>查看是否处于强制恢复模式lsusb</p>
+<p>看看有没有0955：7c18的Nvidia crop</p>
+<p>烧写到emmc的方式<code>sudo ./flash.sh jetson-tx2 mmcblk0p1</code></p>
+<h2 id="TX2的不同模式及切换"><a href="#TX2的不同模式及切换" class="headerlink" title="TX2的不同模式及切换"></a>TX2的不同模式及切换</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xxradon/article/details/87932441">https://blog.csdn.net/xxradon/article/details/87932441</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/luotingliang/p/7248672.html">https://www.cnblogs.com/luotingliang/p/7248672.html</a></p>
+<h2 id="TX2控制界面-desktop-sharing打不开"><a href="#TX2控制界面-desktop-sharing打不开" class="headerlink" title="TX2控制界面 desktop sharing打不开"></a>TX2控制界面 desktop sharing打不开</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38129331/article/details/107859137">https://blog.csdn.net/qq_38129331/article/details/107859137</a></p>
+<h2 id="TX2远程桌面"><a href="#TX2远程桌面" class="headerlink" title="TX2远程桌面"></a>TX2远程桌面</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jiangchao3392/article/details/73252291">https://blog.csdn.net/jiangchao3392/article/details/73252291</a></p>
+<h2 id="将固态作为启动盘"><a href="#将固态作为启动盘" class="headerlink" title="将固态作为启动盘"></a>将固态作为启动盘</h2><ol>
+<li><p>准备 TX2 系统 准备一个有系统 TX2 设备，该系统版本要和 host pc 机上烧录环境的系统版本要一致。查看 TX2 系统 版 本 $ head –n 1 /etc/nv_tegra_release 如 果 host pc 上 未 搭 建 过 烧 录 环 境 ， 参 考 <a target="_blank" rel="noopener" href="https://www.realtimes.cn/cn/help.html">https://www.realtimes.cn/cn/help.html</a> 帮助文档-《TX2 系统烧录说明》搭建烧录环境。 该文档以使用 9002u 载板为例，50GB mSATA SSD。 </p>
+</li>
+<li><p>检查 SSD 设备名称 把 mSATASSD 插到设备上的 mSATA 接口上。使用 sudo fdisk -l 查看 ssd 设备名称。比如：sda，本文 档中之后 ssd 设备名都以 sda 为例。 </p>
+</li>
+<li><p> 创建一个新的 GPT $ sudo parted /dev/sda mklabel gpt</p>
+</li>
+<li><p> 添加分区 $ sudo parted /dev/sda mkpart primary 0GB  Size 是分区的大小，最小 8GB，建议 32GB 以上 例如：准备分区大小为 40GB $ sudo parted /dev/sda mkpart primary 0GB 40GB 添加完分区后，使用 sudo fdisk -l 可以看到 sda 新增一个分区，比如 sda1。 </p>
+</li>
+<li><p>格式化分区 $ sudo mkfs.ext4 /dev/sda1 把分区格式化为 ext4 格式 </p>
+</li>
+<li><p> 查看分区的 UUID $sudo blkid /dev/sda1 例如：/dev/sda1: UUID=”7b568e36-831e-4975-babe-6d2eaf585aa4” TYPE=”ext4” PARTLABEL=”primary”  PARTUUID=”4f71e1b5-70b5-4582-8a1e-51ef993b3bd0” </p>
+</li>
+<li><p>保存 PARTUUID 的值 把 PARTUUID 的值保存到临时存储设备上，u 盘或者其他方式保存，以备后续使用。 </p>
+</li>
+<li><p>拷贝根文件系统到 sdd 分区上 $ sudo dd if=/dev/mmcblk0p1 of=/dev/sda1 </p>
+</li>
+<li><p> 调整分区大小 1)卸载磁盘：umount /media/xxx(路径) 2)$ e2fsck -f /dev/sda1 3)$ sudo resize2fs /dev/sda1 </p>
+</li>
+<li><p>向 l4t-rootfs-uuid.txt 写入 PARTUUID 的值 在 host pc 机上切换到烧录环境 Linux_for_Tegra 目录 $ echo ‘4f71e1b5-70b5-4582-8a1e-51ef993b3bd0’ &gt; /bootloader/l4t-rootfs-uuid.txt </p>
+</li>
+<li><p>向 TX2 设备烧写一个从外部设备启动的系统 在 host pc 机 以使用 RTSO-9002u 载板为例 使 TX2 设备进入 recovery 模式 $sudo ./flash.sh realtimes/rtso-9002u external </p>
+</li>
+<li><p>查看是否从 SSD 中启动系统 在 TX2 系统启动后 $ df -h  显示 sda1 已经成为根目录以及文件系统大</p>
+</li>
+</ol>
+<h3 id="parted提示更新-etc-fstab-文件内容"><a href="#parted提示更新-etc-fstab-文件内容" class="headerlink" title="parted提示更新/etc/fstab 文件内容"></a>parted提示更新/etc/fstab 文件内容</h3><p>添加固态的挂载到/media/nvidia(新建即可)</p>
+<h3 id="dd命令速度太慢"><a href="#dd命令速度太慢" class="headerlink" title="dd命令速度太慢"></a>dd命令速度太慢</h3><p>以后应该使用 <code>pv</code> 来获取运行进度条。</p>
+<pre><code>sudo apt-get install pv
+</code></pre>
+<p>安装 <code>pv</code> 后，假设您要将 20GB 驱动器 <code>/dev/foo</code> 克隆到另一个驱动器(20GB 或更大！)， <code>/dev/baz</code> ：</p>
+<pre><code>sudo dd if=/dev/foo bs=4M | pv -s 20G | sudo dd of=/dev/baz bs=4M
+</code></pre>
+<p>需要注意的重要部分：<code>bs=4M</code> 参数将 dd 操作的块大小设置为 4MB，这大大提高了整个过程的速度。而 <code>-s 20G</code> 参数告诉 <code>pv</code> 这个操作预计有多大，所以它可以给你一个 ETA 以及当前速度。</p>
+<p>我非常喜欢 <code>pv</code>，它应该是非法的。</p>
+<p>请注意，虽然这样做从左到右的顺序是直观、美观和整洁的，但如果您谈论的是真正快速的数据流，则传入和传出 STDOUT 的管道可能会导致性能损失。如果您正在考虑移动数百 MB/秒，以下语法会更快：</p>
+<pre><code>pv -s 20G &lt; /dev/foo &gt; /dev/baz
+</code></pre>
+<p><code>-s 20G</code> 是可选的，如果您确实知道流有多大(或大约有多大)，它允许 <code>pv</code> 为您提供完成时间的估计。如果没有这个，<code>pv</code> 将尝试找出数据集有多大(例如，它知道文件有多大)，但如果不能(例如，使用块设备，而不是文件)，它只会告诉你无需猜测事情将需要多长时间的传输速率。</p>
+<h2 id="TX2安装ROS"><a href="#TX2安装ROS" class="headerlink" title="TX2安装ROS"></a>TX2安装ROS</h2><p><a target="_blank" rel="noopener" href="https://www.guyuehome.com/10082">https://www.guyuehome.com/10082</a></p>
+<h2 id="安装ros-wrapper"><a href="#安装ros-wrapper" class="headerlink" title="安装ros wrapper"></a>安装ros wrapper</h2><p><a target="_blank" rel="noopener" href="https://github.com/IntelRealSense/realsense-ros%E5%AE%98%E6%96%B9git%E4%BB%93%E5%BA%93">https://github.com/IntelRealSense/realsense-ros官方git仓库</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.freesion.com/article/7219741032/">https://www.freesion.com/article/7219741032/</a> 不行</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41839222/article/details/86503113">https://blog.csdn.net/qq_41839222/article/details/86503113</a> 详细 和其他vins-momo之类的</p>
+<h3 id="在根目录创建工作空间后catkin-init-workspace找不到命令"><a href="#在根目录创建工作空间后catkin-init-workspace找不到命令" class="headerlink" title="在根目录创建工作空间后catkin_init_workspace找不到命令"></a>在根目录创建工作空间后catkin_init_workspace找不到命令</h3><p>sudo apt-get install python-catkin-tools</p>
+<p>sudo su<br>echo “source /opt/ros/kinetic/setup.bash” &gt;&gt;/etc/profile</p>
+<p>最开始我们都在.bashrc中配置过环境变量，这里也要改。/etc/profile是配置所有用户的环境变量</p>
+<h3 id="Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found"><a href="#Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found" class="headerlink" title="Project ‘cv_bridge’ specifies ‘/usr/include/opencv’ as an include dir, which is not found."></a>Project ‘cv_bridge’ specifies ‘/usr/include/<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=opencv&spm=1001.2101.3001.7020">opencv</a>’ as an include dir, which is not found.</h3><p>将cmake文件100行左右的两个opencv改为opencv4</p>
+<p>这不是因为我们编写的程序有误，而是NVIDIA的32.3.1image自带的是opencv4版本，把opencv命名成了opencv4</p>
+<p>修改方法：只需修改上述路径中的cv_bridgeconfig.cmke文件，将100行附近的两个opencv改成opencv4即可（注意，只需要改动单独一个的opencv,前面有连字符的opencv不需要改动）</p>
+<p>注意：如果jetson nano的版本自带的opencv是3版本，可能不会出现此问题</p>
+<h2 id="Frames-didn’t-arrived-within-5-seconds"><a href="#Frames-didn’t-arrived-within-5-seconds" class="headerlink" title="Frames didn’t arrived within 5 seconds"></a>Frames didn’t arrived within 5 seconds</h2><h3 id="或者SDK中点击启动后会报错：device-or-resource-is-not-available之类的"><a href="#或者SDK中点击启动后会报错：device-or-resource-is-not-available之类的" class="headerlink" title="或者SDK中点击启动后会报错：device or resource is not available之类的"></a>或者SDK中点击启动后会报错：device or resource is not available之类的</h3><p>这其实是因为相机中的固件(firmware)需要更新版本。<br>连上相机，按照以下链接更新固件部分操作即可：<br><a target="_blank" rel="noopener" href="http://www.pianshen.com/article/6519141340/">http://www.pianshen.com/article/6519141340/</a></p>
+<h3 id="报错cmake的问题或者和ddynamic-reconfigure有关"><a href="#报错cmake的问题或者和ddynamic-reconfigure有关" class="headerlink" title="报错cmake的问题或者和ddynamic_reconfigure有关"></a>报错cmake的问题或者和ddynamic_reconfigure有关</h3><p>是缺少安装ddynamic_reconfigure的包,所以要再安装一下,打开链接<a target="_blank" rel="noopener" href="https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel,%E7%9B%B4%E6%8E%A5%E5%B0%86%E8%BF%99%E4%B8%AA%E4%BB%93%E5%BA%93%E4%B8%8B%E8%BD%BD%E5%88%B0%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4src%E4%B8%AD,%E4%B9%9F%E5%B0%B1%E6%98%AF%E7%94%A8git">https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel,直接将这个仓库下载到工作空间src中,也就是用git</a> clone命令即可</p>
+<h3 id="ros环境复习"><a href="#ros环境复习" class="headerlink" title="ros环境复习"></a>ros环境复习</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94583753">https://zhuanlan.zhihu.com/p/94583753</a></p>
+<h2 id="安装opencv"><a href="#安装opencv" class="headerlink" title="安装opencv"></a>安装opencv</h2><p>一行命令</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45885232/article/details/108994685">https://blog.csdn.net/weixin_45885232/article/details/108994685</a></p>
+<p>sudo apt install python3-opencv</p>
+<h2 id="固态硬盘接口"><a href="#固态硬盘接口" class="headerlink" title="固态硬盘接口"></a>固态硬盘接口</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/shuai0845/article/details/98330290">https://blog.csdn.net/shuai0845/article/details/98330290</a></p>
+<h2 id="ROS主从机"><a href="#ROS主从机" class="headerlink" title="ROS主从机"></a>ROS主从机</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/FSKEps/article/details/106731579">https://blog.csdn.net/FSKEps/article/details/106731579</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/03/22/Ubuntu%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -168,10 +370,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-03-22 16:23:31 / 修改时间：16:27:37" itemprop="dateCreated datePublished" datetime="2022-03-22T16:23:31+08:00">2022-03-22</time>
+              <time title="创建时间：2022-03-22 16:23:31" itemprop="dateCreated datePublished" datetime="2022-03-22T16:23:31+08:00">2022-03-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-31 23:42:32" itemprop="dateModified" datetime="2022-03-31T23:42:32+08:00">2022-03-31</time>
+              </span>
 
           
 
@@ -246,6 +454,91 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liao20081228/article/details/82591728">https://blog.csdn.net/liao20081228/article/details/82591728</a></p>
 <p>git ssh配置</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lqlqlq007/article/details/78983879">https://blog.csdn.net/lqlqlq007/article/details/78983879</a></p>
+<h3 id="设置root用户密码"><a href="#设置root用户密码" class="headerlink" title="设置root用户密码"></a>设置root用户密码</h3><p>sudo passwd</p>
+<p>输入的密码为root用户的新密码</p>
+<h2 id="zsh的安装"><a href="#zsh的安装" class="headerlink" title="zsh的安装"></a>zsh的安装</h2><p>查看系统当前使用的shell</p>
+<blockquote>
+<p>echo $SHELL</p>
+</blockquote>
+<p>查看系统安装了哪些shell</p>
+<blockquote>
+<p>cat /etc/shells</p>
+</blockquote>
+<p>查看zsh的安装位置</p>
+<blockquote>
+<p>which zsh</p>
+</blockquote>
+<p>把默认的Shell改成zsh（为当前用户）</p>
+<pre><code class="bash">chsh -s /bin/zsh
+</code></pre>
+<p>安装主题 on-my-zsh</p>
+<p>sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</a></p>
+<h3 id="安装incr自动补全插件"><a href="#安装incr自动补全插件" class="headerlink" title="安装incr自动补全插件"></a>安装incr自动补全插件</h3><p>下载插件</p>
+<blockquote>
+<p>wget <a target="_blank" rel="noopener" href="http://mimosa-pudica.net/src/incr-0.2.zsh">http://mimosa-pudica.net/src/incr-0.2.zsh</a></p>
+</blockquote>
+<p>移动插件到oh-my-zsh目录的插件库下</p>
+<blockquote>
+<p>sudo mkdir ~/.oh-my-zsh/plugins/incr/</p>
+<p>sudo mv incr-0.2.zsh ~/.oh-my-zsh/plugins/incr/incr-0.2.zsh</p>
+</blockquote>
+<p>进入vim编辑</p>
+<blockquote>
+<p>sudo vim ~/.zshrc</p>
+</blockquote>
+<p>在vim界面按i进入输入模式在末尾加上如下代码</p>
+<blockquote>
+<p>source ~/.oh-my-zsh/plugins/incr/incr*.zsh</p>
+</blockquote>
+<p>按esc进入一般模式输入以下内容后回车以保存退出</p>
+<blockquote>
+<p>：qw</p>
+</blockquote>
+<p>更新配置</p>
+<blockquote>
+<p>source ~/.zshrc</p>
+</blockquote>
+<h3 id="更换agnoster主题"><a href="#更换agnoster主题" class="headerlink" title="更换agnoster主题"></a>更换agnoster主题</h3><p>安装字体</p>
+<blockquote>
+<p>sudo apt install fonts-powerline</p>
+</blockquote>
+<p>进入vim编辑</p>
+<blockquote>
+<p>sudo vim ~/.zshrc</p>
+</blockquote>
+<p>在vim界面按i进入输入模式找到ZSH_THEME=”robbyrussell”将其中robbyrussell修改为agnoster</p>
+<p>按esc进入一般模式输入：qw回车保存退出</p>
+<p>更新配置</p>
+<blockquote>
+<p>source ~/.zshrc</p>
+</blockquote>
+<h3 id="其他问题-git卡顿"><a href="#其他问题-git卡顿" class="headerlink" title="其他问题 git卡顿"></a>其他问题 git卡顿</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/anlz729/article/details/108768918">https://blog.csdn.net/anlz729/article/details/108768918</a></p>
+<h2 id="验证代理是否正常"><a href="#验证代理是否正常" class="headerlink" title="验证代理是否正常"></a>验证代理是否正常</h2><h4 id="测试http"><a href="#测试http" class="headerlink" title="测试http"></a>测试http</h4><p>curl ‘ip111.cn’</p>
+<p>curl -s <a target="_blank" rel="noopener" href="http://myip.ipip.net/">http://myip.ipip.net</a></p>
+<h4 id="测试https"><a href="#测试https" class="headerlink" title="测试https"></a>测试https</h4><p>curl ‘<a target="_blank" rel="noopener" href="https://api.myip.la/cn?json&#39;">https://api.myip.la/cn?json&#39;</a></p>
+<p>curl ‘<a target="_blank" rel="noopener" href="https://ipinfo.io/&#39;">https://ipinfo.io/&#39;</a></p>
+<h3 id="netstat的使用"><a href="#netstat的使用" class="headerlink" title="netstat的使用"></a>netstat的使用</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
+<h2 id="远程桌面连接"><a href="#远程桌面连接" class="headerlink" title="远程桌面连接"></a>远程桌面连接</h2><p>vnc方式：<a target="_blank" rel="noopener" href="https://blog.csdn.net/langyou0/article/details/107959002">https://blog.csdn.net/langyou0/article/details/107959002</a></p>
+<h2 id="df命令"><a href="#df命令" class="headerlink" title="df命令"></a>df命令</h2><p>df</p>
+<p>df -a 显示全部文件系统</p>
+<p>df -h 单位以人类易于阅读的方式</p>
+<p>df -T 显示文件系统类型</p>
+<h2 id="查看cpu"><a href="#查看cpu" class="headerlink" title="查看cpu"></a>查看cpu</h2><p>lscpu</p>
+<h2 id="查看内存"><a href="#查看内存" class="headerlink" title="查看内存"></a>查看内存</h2><p>free</p>
+<h2 id="安装KDE桌面环境"><a href="#安装KDE桌面环境" class="headerlink" title="安装KDE桌面环境"></a>安装KDE桌面环境</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39670511/article/details/110594726">https://blog.csdn.net/weixin_39670511/article/details/110594726</a></p>
+<p><a target="_blank" rel="noopener" href="https://ubuntuqa.com/article/9604.html">https://ubuntuqa.com/article/9604.html</a></p>
+<h2 id="命令行配置无线有线网络"><a href="#命令行配置无线有线网络" class="headerlink" title="命令行配置无线有线网络"></a>命令行配置无线有线网络</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/luotingliang/p/7248672.html">https://www.cnblogs.com/luotingliang/p/7248672.html</a></p>
+<h2 id="PS命令"><a href="#PS命令" class="headerlink" title="PS命令"></a>PS命令</h2><p>tty[1-6]就是你用ctr+alt+f[1-6]所看到的那个终端; 即虚拟控制台。其他的是外部终端和网络终端。</p>
+<p>pts/*为伪(虚拟)终端，当前打开了两个终端窗口，所以就有pts/0和pts/1</p>
+<p>ps -a 显示现行终端机下的所有进程，包括其他用户的进程</p>
+<p>-A 所有的进程均显示出来，与 -e 具有同样的效用</p>
+<p>-l 详细的</p>
+<p>-u 以</p>
+<h2 id="静态IP设置"><a href="#静态IP设置" class="headerlink" title="静态IP设置"></a>静态IP设置</h2><p><a target="_blank" rel="noopener" href="https://www.itbulu.com/ubuntu-setting-ips.html">https://www.itbulu.com/ubuntu-setting-ips.html</a></p>
+<h2 id="source-not-found"><a href="#source-not-found" class="headerlink" title="source not found"></a>source not found</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/erlou96/p/13398387.html">https://www.cnblogs.com/erlou96/p/13398387.html</a></p>
+<h2 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h2><p>1.vim ~/.bashrc</p>
+<p>2.添加 alias name=’command’即可。重启后即可生效,或执行source .bashrc也可立即生效</p>
+<h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhang-jun-jie/p/9266858.html">https://www.cnblogs.com/zhang-jun-jie/p/9266858.html</a></p>
 
       
     </div>
@@ -443,7 +736,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-22 16:14:58" itemprop="dateModified" datetime="2022-03-22T16:14:58+08:00">2022-03-22</time>
+                <time title="修改时间：2022-03-23 21:08:58" itemprop="dateModified" datetime="2022-03-23T21:08:58+08:00">2022-03-23</time>
               </span>
 
           
@@ -473,7 +766,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>嵌套列表：按Tab键</p>
 <p>退出列表：按 Shift+Tab</p>
 <p>插入表格：Ctrl+T</p>
-<p>引用：输入&gt;后面加空格，或者Ctrl+Shift+Q</p>
+<p>引用（段落）：输入&gt;后面加空格，或者Ctrl+Shift+Q</p>
 <h2 id="Front-matter预定义参数"><a href="#Front-matter预定义参数" class="headerlink" title="Front-matter预定义参数"></a>Front-matter预定义参数</h2><pre><code class="text">  layout  布局  默认为true，如果你不想你的文章被处理，可以设置为false
   title  标题  标题会显示在最上方居中位置     
   date  建立日期    如果不指定则为默认值-文件创建日期，可以自定义。
@@ -534,7 +827,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-22 16:14:58" itemprop="dateModified" datetime="2022-03-22T16:14:58+08:00">2022-03-22</time>
+                <time title="修改时间：2022-03-28 12:41:04" itemprop="dateModified" datetime="2022-03-28T12:41:04+08:00">2022-03-28</time>
               </span>
 
           
@@ -730,6 +1023,21 @@ sudo apt-get install vlc 【命令解释】安装VLC软件
 </code></pre>
 <p>从根服务器开始追踪一个域名的解析过程:</p>
 <pre><code class="css">dig xmgd.com +trace
+</code></pre>
+<h3 id="共享文件samba的使用"><a href="#共享文件samba的使用" class="headerlink" title="共享文件samba的使用"></a>共享文件samba的使用</h3><p>使用</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/droyon/article/details/48804021">https://blog.csdn.net/droyon/article/details/48804021</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/266495858">https://zhuanlan.zhihu.com/p/266495858</a></p>
+<p>树莓派官网</p>
+<p><a target="_blank" rel="noopener" href="https://shumeipai.nxez.com/2013/08/24/install-nas-on-raspberrypi.html">https://shumeipai.nxez.com/2013/08/24/install-nas-on-raspberrypi.html</a></p>
+<p>打开映射网络驱动器</p>
+<p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/c35dbcb0ea464dc817fcbc75.html">如何在 Windows 10 上映射网络驱动器-百度经验 (baidu.com)</a></p>
+<p>ubuntu访问samba</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Wolf-Dreams/p/11241198.html">https://www.cnblogs.com/Wolf-Dreams/p/11241198.html</a></p>
+<h2 id="查看温度"><a href="#查看温度" class="headerlink" title="查看温度"></a>查看温度</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b0384b667bf0">https://www.jianshu.com/p/b0384b667bf0</a></p>
+<pre><code class="sh">cat /sys/class/thermal/thermal_zone0/temp
+&gt;&gt;&gt; 62838
+</code></pre>
+<pre><code class="sh">watch -n 0.1 cat /sys/class/thermal/thermal_zone0/temp
 </code></pre>
 
       
@@ -960,7 +1268,7 @@ sudo apt-get install vlc 【命令解释】安装VLC软件
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
