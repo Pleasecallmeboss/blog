@@ -43,7 +43,7 @@ tag: Typora
 
 插入表格：Ctrl+T
 
-引用：输入>后面加空格，或者Ctrl+Shift+Q
+引用（段落）：输入>后面加空格，或者Ctrl+Shift+Q
 
 
 

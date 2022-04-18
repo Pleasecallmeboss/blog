@@ -54,6 +54,9 @@ systemctl enable命令用于在上面两个目录之间，建立符号链接关�
 配置文件的后缀名，就是该 Unit 的种类，比如sshd.socket。如果省略，Systemd 默认后缀名为.service，所以sshd会被理解成sshd.service。
 
 学习systemd：http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html
+
+https://cloud.tencent.com/developer/article/1516125
+
 新建开机服务：https://zhuanlan.zhihu.com/p/396272999
 
 
@@ -139,3 +142,225 @@ https://blog.csdn.net/liao20081228/article/details/82591728
 git ssh配置
 
 https://blog.csdn.net/lqlqlq007/article/details/78983879
+
+
+
+### 设置root用户密码
+
+sudo passwd
+
+输入的密码为root用户的新密码
+
+
+
+## zsh的安装
+
+查看系统当前使用的shell
+
+> echo $SHELL
+
+查看系统安装了哪些shell
+
+> cat /etc/shells
+
+查看zsh的安装位置
+
+> which zsh
+
+把默认的Shell改成zsh（为当前用户）
+
+```bash
+chsh -s /bin/zsh
+```
+
+安装主题 on-my-zsh
+
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+### 安装incr自动补全插件
+
+下载插件
+
+> wget http://mimosa-pudica.net/src/incr-0.2.zsh
+
+移动插件到oh-my-zsh目录的插件库下
+
+> sudo mkdir ~/.oh-my-zsh/plugins/incr/
+>
+> sudo mv incr-0.2.zsh ~/.oh-my-zsh/plugins/incr/incr-0.2.zsh
+
+进入vim编辑
+
+> sudo vim ~/.zshrc
+
+在vim界面按i进入输入模式在末尾加上如下代码
+
+> source ~/.oh-my-zsh/plugins/incr/incr*.zsh
+
+按esc进入一般模式输入以下内容后回车以保存退出
+
+> ：qw
+
+更新配置
+
+> source ~/.zshrc
+
+### 更换agnoster主题
+
+安装字体
+
+> sudo apt install fonts-powerline
+
+进入vim编辑
+
+> sudo vim ~/.zshrc
+
+在vim界面按i进入输入模式找到ZSH_THEME="robbyrussell"将其中robbyrussell修改为agnoster
+
+按esc进入一般模式输入：qw回车保存退出
+
+更新配置
+
+> source ~/.zshrc
+
+### 其他问题 git卡顿
+
+https://blog.csdn.net/anlz729/article/details/108768918
+
+
+
+## 验证代理是否正常
+
+#### 测试http
+
+curl 'ip111.cn'
+
+curl -s http://myip.ipip.net
+
+#### 测试https
+
+curl ‘https://api.myip.la/cn?json'
+
+curl 'https://ipinfo.io/'
+
+
+
+### netstat的使用
+
+https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html
+
+
+
+## 远程桌面连接
+
+vnc方式：https://blog.csdn.net/langyou0/article/details/107959002
+
+
+
+## df命令
+
+df
+
+df -a 显示全部文件系统
+
+df -h 单位以人类易于阅读的方式
+
+df -T 显示文件系统类型
+
+
+
+## 查看cpu
+
+lscpu
+
+
+
+## 查看内存
+
+free
+
+
+
+## 安装KDE桌面环境
+
+https://blog.csdn.net/weixin_39670511/article/details/110594726
+
+https://ubuntuqa.com/article/9604.html
+
+
+
+## 命令行配置无线有线网络
+
+https://www.cnblogs.com/luotingliang/p/7248672.html
+
+
+
+## PS命令
+
+tty[1-6]就是你用ctr+alt+f[1-6]所看到的那个终端; 即虚拟控制台。其他的是外部终端和网络终端。
+
+pts/*为伪(虚拟)终端，当前打开了两个终端窗口，所以就有pts/0和pts/1
+
+ps -a 显示现行终端机下的所有进程，包括其他用户的进程
+
+-A 所有的进程均显示出来，与 -e 具有同样的效用
+
+-l 详细的
+
+-u 以
+
+
+
+## 静态IP设置
+
+https://www.itbulu.com/ubuntu-setting-ips.html
+
+
+
+## source not found
+
+https://www.cnblogs.com/erlou96/p/13398387.html
+
+
+
+## 设置别名
+
+1.vim ~/.bashrc
+
+2.添加 alias name='command'即可。重启后即可生效,或执行source .bashrc也可立即生效
+
+
+
+## 脚本编写
+
+https://www.cnblogs.com/zhang-jun-jie/p/9266858.html
+
+
+
+## 局域网主机之间测速
+
+https://jingyan.baidu.com/article/25648fc16e8c9d9191fd00a0.html
+
+
+
+## 实时测速
+
+添加在上方图标 
+
+https://www.cnblogs.com/jsdy/p/11461277.html
+
+命令行 slurm
+
+https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&utm_relevant_index=1
+
+
+
+## 开机自动挂载u盘
+
+[UUID=************] [挂载磁盘分区] [挂载磁盘格式] 0 2 
+
+添加的行是13行，UUID和挂载目录/home/sqp/Data以及硬盘格式ext4
+
+第一数字0，0是开机不检查磁盘，1是开机检查磁盘
+
+第二个数2，0表示交换分区，1表示启动分区，2表示普通分区 
