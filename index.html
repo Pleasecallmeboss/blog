@@ -145,6 +145,192 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/04/18/Port-Swigger%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2022/04/18/Port-Swigger%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Port_Swigger学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-18 10:04:03" itemprop="dateCreated datePublished" datetime="2022-04-18T10:04:03+08:00">2022-04-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/04/08/doc2vec%E4%B8%8E%E8%81%9A%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2022/04/08/doc2vec%E4%B8%8E%E8%81%9A%E7%B1%BB/" class="post-title-link" itemprop="url">doc2vec与聚类</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-08 19:14:38 / 修改时间：20:06:43" itemprop="dateCreated datePublished" datetime="2022-04-08T19:14:38+08:00">2022-04-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><h3 id="1-Word2Vec是用来生成词向量的工具"><a href="#1-Word2Vec是用来生成词向量的工具" class="headerlink" title="1.Word2Vec是用来生成词向量的工具"></a>1.Word2Vec是用来生成词向量的工具</h3><h3 id="2词向量（https-zhuanlan-zhihu-com-p-81032021）"><a href="#2词向量（https-zhuanlan-zhihu-com-p-81032021）" class="headerlink" title="2词向量（https://zhuanlan.zhihu.com/p/81032021）"></a>2词向量（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/81032021%EF%BC%89">https://zhuanlan.zhihu.com/p/81032021）</a></h3><h4 id="2-1字典序"><a href="#2-1字典序" class="headerlink" title="2.1字典序"></a>2.1字典序</h4><p>​    含义：词典中的第几个字</p>
+<p>​    <img src="https://pic1.zhimg.com/80/v2-3c9a38cc5722f46beffcc10470237768_720w.jpg" alt="img"></p>
+<h4 id="2-2one-hot编码"><a href="#2-2one-hot编码" class="headerlink" title="2.2one-hot编码"></a>2.2one-hot编码</h4><p>​    构建一个由 n个0组成的序列 (n是字典总数)，其中将第字典序个0 换成 1</p>
+<p>​    例如：n =3，则所有的字典序对应one-hot 编码有</p>
+<pre><code class="text">1: 1 , 0 , 0
+2: 0 , 1 , 0
+3: 0 , 0 , 1
+</code></pre>
+<p><img src="https://pic1.zhimg.com/80/v2-e1a97fadf10aaf6e62a5f2ed807800d4_720w.jpg" alt="img"></p>
+<h4 id="2-3深度学习的本质"><a href="#2-3深度学习的本质" class="headerlink" title="2.3深度学习的本质"></a>2.3深度学习的本质</h4><p>​    给定大量级样本及模型（负杂函数），求解模型参数（函数解析式）<img src="https://pic2.zhimg.com/80/v2-c79467c3bc8e519b67f720924d3874f1_720w.jpg" alt="img"></p>
+<p>​    简单来说深度学习，就是通过待定系数法、求导更新，最小化模型和真实世界模型的误差。其中模型就是：一大堆负杂的矩阵乘法、加法及变换</p>
+<h4 id="2-4embedding"><a href="#2-4embedding" class="headerlink" title="2.4embedding"></a>2.4embedding</h4><p>​    既然已经有了 one-hot 来表达文本，那么为什么还需要词向量呢？</p>
+<p>​    让我们做一个假设，通过 one-hot 我们可以对APP上的外卖店都编了一个号。仅通过这个编号我们可以知道每家店的口味吗？答案是否定的，因为单独的one-hot 编码仅仅只代表了一个无意义的编码。</p>
+<p>​    人类为了对未知的事物进行描述，会通过事物的其他方向来进行类比。就像我们会将外卖按照：口味、速度、价格、好评等等维度进行打分，以此希望能够通过这些维度的评分来体现这家外卖的好坏。</p>
+<p>​    因此，embedding可以抽象的理解为：为了让one-hot 具有更强的语义特征而设计的描述one-hot不同维度的特征。只不过这个维度和特征是通过某种形式学习得到。</p>
+<h4 id="2-5目标任务"><a href="#2-5目标任务" class="headerlink" title="2.5目标任务"></a>2.5目标任务</h4><p>​    首先，看看nlp embedding 的鼻祖之一：word2vec (2013)</p>
+<p><img src="https://pic1.zhimg.com/80/v2-3d7e19c00358605c893e51d666327284_720w.png" alt="img"></p>
+<p>​    直观的来讲，word2vec 就是进一步在语言的算法表达上，做了一个映射任务：</p>
+<p>​    语言 ——&gt; 函数 ——&gt; 目标任务</p>
+<p>​    目标任务有两种做法 :</p>
+<ol>
+<li>skip-gram : 给定句子中的当前词，预测周围的词</li>
+<li>cbow : 给定句子中的周围词，预测当前词</li>
+</ol>
+<p><img src="https://pic2.zhimg.com/80/v2-3677468e93f3ed0b1b15244a39373e51_720w.jpg" alt="img"></p>
+<p>​    其核心观点是在one-hot 的文本表征基础上，乘以一个参数矩阵，得到一个dim 长度的参数，这个就是embedding</p>
+<p>​    因为该矩阵通过Skip-gram 或 CBOW 方式在大量语料中训练得到 ， 所以，通过w2c训练得到的embedding 也就带有了相似词相近这么一个特点。</p>
+<p>​    因为同义词、近义词可能在大量语料上有着相同的上下文，因此，训练后embedding 也相近</p>
+<blockquote>
+<p>w2c 提供了一种有效的文本数值化方法，为深度学习发展提供了标准范式</p>
+</blockquote>
+<p>w2c 的本质是通过embedding 的方式，将原有的one-hot 矩阵通过大量的语料扩展出了dim 维度的特征信息。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-564acd6b926af536a9abcc2739b5b85f_720w.jpg" alt="img"></p>
+<p>就像我们给大众店家打分一样，本来店家可能只是 某地区、第几家 店铺。</p>
+<p>通过5个维度，给店家打了一个评分，这个评分一定意义上就能代表这个店家。</p>
+<h2 id="Doc2vec"><a href="#Doc2vec" class="headerlink" title="Doc2vec"></a>Doc2vec</h2><h2 id="（https-zhuanlan-zhihu-com-p-136096645）"><a href="#（https-zhuanlan-zhihu-com-p-136096645）" class="headerlink" title="（https://zhuanlan.zhihu.com/p/136096645）"></a>（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/136096645%EF%BC%89">https://zhuanlan.zhihu.com/p/136096645）</a></h2><p>Doc2vec可以获得句子、段落和文档的向量表达，是Word2Vec的拓展。</p>
+<p>代码</p>
+<h2 id="层次聚类"><a href="#层次聚类" class="headerlink" title="层次聚类"></a>层次聚类</h2><h3 id="1聚类（https-zhuanlan-zhihu-com-p-104355127）"><a href="#1聚类（https-zhuanlan-zhihu-com-p-104355127）" class="headerlink" title="1聚类（https://zhuanlan.zhihu.com/p/104355127）"></a>1聚类（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/104355127%EF%BC%89">https://zhuanlan.zhihu.com/p/104355127）</a></h3><p><code>聚类(Clustering)</code>是按照某个特定标准(如距离)把一个数据集分割成不同的类或簇，使得<strong>同一个簇内的数据对象的相似性尽可能大，同时不在同一个簇中的数据对象的差异性也尽可能地大</strong>。也即聚类后同一类的数据尽可能聚集到一起，不同类数据尽量分离。</p>
+<h4 id="1-1-聚类的一般过程"><a href="#1-1-聚类的一般过程" class="headerlink" title="1.1 聚类的一般过程"></a><strong>1.1 聚类的一般过程</strong></h4><ol>
+<li>数据准备：特征标准化和降维</li>
+<li>特征选择：从最初的特征中选择最有效的特征，并将其存储在向量中</li>
+<li>特征提取：通过对选择的特征进行转换形成新的突出特征</li>
+<li>聚类：基于某种距离函数进行相似度度量，获取簇</li>
+<li>聚类结果评估：分析聚类结果，如<code>距离误差和(SSE)</code>等</li>
+</ol>
+<h4 id="1-2-数据对象间的相似度度量"><a href="#1-2-数据对象间的相似度度量" class="headerlink" title="1.2 数据对象间的相似度度量"></a><strong>1.2 数据对象间的相似度度量</strong></h4><p>对于数值型数据，可以使用下表中的相似度度量方法。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-921d5ff0b665e67d5df54047b9d6531a_720w.jpg" alt="img"></p>
+<p><code>Minkowski</code>距离就是<img src="https://www.zhihu.com/equation?tex=+Lp+" alt="[公式]">范数（<img src="https://www.zhihu.com/equation?tex=p%E2%89%A51" alt="[公式]">)，而 <code>Manhattan</code> 距离、<code>Euclidean</code>距离、<code>Chebyshev</code>距离分别对应 <img src="https://www.zhihu.com/equation?tex=p=1,2,%E2%88%9E+" alt="[公式]">时的情形。</p>
+<h4 id="1-3-cluster之间的相似度度量"><a href="#1-3-cluster之间的相似度度量" class="headerlink" title="1.3 cluster之间的相似度度量"></a><strong>1.3 cluster之间的相似度度量</strong></h4><p>除了需要衡量对象之间的距离之外，有些聚类算法（如层次聚类）还需要衡量<code>cluster</code>之间的距离 ，假设<img src="https://www.zhihu.com/equation?tex=+C_i+" alt="[公式]">和<img src="https://www.zhihu.com/equation?tex=+C_j" alt="[公式]"> 为两个 <code>cluster</code>，则前四种方法定义的 <img src="https://www.zhihu.com/equation?tex=C_i+" alt="[公式]">和 <img src="https://www.zhihu.com/equation?tex=C_j" alt="[公式]"> 之间的距离如下表所示。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-efc243a0fd595089412bd617eaa0d78b_720w.jpg" alt="img"></p>
+<ul>
+<li><code>Single-link</code>定义两个<code>cluster</code>之间的距离为两个<code>cluster</code>之间距离最近的两个点之间的距离，这种方法会在聚类的过程中产生<code>链式效应</code>，即有可能会出现非常大的<code>cluster</code></li>
+<li><code>Complete-link</code>定义的是两个<code>cluster</code>之间的距离为两个``cluster<code>之间距离最远的两个点之间的距离，这种方法可以避免</code>链式效应`,对异常样本点（不符合数据集的整体分布的噪声点）却非常敏感，容易产生不合理的聚类</li>
+<li><code>UPGMA</code>正好是<code>Single-link</code>和<code>Complete-link</code>方法的折中，他定义两个<code>cluster</code>之间的距离为两个<code>cluster</code>之间所有点距离的平均值</li>
+<li>最后一种<code>WPGMA</code>方法计算的是两个 <code>cluster</code> 之间两个对象之间的距离的加权平均值，加权的目的是为了使两个 <code>cluster</code> 对距离的计算的影响在同一层次上，而不受 <code>cluster</code> 大小的影响，具体公式和采用的权重方案有关。</li>
+</ul>
+<h3 id="层次聚类-1"><a href="#层次聚类-1" class="headerlink" title="层次聚类"></a>层次聚类</h3><p>前面介绍的几种算法确实可以在较小的复杂度内获取较好的结果，但是这几种算法却存在一个<code>链式效应</code>的现象，比如：A与B相似，B与C相似，那么在聚类的时候便会将A、B、C聚合到一起，但是如果A与C不相似，就会造成聚类误差，严重的时候这个误差可以一直传递下去。为了降低<code>链式效应</code>，这时候层次聚类就该发挥作用了。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-0141f21130b60f7ac23fa05d7e417cee_720w.jpg" alt="img"></p>
+<p><strong>层次聚类算法 (hierarchical clustering)</strong> 将数据集划分为一层一层的 <code>clusters</code>，后面一层生成的 <code>clusters</code> 基于前面一层的结果。层次聚类算法一般分为两类：</p>
+<ul>
+<li><strong>Agglomerative 层次聚类</strong>：又称自底向上（bottom-up）的层次聚类，每一个对象最开始都是一个 <code>cluster</code>，每次按一定的准则将最相近的两个 <code>cluster</code> 合并生成一个新的 <code>cluster</code>，如此往复，直至最终所有的对象都属于一个 <code>cluster</code>。这里主要关注此类算法。</li>
+<li><strong>Divisive 层次聚类</strong>： 又称自顶向下（top-down）的层次聚类，最开始所有的对象均属于一个 <code>cluster</code>，每次按一定的准则将某个 <code>cluster</code> 划分为多个 <code>cluster</code>，如此往复，直至每个对象均是一个 <code>cluster</code>。</li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/v2-be2a7cf798fdc983e6521a68b1eb952d_720w.jpg" alt="img"></p>
+<p>另外，需指出的是，层次聚类算法是一种贪心算法（greedy algorithm），因其每一次合并或划分都是基于某种局部最优的选择。</p>
+<h2 id="层次聚类代码"><a href="#层次聚类代码" class="headerlink" title="层次聚类代码"></a>层次聚类代码</h2><p>（<a target="_blank" rel="noopener" href="https://blog.csdn.net/elaine_bao/article/details/50242867%EF%BC%89">https://blog.csdn.net/elaine_bao/article/details/50242867）</a></p>
+<p>scipy cluster库简介<br>scipy.cluster是scipy下的一个做聚类的package, 共包含了两类聚类方法:</p>
+<ol>
+<li>矢量量化(scipy.cluster.vq):支持vector quantization 和 k-means 聚类方法</li>
+<li>层次聚类(scipy.cluster.hierarchy):支持hierarchical clustering 和 agglomerative clustering(凝聚聚类)</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/03/31/python%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -378,7 +564,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-31 23:42:32" itemprop="dateModified" datetime="2022-03-31T23:42:32+08:00">2022-03-31</time>
+                <time title="修改时间：2022-04-01 23:04:30" itemprop="dateModified" datetime="2022-04-01T23:04:30+08:00">2022-04-01</time>
               </span>
 
           
@@ -408,7 +594,9 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <pre><code>$ sudo systemctl disable clamd@scan.service
 </code></pre>
 <p>配置文件的后缀名，就是该 Unit 的种类，比如sshd.socket。如果省略，Systemd 默认后缀名为.service，所以sshd会被理解成sshd.service。</p>
-<p>学习systemd：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a><br>新建开机服务：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/396272999">https://zhuanlan.zhihu.com/p/396272999</a></p>
+<p>学习systemd：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1516125">https://cloud.tencent.com/developer/article/1516125</a></p>
+<p>新建开机服务：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/396272999">https://zhuanlan.zhihu.com/p/396272999</a></p>
 <p>开机自动运行任务的四种方法：</p>
 <ol>
 <li>开机启动时自动运行程序</li>
@@ -539,6 +727,15 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <h2 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h2><p>1.vim ~/.bashrc</p>
 <p>2.添加 alias name=’command’即可。重启后即可生效,或执行source .bashrc也可立即生效</p>
 <h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhang-jun-jie/p/9266858.html">https://www.cnblogs.com/zhang-jun-jie/p/9266858.html</a></p>
+<h2 id="局域网主机之间测速"><a href="#局域网主机之间测速" class="headerlink" title="局域网主机之间测速"></a>局域网主机之间测速</h2><p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/25648fc16e8c9d9191fd00a0.html">https://jingyan.baidu.com/article/25648fc16e8c9d9191fd00a0.html</a></p>
+<h2 id="实时测速"><a href="#实时测速" class="headerlink" title="实时测速"></a>实时测速</h2><p>添加在上方图标 </p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jsdy/p/11461277.html">https://www.cnblogs.com/jsdy/p/11461277.html</a></p>
+<p>命令行 slurm</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_paycolumn_v3&amp;utm_relevant_index=1">https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&amp;utm_relevant_index=1</a></p>
+<h2 id="开机自动挂载u盘"><a href="#开机自动挂载u盘" class="headerlink" title="开机自动挂载u盘"></a>开机自动挂载u盘</h2><p>[UUID=************] [挂载磁盘分区] [挂载磁盘格式] 0 2 </p>
+<p>添加的行是13行，UUID和挂载目录/home/sqp/Data以及硬盘格式ext4</p>
+<p>第一数字0，0是开机不检查磁盘，1是开机检查磁盘</p>
+<p>第二个数2，0表示交换分区，1表示启动分区，2表示普通分区 </p>
 
       
     </div>
@@ -827,7 +1024,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-28 12:41:04" itemprop="dateModified" datetime="2022-03-28T12:41:04+08:00">2022-03-28</time>
+                <time title="修改时间：2022-04-01 17:39:59" itemprop="dateModified" datetime="2022-04-01T17:39:59+08:00">2022-04-01</time>
               </span>
 
           
@@ -1039,6 +1236,9 @@ sudo apt-get install vlc 【命令解释】安装VLC软件
 </code></pre>
 <pre><code class="sh">watch -n 0.1 cat /sys/class/thermal/thermal_zone0/temp
 </code></pre>
+<h2 id="aria2的配置"><a href="#aria2的配置" class="headerlink" title="aria2的配置"></a>aria2的配置</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kxwinxp/article/details/80288006%EF%BC%88serviece%E4%B8%8D%E5%AF%B9%EF%BC%89%E4%BD%BF%E7%94%A8%E4%B8%8B%E9%9D%A2%E7%9A%84">https://blog.csdn.net/kxwinxp/article/details/80288006（serviece不对）使用下面的</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/162075204">https://zhuanlan.zhihu.com/p/162075204</a></p>
+<p>aria2的配置文件使用<a target="_blank" rel="noopener" href="https://github.com/P3TERX/aria2.conf">https://github.com/P3TERX/aria2.conf</a></p>
 
       
     </div>
@@ -1124,86 +1324,11 @@ sudo apt-get install vlc 【命令解释】安装VLC软件
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/02/23/%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="咦蜘蛛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咦蜘蛛的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2022/02/23/%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">怎么使用hexo搭建博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-23 11:41:10" itemprop="dateCreated datePublished" datetime="2022-02-23T11:41:10+08:00">2022-02-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-22 16:14:58" itemprop="dateModified" datetime="2022-03-22T16:14:58+08:00">2022-03-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>###在博文中添加图片<br>(1)在全局配置文件（hexo/_config.yml)中将post_asset_folder设置为true；<br>(2)创建文章（在创建的时候，会在hexo/source/_post目录下，生成一个XXX.md文件和一个XXX的文件夹）<br>hexo new “XXX”<br>(3)把XXX这个博文需要展示的图片放在XXX文件夹目录下；<br>(4)在XXX.md文件中引入图片的方式：</p>
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1268,7 +1393,7 @@ sudo apt-get install vlc 【命令解释】安装VLC软件
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
