@@ -4,11 +4,9 @@ date: 2022-03-22 16:23:31
 tags:
 ---
 
-apt换源
-/etc/apt/sources.list
-https://mirrors.bfsu.edu.cn/ubuntu
 
-apt和apt-get的区别
+
+## apt和apt-get的区别
 简单来说就是：apt = apt-get、apt-cache 和 apt-config 中最常用命令选项的集合。
 apt 命令	取代的命令	命令的功能
 apt install	apt-get install	安装软件包
@@ -26,7 +24,7 @@ apt show	apt-cache show	显示安装细节
 apt list	列出包含条件的包（已安装，可升级等）
 apt edit-sources	编辑源列表
 
-挂载命令：
+# 挂载命令：
 mount [-t vfstype] [-o options] device dir
 umount /mnt/cdrom
 
@@ -364,3 +362,205 @@ https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.
 第一数字0，0是开机不检查磁盘，1是开机检查磁盘
 
 第二个数2，0表示交换分区，1表示启动分区，2表示普通分区 
+
+
+
+## script编写
+
+### echo(选项)(参数)选项
+
+-e：激活转义字符。使用-e选项时，若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：
+
+•\a 发出警告声；
+
+
+
+### 指令运作的顺序： 
+
+1. 以相对/绝对路径执行指令，例如『 /bin/ls 』或『 ./ls 』； 
+2. 由 alias 找到该指令来执行； 
+3. 由 bash 内建的 (builtin) 指令来执行； 
+4. 透过 $PATH 这个变量的顺序搜寻到的第一个指令来执行。
+
+
+
+### 快速删除和光标快速移动
+
+[ctrl]+u/[ctrl]+k 分别是从光标处向前删除指令串 ([ctrl]+u) 及向后删除指令串 ([ctrl]+k)。 [ctrl]+a/[ctrl]+e 分别是让光标移动到整个指令串的最前面 ([ctrl]+a) 或最后面 ([ctrl]+e)
+
+
+
+### 单引号和双引号的区别
+
+变量内容若有空格符可使用双引号『"』或单引号『'』将变量内容结合起来，
+
+但 o双引号内的特殊字符如 $ 等，可以保有原本的特性，如下所示： 
+
+『var="lang is $LANG"』则『echo $var』可得『lang is zh_TW.UTF-8』 
+
+单引号内的特殊字符则仅为一般字符 (纯文本)，如下所示： 
+
+『var='lang is $LANG'』则『echo $var』可得『lang is $LANG』
+
+
+
+### 追加变量内容
+
+『PATH="$PATH":/home/bin』或『PATH=${PATH}:/home/bin』
+
+
+
+### 使用其他指令提供的信息
+
+『version=$(uname -r)』再『echo $version』可得『3.10.0-229.el7.x86_64』
+
+
+
+### 仓库详解
+
+整个软件源结构可以分解为四个部分:
+
+第一部分	第二部分	第三部分	第四部分
+软件包格式	软件包服务器地址	发行版版本代号	软件包的分类目录
+deb/deb-src	http://mirrors.aliyun.com/ubuntu/ 	xenial/xenial-updates/xenial-security/xenial-backports/proposed	main、restricted、universe、multiverse
+第一部分的deb是deb软件包，deb-src则是源代码包
+
+第三部分严格来说不算是发行版版本代号，它应该是Ubuntu系统发布之后，在此基础上进行的安全性更新的分类。
+
+第四部分是按照软件包的自由度来分类的：
+
+main：即“基本”组件，其中只包含符合Ubuntu的协议要求并由Ubuntu团队维护支持的软件。
+
+restricted：即“受限”组件，其中包含了非常重要的，但并不具有合适的自由协议的软件，如显卡驱动，同样有 Ubuntu团队维护支持。
+
+universe：即“社区维护”组件，其中包含的软件种类繁多，它们可能采用受限于协议，可能不是，但都不为Ubuntu 团队维护。
+
+multiverse：即“非自由”组件，其中包括了不符合自由软体要求而且不被Ubuntu团队支援的软件，通常为商业公司编写的软件。
+
+下面我们来看一下Ubuntu软件源镜像站的目录结构（以阿里云镜像站为例）：
+
+http://mirrors.aliyun.com/ubuntu/ ，在浏览器地址栏中输入此地址便进入了Ubuntu软件源镜像站，如下图所示：
+
+
+
+重点看两个文件夹dists和pool
+
+dists目录包含的全是Ubuntu发行版目录及其附加仓库目录（如：xenial、xenial-update、xenial-security、xenial-backports就是Ubuntu xenial发行版目录及其附加仓库目录）。
+
+pool/:
+
+所有 Ubuntu 发布版及已发布版的软件包的物理地址。按照源码包名称分类存放。pool目录下按属性再分类（main、restricted、 universe和multiverse），分类下面再按源码包名称的首字母归档。这些目录包含的文件有：运行于各种系统架构的二进制软件包，生成这些二进制软件包的源码包。  
+
+我们知道Ubuntu还有其他的附加仓库，Ubuntu附加仓库的命名格式是“版本代号-限定词”，限定词是这update、security、proposed、backports四个词中的一个，比方说版本代号xenial和限定词update组合就是xenial-update附加仓库，xenial和security组合就是xenial-security附加仓库，以此类推可以自行写出Ubuntu所有的附加仓库的目录名称
+
+在sources.list文件里只有一条包含发行版仓库xenial的软件源还不够，我们还要写出包含其他4个附加仓库的软件源，只要把已经写好的软件源中的xenial依次替换成xenial-update、xenial-security、xenial-proposed、xenial-backports即可，下面是完整的包含所有附加仓库的软件源：
+
+deb http://mirrors.aliyun.com/ubuntu/ xenial-update main universe restricted multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main universe restricted multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ xenial-proposed main universe restricted multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main universe restricted multiverse
+
+将这四条软件源再一并写入sources.list，再加上
+
+deb http://mirrors.aliyun.com/ubuntu/ xenial main universe restricted multiverse
+
+总共五条
+
+另外为了防止运营商劫持大家可以使用https，但是要求镜像站支持https，一般现在大型镜像站都是支持https的，比如清华镜像站，阿里镜像站，163等等
+
+### 版本号
+
+版本	开发代号	中译	发布日期	支持结束时间	 内核版本
+桌面版	服务器版
+4.10	Warty Warthog	多疣的 疣猪	2004-10-20	2006-04-30	2.6.8
+5.04	Hoary Hedgehog	白发的 刺猬	2005-04-08	2006-10-31	2.6.10
+5.10	Breezy Badger	活泼的 獾	2005-10-13	2007-04-13	2.6.12
+6.06 LTS	Dapper Drake	整洁的公 鸭	2006-06-01	2009-07-14	2011-06-01	2.6.15
+6.10	Edgy Eft	尖利的小 蜥蜴	2006-10-26	2008-04-25	2.6.17
+7.04	Feisty Fawn	烦躁不安的 鹿	2007-04-19	2008-10-19	2.6.20
+7.10	Gutsy Gibbon	胆大的 长臂猿	2007-10-18	2009-04-18	2.6.22
+8.04 LTS	Hardy Heron	坚强的 鹭	2008-04-24	2011-05-12	2013-05-09	2.6.24
+8.10	Intrepid Ibex	无畏的 羱羊	2008-10-30	2010-04-30	2.6.27
+9.04	Jaunty Jackalope	活泼的 鹿角兔	2009-04-23	2010-10-23	2.6.28
+9.10	Karmic Koala	幸运的 树袋熊	2009-10-29	2011-04-30	2.6.31
+10.04 LTS	Lucid Lynx	清醒的 山猫	2010-04-29	2013-05-09	2015-04-30	2.6.32
+10.10	Maverick Meerkat	标新立异的 狐獴	2010-10-10	2012-04-10	2.6.35
+11.04	Natty Narwhal	敏捷的 独角鲸	2011-04-28	2012-10-28	2.6.38
+11.10	Oneiric Ocelot	有梦的 虎猫	2011-10-13	2013-05-09	3.0
+12.04 LTS	Precise Pangolin	精准的 穿山甲	2012-04-26 [39]	2017-04-28 [40]	3.2 [41]
+12.10	Quantal Quetzal	量子的 格查尔鸟	2012-10-18	2014-05-16 [42]	3.5 [43]
+13.04	Raring Ringtail	铆足了劲的 环尾猫熊	2013-04-25	2014-01-27 [44]	3.8 [45]
+13.10	Saucy Salamander	活泼的 蝾螈	2013-10-17 [46]	2014-07-17 [47]	3.11
+14.04 LTS	Trusty Tahr	可靠的 塔尔羊	2014-04-17 [48]	2019-04	3.13
+14.10	Utopic Unicorn	乌托邦的 独角兽	2014-10-23 [49]	2015-07-23 [50]	3.16 [51]
+15.04	Vivid Vervet	活泼的 长尾黑颚猴	2015-04-23 [52]	2016-02-04 [53]	3.19 [54]
+15.10	Wily Werewolf	老谋深算的 狼人	2015-10-22 [55]	2016-07-28 [56]	4.2 [57]
+16.04 LTS	Xenial Xerus	好客的 非洲地松鼠	2016-04-21 [58]	2021-04	4.4 [59]
+16.10	Yakkety Yak	喋喋不休的 牦牛	2016-10-13 [60]	2017-07-20	4.8
+17.04	Zesty Zapus	热情的 美洲林跳鼠	2017-04-13 [61]	2018-01-13	4.10 [62]
+17.10	Artful Aardvark	巧妙的 土豚	2017-10-19 [63]	2018-07-19	4.13 [64]
+18.04 LTS	Bionic Beaver [65] [66]	仿生的 海狸	2018-04-26 [67]	2028-04 [68]	4.15
+18.10	Cosmic Cuttlefish	宇宙的 墨鱼	2018-10-18 [69]	2019-07	4.18 [70]
+
+19.04	Disco Dingo	迪斯可的 澳洲野犬	2019-04-18 [71]	2020-01	TBA
+-----------------------------------
+
+
+
+## ROS安装
+
+1. ![img](https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70)
+
+2.  设置软件源
+
+```sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/ros-latest.list'```
+
+3. 设置密钥
+
+   ```sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654```
+
+4. 安装
+
+   > sudo apt-get update
+   > sudo apt-get install ros-melodic-desktop-full
+   > sudo apt-get install ros-melodic-rqt*
+
+5. 初始化rosdep
+
+   > sudo apt-get install python-rosdep
+   >
+   > sudo rosdep init
+   > rosdep update
+
+6. 配置环境变量
+
+   
+
+   > source /opt/ros/melodic/setup.bash
+   >
+   > #ifconfig查看你的电脑ip地址
+   > export ROS_HOSTNAME=localhost
+   > export ROS_MASTER_URI=http://${ROS_HOSTNAME}:11311 
+
+# 设置代理
+
+> export http_proxy="http://<user>:<password>@<proxy_server>:<port>"
+> export https_proxy="http://<user>:<password>@<proxy_server>:<port>"
+> export http_proxy="socks5://127.0.0.1:1080"
+> export https_proxy="socks5://127.0.0.1:1080"
+> export ftp_proxy=http://<user>:<password>@<proxy_server>:<port>
+
+# 更改文件夹下所有文件的权限
+
+> sudo chmod -R 777 filename
+
+# git常用操作
+
+> $ git config --global user.name "username"
+>
+> $ git config --global user.email "email"
+>
+> 用vscode多方便
