@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pleasecallmeboss.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="（md格式） Eigen库简介C++库、用于线性代数、矩阵和矢量运算，数值分析及其相关的算法。 安装Linux：apt install libeigen3-dev CMake声明与使用# CMake要求本版信息即项目名称，创建时自动生成 cmake_minimum_required(VERSION 3.12) project(useEigen)  # 申明采用C++11标准，项目创建时自动生成 s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="咦蜘蛛的个人博客">
+<meta property="og:url" content="https://pleasecallmeboss.github.io/blog/2022/09/26/Eigen%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="咦蜘蛛的个人博客">
+<meta property="og:description" content="（md格式） Eigen库简介C++库、用于线性代数、矩阵和矢量运算，数值分析及其相关的算法。 安装Linux：apt install libeigen3-dev CMake声明与使用# CMake要求本版信息即项目名称，创建时自动生成 cmake_minimum_required(VERSION 3.12) project(useEigen)  # 申明采用C++11标准，项目创建时自动生成 s">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-26T09:15:39.319Z">
+<meta property="article:modified_time" content="2022-06-05T02:19:38.000Z">
+<meta property="article:author" content="咦蜘蛛">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://pleasecallmeboss.github.io/blog/2022/09/26/Eigen%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 咦蜘蛛的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">咦蜘蛛的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/09/26/Eigen%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-26 17:15:39" itemprop="dateCreated datePublished" datetime="2022-09-26T17:15:39+08:00">2022-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-05 10:19:38" itemprop="dateModified" datetime="2022-06-05T10:19:38+08:00">2022-06-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>（md格式）</p>
+<h3 id="Eigen库简介"><a href="#Eigen库简介" class="headerlink" title="Eigen库简介"></a>Eigen库简介</h3><p>C++库、用于线性代数、矩阵和矢量运算，数值分析及其相关的算法。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Linux：apt install libeigen3-dev</p>
+<h3 id="CMake声明与使用"><a href="#CMake声明与使用" class="headerlink" title="CMake声明与使用"></a>CMake声明与使用</h3><pre><code class="c++"># CMake要求本版信息即项目名称，创建时自动生成
+cmake_minimum_required(VERSION 3.12)
+project(useEigen)
+
+# 申明采用C++11标准，项目创建时自动生成
+set(CMAKE_CXX_STANDARD 11)
+
+# 寻找Eigen库
+find_package(Eigen3 REQUIRED)
+# 将Eigen库include进来
+include_directories($&#123;EIGEN3_INCLUDE_DIRS&#125;)
+
+add_executable($&#123;PROJECT_NAME&#125; main.cpp)
+</code></pre>
+<h3 id="代码中头文件写法"><a href="#代码中头文件写法" class="headerlink" title="代码中头文件写法"></a>代码中头文件写法</h3><p><code>#include &lt;Eigen/Dense&gt;</code></p>
+<p><code>using namespace Eigen;</code></p>
+<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><ol>
+<li><p>创建</p>
+<pre><code>Matrix&lt;typename Scalar, int RowsAtCompileTime, int ColsAtCompileTime&gt;
+</code></pre>
+<p>参数分别为类型、行数、列数。</p>
+<pre><code>Matrix&lt;double, 5, 3&gt; m1;
+Matrix&lt;float,5,5&gt; m2;
+Matrix&lt;int,8,9&gt; m3;
+</code></pre>
+<p>或者采用预定义的矩阵类型</p>
+<pre><code>Matrix3d m1;
+Matrix3f m2;
+Matrix3i m3;
+MatrixXd m4(a,b);
+</code></pre>
+<p>分别指3*3的double、float、int、.MatriXd指大小不确定的double型，可用通过变量确定大小</p>
+</li>
+<li><p>初始化</p>
+<pre><code>Matrix3d m;
+    m &lt;&lt; 1, 2, 3,
+            4, 5, 6,
+            7, 8, 9;
+</code></pre>
+</li>
+<li><p>获取元素</p>
+<p>m(4,7)</p>
+</li>
+<li><p>常用方法</p>
+<pre><code>m.rows() 
+
+m.cols()
+
+m.size()    #获取元素个数
+
+m.data()    #获取指向矩阵或向量的首地址
+
+MatrixXd::Random(m,n)    #创建m×n维double类型的随机数矩阵
+
+MatrixXd::Constant(m,n,p)    #创建m×n维double类型元素全为p的矩阵
+
+MatrixXd::Zero(m,n)    #创建m×n维元素全为0的矩阵
+
+MatrixXd::Ones(m,n)    #创建m×n维元素全为1的矩阵
+
+MatrixXd::Identity(m,n)    #创建m×n维的单位阵
+
+VectorXd::LinSpaced(size,low,high)    #创建一个size长度的从low到high的向量或一维矩阵
+</code></pre>
+</li>
+<li><p>加减乘</p>
+<p><code>+ - *  #对运算符进行了重载</code></p>
+</li>
+<li><p>其他运算</p>
+<pre><code>mat.transpose()：转置矩阵。对于矩阵转置，注意不要写成a = a.transpose()，这会导致错误结果(Aliasing Issue)，如果一定需要对原矩阵进行修改，使用a.transposeInPlace()函数。
+
+mat.inverse()：逆矩阵
+
+mat.conjugate()：共轭矩阵
+
+mat.adjoint()：伴随矩阵
+
+mat.trace()：矩阵的迹
+
+mat.eigenvalues()：矩阵的特征值
+
+mat.determinant()：矩阵求行列式的值
+
+mat.diagonal()：矩阵对角线元素
+
+mat.sum()：矩阵所有元素求和
+
+mat.prod()：矩阵所有元素求积
+
+mat.mean()：矩阵所有元素求平均
+
+mat.minCoeff()：矩阵所有元素最小值
+
+mat.minCoeff(&amp;i,&amp;j)：矩阵所有元素最小值的位置，i、j为int类型或为Eigen的Index类型。
+
+mat.maxCoeff()：矩阵所有元素最大值
+
+mat.maxCoeff(&amp;i,&amp;j)：矩阵所有元素最大值的位置
+
+mat.nonZeros()：矩阵中非零元素个数
+
+mat.squaredNorm()：矩阵(向量)的平方范数，对向量而言等价于其与自身做点积，数值上等于各分量的平方和。
+
+mat.norm()：矩阵(向量)的平方范数开根号(对于向量即求模长)
+
+mat.lpNorm&lt;1&gt;()：矩阵(向量)的L1范数
+
+mat.lpNorm&lt;2&gt;()：矩阵(向量)的L2范数
+
+mat.lpNorm&lt;Infinity&gt;()：矩阵(向量)的L无穷范数
+
+mat.lpNorm&lt;p&gt;()：矩阵(向量)的Lp范数
+
+mat.normalize()：矩阵(向量)的正则化(归一化)，使所有元素的平方和等于1。
+
+(mat&gt;0).all()：矩阵元素条件判断，mat中所有元素是否都大于0，是返回1，否则返回0。
+
+(mat&gt;0).any()：矩阵元素条件判断，mat中所有元素是否有大于0的，有返回1，否则返回0。
+
+(mat&gt;0).count()：矩阵符合条件的元素计数，返回mat中大于0元素的个数。
+
+mat.colwise()：返回矩阵每列的值
+
+mat.rowwise()：返回矩阵每行的值
+</code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2022/09/26/1vscode%E4%BD%BF%E7%94%A8/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2022/09/26/%E5%85%B3%E4%BA%8Ecmake%E9%82%A3%E4%BA%9B%E4%BA%8B/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Eigen%E5%BA%93%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">Eigen库简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMake%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">CMake声明与使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%AD%E5%A4%B4%E6%96%87%E4%BB%B6%E5%86%99%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">代码中头文件写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5"><span class="nav-number">5.</span> <span class="nav-text">矩阵</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">咦蜘蛛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">咦蜘蛛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/muse.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

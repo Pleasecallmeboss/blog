@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pleasecallmeboss.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="apt和apt-get的区别简单来说就是：apt &#x3D; apt-get、apt-cache 和 apt-config 中最常用命令选项的集合。apt 命令    取代的命令    命令的功能apt install    apt-get install    安装软件包apt remove    apt-get remove    移除软件包apt purge    apt-get purge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu操作">
+<meta property="og:url" content="https://pleasecallmeboss.github.io/blog/2022/03/22/Ubuntu%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="咦蜘蛛的个人博客">
+<meta property="og:description" content="apt和apt-get的区别简单来说就是：apt &#x3D; apt-get、apt-cache 和 apt-config 中最常用命令选项的集合。apt 命令    取代的命令    命令的功能apt install    apt-get install    安装软件包apt remove    apt-get remove    移除软件包apt purge    apt-get purge">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2022-03-22T08:23:31.000Z">
+<meta property="article:modified_time" content="2022-09-26T02:42:45.426Z">
+<meta property="article:author" content="咦蜘蛛">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="https://pleasecallmeboss.github.io/blog/2022/03/22/Ubuntu%E6%93%8D%E4%BD%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Ubuntu操作 | 咦蜘蛛的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">咦蜘蛛的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/03/22/Ubuntu%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu操作
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-22 16:23:31" itemprop="dateCreated datePublished" datetime="2022-03-22T16:23:31+08:00">2022-03-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-26 10:42:45" itemprop="dateModified" datetime="2022-09-26T10:42:45+08:00">2022-09-26</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="apt和apt-get的区别"><a href="#apt和apt-get的区别" class="headerlink" title="apt和apt-get的区别"></a>apt和apt-get的区别</h2><p>简单来说就是：apt = apt-get、apt-cache 和 apt-config 中最常用命令选项的集合。<br>apt 命令    取代的命令    命令的功能<br>apt install    apt-get install    安装软件包<br>apt remove    apt-get remove    移除软件包<br>apt purge    apt-get purge    移除软件包及配置文件<br>apt update    apt-get update    刷新存储库索引<br>apt upgrade    apt-get upgrade    升级所有可升级的软件包<br>apt autoremove    apt-get autoremove    自动删除不需要的包<br>apt full-upgrade    apt-get dist-upgrade    在升级软件包时自动处理依赖关系<br>apt search    apt-cache search    搜索应用程序<br>apt show    apt-cache show    显示安装细节</p>
+<p>当然，apt 还有一些自己的命令：<br>新的apt命令    命令的功能<br>apt list    列出包含条件的包（已安装，可升级等）<br>apt edit-sources    编辑源列表</p>
+<h1 id="挂载命令："><a href="#挂载命令：" class="headerlink" title="挂载命令："></a>挂载命令：</h1><p>mount [-t vfstype] [-o options] device dir<br>umount /mnt/cdrom</p>
+<p>systemd:</p>
+<p>hostnamectl:查看主机名，操作系统，内核，架构<br>systemd启动的第一个进程<br>Systemd 默认从目录/etc/systemd/system/读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录/usr/lib/systemd/system/，真正的配置文件存放在那个目录。</p>
+<p>systemctl enable命令用于在上面两个目录之间，建立符号链接关系。</p>
+<pre><code>$ sudo systemctl enable clamd@scan.service
+# 等同于
+$ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/systemd/system/multi-user.target.wants/clamd@scan.service&#39;
+</code></pre>
+<p>如果配置文件里面设置了开机启动，systemctl enable命令相当于激活开机启动。</p>
+<p>与之对应的，systemctl disable命令用于在两个目录之间，撤销符号链接关系，相当于撤销开机启动。</p>
+<pre><code>$ sudo systemctl disable clamd@scan.service
+</code></pre>
+<p>配置文件的后缀名，就是该 Unit 的种类，比如sshd.socket。如果省略，Systemd 默认后缀名为.service，所以sshd会被理解成sshd.service。</p>
+<p>学习systemd：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1516125">https://cloud.tencent.com/developer/article/1516125</a></p>
+<p>新建开机服务：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/396272999">https://zhuanlan.zhihu.com/p/396272999</a></p>
+<p>开机自动运行任务的四种方法：</p>
+<ol>
+<li>开机启动时自动运行程序</li>
+</ol>
+<p>Linux加载后, 它将初始化硬件和设备驱动, 然后运行第一个进程init。init根据配置文件继续引导过程，启动其它进程。通常情况下，修改放置在</p>
+<p>/etc/rc或</p>
+<p>/etc/rc.d 或</p>
+<p>/etc/rc?.d</p>
+<p>目录下的脚本文件，可以使init自动启动其它程序。例如：编辑/etc/rc.d/rc.local 文件(该文件通常是系统最后启动的脚本)，在文件最末加上一行“xinit”或“startx”，可以在开机启动后直接进入X－Window。</p>
+<ol start="2">
+<li>登录时自动运行程序</li>
+</ol>
+<p>用户登录时，bash先自动执行系统管理员建立的全局登录script ：</p>
+<p>/ect/profile</p>
+<p>然后bash在用户起始目录下按顺序查找三个特殊文件中的一个：</p>
+<p>/.bash_profile、</p>
+<p>/.bash_login、</p>
+<p>/.profile，</p>
+<p>但只执行最先找到的一个。因此，只需根据实际需要在上述文件中加入命令就可以实现用户登录时自动运行某些程序（类似于DOS下的Autoexec.bat）。</p>
+<ol start="3">
+<li>退出登录时自动运行程序</li>
+</ol>
+<p>退出登录时，bash自动执行个人的退出登录脚本</p>
+<p>/.bash_logout。</p>
+<p>例如，在/.bash_logout中加入命令“tar －cvzf c.source.tgz ＊.c”，则在每次退出登录时自动执行 “tar” 命令备份 ＊.c 文件。</p>
+<ol start="4">
+<li>定期自动运行程序</li>
+</ol>
+<p>Linux有一个称为crond的守护程序，主要功能是周期性地检查 /var/spool/cron目录下的一组命令文件的内容，并在设定的时间执行这些文件中的命令。用户可以通过crontab 命令来建立、修改、删除这些命令文件。</p>
+<p>例如，建立文件crondFile，内容为“00 9 23 Jan ＊ HappyBirthday”，运行“crontabcronFile”命令后，每当元月23日上午9:00系统自动执行“HappyBirthday”的程序（“＊”表示不管当天是星期几）。</p>
+<p>设置定时任务：</p>
+<p>sudo crontab -e</p>
+<p>填入以下内容</p>
+<p>//每月1号和15号的4点30分开始更新<br>30 4 1,15 * * sh [脚本目录]/[脚本名称]</p>
+<p>重启crontab，使配置生效</p>
+<p>sudo systemctl restart cron.service</p>
+<p>github的push操作认证：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sober-orange/p/git-token-push.html">https://www.cnblogs.com/sober-orange/p/git-token-push.html</a></p>
+<p>hexo环境上传到github</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/eidolonw/p/13066869.html">https://www.cnblogs.com/eidolonw/p/13066869.html</a></p>
+<p>(参考)<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39431829/article/details/88959366">https://blog.csdn.net/qq_39431829/article/details/88959366</a></p>
+<p>双系统引导过程</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liao20081228/article/details/82591728">https://blog.csdn.net/liao20081228/article/details/82591728</a></p>
+<p>git ssh配置</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lqlqlq007/article/details/78983879">https://blog.csdn.net/lqlqlq007/article/details/78983879</a></p>
+<h3 id="设置root用户密码"><a href="#设置root用户密码" class="headerlink" title="设置root用户密码"></a>设置root用户密码</h3><p>sudo passwd</p>
+<p>输入的密码为root用户的新密码</p>
+<h2 id="zsh的安装"><a href="#zsh的安装" class="headerlink" title="zsh的安装"></a>zsh的安装</h2><p>查看系统当前使用的shell</p>
+<blockquote>
+<p>echo $SHELL</p>
+</blockquote>
+<p>查看系统安装了哪些shell</p>
+<blockquote>
+<p>cat /etc/shells</p>
+</blockquote>
+<p>查看zsh的安装位置</p>
+<blockquote>
+<p>which zsh</p>
+</blockquote>
+<p>把默认的Shell改成zsh（为当前用户）</p>
+<pre><code class="bash">chsh -s /bin/zsh
+</code></pre>
+<p>安装主题 on-my-zsh</p>
+<p>sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</a></p>
+<h3 id="安装incr自动补全插件"><a href="#安装incr自动补全插件" class="headerlink" title="安装incr自动补全插件"></a>安装incr自动补全插件</h3><p>下载插件</p>
+<blockquote>
+<p>wget <a target="_blank" rel="noopener" href="http://mimosa-pudica.net/src/incr-0.2.zsh">http://mimosa-pudica.net/src/incr-0.2.zsh</a></p>
+</blockquote>
+<p>移动插件到oh-my-zsh目录的插件库下</p>
+<blockquote>
+<p>sudo mkdir ~/.oh-my-zsh/plugins/incr/</p>
+<p>sudo mv incr-0.2.zsh ~/.oh-my-zsh/plugins/incr/incr-0.2.zsh</p>
+</blockquote>
+<p>进入vim编辑</p>
+<blockquote>
+<p>sudo vim ~/.zshrc</p>
+</blockquote>
+<p>在vim界面按i进入输入模式在末尾加上如下代码</p>
+<blockquote>
+<p>source ~/.oh-my-zsh/plugins/incr/incr*.zsh</p>
+</blockquote>
+<p>按esc进入一般模式输入以下内容后回车以保存退出</p>
+<blockquote>
+<p>：qw</p>
+</blockquote>
+<p>更新配置</p>
+<blockquote>
+<p>source ~/.zshrc</p>
+</blockquote>
+<h3 id="更换agnoster主题"><a href="#更换agnoster主题" class="headerlink" title="更换agnoster主题"></a>更换agnoster主题</h3><p>安装字体</p>
+<blockquote>
+<p>sudo apt install fonts-powerline</p>
+</blockquote>
+<p>进入vim编辑</p>
+<blockquote>
+<p>sudo vim ~/.zshrc</p>
+</blockquote>
+<p>在vim界面按i进入输入模式找到ZSH_THEME=”robbyrussell”将其中robbyrussell修改为agnoster</p>
+<p>按esc进入一般模式输入：qw回车保存退出</p>
+<p>更新配置</p>
+<blockquote>
+<p>source ~/.zshrc</p>
+</blockquote>
+<h3 id="其他问题-git卡顿"><a href="#其他问题-git卡顿" class="headerlink" title="其他问题 git卡顿"></a>其他问题 git卡顿</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/anlz729/article/details/108768918">https://blog.csdn.net/anlz729/article/details/108768918</a></p>
+<h2 id="验证代理是否正常"><a href="#验证代理是否正常" class="headerlink" title="验证代理是否正常"></a>验证代理是否正常</h2><h4 id="测试http"><a href="#测试http" class="headerlink" title="测试http"></a>测试http</h4><p>curl ‘ip111.cn’</p>
+<p>curl -s <a target="_blank" rel="noopener" href="http://myip.ipip.net/">http://myip.ipip.net</a></p>
+<h4 id="测试https"><a href="#测试https" class="headerlink" title="测试https"></a>测试https</h4><p>curl ‘<a target="_blank" rel="noopener" href="https://api.myip.la/cn?json&#39;">https://api.myip.la/cn?json&#39;</a></p>
+<p>curl ‘<a target="_blank" rel="noopener" href="https://ipinfo.io/&#39;">https://ipinfo.io/&#39;</a></p>
+<h3 id="netstat的使用"><a href="#netstat的使用" class="headerlink" title="netstat的使用"></a>netstat的使用</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
+<h2 id="远程桌面连接"><a href="#远程桌面连接" class="headerlink" title="远程桌面连接"></a>远程桌面连接</h2><p>vnc方式：<a target="_blank" rel="noopener" href="https://blog.csdn.net/langyou0/article/details/107959002">https://blog.csdn.net/langyou0/article/details/107959002</a></p>
+<h2 id="df命令"><a href="#df命令" class="headerlink" title="df命令"></a>df命令</h2><p>df</p>
+<p>df -a 显示全部文件系统</p>
+<p>df -h 单位以人类易于阅读的方式</p>
+<p>df -T 显示文件系统类型</p>
+<h2 id="查看cpu"><a href="#查看cpu" class="headerlink" title="查看cpu"></a>查看cpu</h2><p>lscpu</p>
+<h2 id="查看内存"><a href="#查看内存" class="headerlink" title="查看内存"></a>查看内存</h2><p>free</p>
+<h2 id="安装KDE桌面环境"><a href="#安装KDE桌面环境" class="headerlink" title="安装KDE桌面环境"></a>安装KDE桌面环境</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39670511/article/details/110594726">https://blog.csdn.net/weixin_39670511/article/details/110594726</a></p>
+<p><a target="_blank" rel="noopener" href="https://ubuntuqa.com/article/9604.html">https://ubuntuqa.com/article/9604.html</a></p>
+<h2 id="命令行配置无线有线网络"><a href="#命令行配置无线有线网络" class="headerlink" title="命令行配置无线有线网络"></a>命令行配置无线有线网络</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/luotingliang/p/7248672.html">https://www.cnblogs.com/luotingliang/p/7248672.html</a></p>
+<h2 id="PS命令"><a href="#PS命令" class="headerlink" title="PS命令"></a>PS命令</h2><p>tty[1-6]就是你用ctr+alt+f[1-6]所看到的那个终端; 即虚拟控制台。其他的是外部终端和网络终端。</p>
+<p>pts/*为伪(虚拟)终端，当前打开了两个终端窗口，所以就有pts/0和pts/1</p>
+<p>ps -a 显示现行终端机下的所有进程，包括其他用户的进程</p>
+<p>-A 所有的进程均显示出来，与 -e 具有同样的效用</p>
+<p>-l 详细的</p>
+<p>-u 以</p>
+<h2 id="静态IP设置"><a href="#静态IP设置" class="headerlink" title="静态IP设置"></a>静态IP设置</h2><p><a target="_blank" rel="noopener" href="https://www.itbulu.com/ubuntu-setting-ips.html">https://www.itbulu.com/ubuntu-setting-ips.html</a></p>
+<h2 id="source-not-found"><a href="#source-not-found" class="headerlink" title="source not found"></a>source not found</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/erlou96/p/13398387.html">https://www.cnblogs.com/erlou96/p/13398387.html</a></p>
+<h2 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h2><p>1.vim ~/.bashrc</p>
+<p>2.添加 alias name=’command’即可。重启后即可生效,或执行source .bashrc也可立即生效</p>
+<h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhang-jun-jie/p/9266858.html">https://www.cnblogs.com/zhang-jun-jie/p/9266858.html</a></p>
+<h2 id="局域网主机之间测速"><a href="#局域网主机之间测速" class="headerlink" title="局域网主机之间测速"></a>局域网主机之间测速</h2><p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/25648fc16e8c9d9191fd00a0.html">https://jingyan.baidu.com/article/25648fc16e8c9d9191fd00a0.html</a></p>
+<h2 id="实时测速"><a href="#实时测速" class="headerlink" title="实时测速"></a>实时测速</h2><p>添加在上方图标 </p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jsdy/p/11461277.html">https://www.cnblogs.com/jsdy/p/11461277.html</a></p>
+<p>命令行 slurm</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_paycolumn_v3&amp;utm_relevant_index=1">https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&amp;utm_relevant_index=1</a></p>
+<h2 id="开机自动挂载u盘"><a href="#开机自动挂载u盘" class="headerlink" title="开机自动挂载u盘"></a>开机自动挂载u盘</h2><p>[UUID=************] [挂载磁盘分区] [挂载磁盘格式] 0 2 </p>
+<p>添加的行是13行，UUID和挂载目录/home/sqp/Data以及硬盘格式ext4</p>
+<p>第一数字0，0是开机不检查磁盘，1是开机检查磁盘</p>
+<p>第二个数2，0表示交换分区，1表示启动分区，2表示普通分区 </p>
+<h2 id="script编写"><a href="#script编写" class="headerlink" title="script编写"></a>script编写</h2><h3 id="echo-选项-参数-选项"><a href="#echo-选项-参数-选项" class="headerlink" title="echo(选项)(参数)选项"></a>echo(选项)(参数)选项</h3><p>-e：激活转义字符。使用-e选项时，若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：</p>
+<p>•\a 发出警告声；</p>
+<h3 id="指令运作的顺序："><a href="#指令运作的顺序：" class="headerlink" title="指令运作的顺序："></a>指令运作的顺序：</h3><ol>
+<li>以相对/绝对路径执行指令，例如『 /bin/ls 』或『 ./ls 』； </li>
+<li>由 alias 找到该指令来执行； </li>
+<li>由 bash 内建的 (builtin) 指令来执行； </li>
+<li>透过 $PATH 这个变量的顺序搜寻到的第一个指令来执行。</li>
+</ol>
+<h3 id="快速删除和光标快速移动"><a href="#快速删除和光标快速移动" class="headerlink" title="快速删除和光标快速移动"></a>快速删除和光标快速移动</h3><p>[ctrl]+u/[ctrl]+k 分别是从光标处向前删除指令串 ([ctrl]+u) 及向后删除指令串 ([ctrl]+k)。 [ctrl]+a/[ctrl]+e 分别是让光标移动到整个指令串的最前面 ([ctrl]+a) 或最后面 ([ctrl]+e)</p>
+<h3 id="单引号和双引号的区别"><a href="#单引号和双引号的区别" class="headerlink" title="单引号和双引号的区别"></a>单引号和双引号的区别</h3><p>变量内容若有空格符可使用双引号『”』或单引号『’』将变量内容结合起来，</p>
+<p>但 o双引号内的特殊字符如 $ 等，可以保有原本的特性，如下所示： </p>
+<p>『var=”lang is $LANG”』则『echo $var』可得『lang is zh_TW.UTF-8』 </p>
+<p>单引号内的特殊字符则仅为一般字符 (纯文本)，如下所示： </p>
+<p>『var=’lang is $LANG’』则『echo $var』可得『lang is $LANG』</p>
+<h3 id="追加变量内容"><a href="#追加变量内容" class="headerlink" title="追加变量内容"></a>追加变量内容</h3><p>『PATH=”$PATH”:/home/bin』或『PATH=${PATH}:/home/bin』</p>
+<h3 id="使用其他指令提供的信息"><a href="#使用其他指令提供的信息" class="headerlink" title="使用其他指令提供的信息"></a>使用其他指令提供的信息</h3><p>『version=$(uname -r)』再『echo $version』可得『3.10.0-229.el7.x86_64』</p>
+<h3 id="仓库详解"><a href="#仓库详解" class="headerlink" title="仓库详解"></a>仓库详解</h3><p>整个软件源结构可以分解为四个部分:</p>
+<p>第一部分    第二部分    第三部分    第四部分<br>软件包格式    软件包服务器地址    发行版版本代号    软件包的分类目录<br>deb/deb-src    <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a>     xenial/xenial-updates/xenial-security/xenial-backports/proposed    main、restricted、universe、multiverse<br>第一部分的deb是deb软件包，deb-src则是源代码包</p>
+<p>第三部分严格来说不算是发行版版本代号，它应该是Ubuntu系统发布之后，在此基础上进行的安全性更新的分类。</p>
+<p>第四部分是按照软件包的自由度来分类的：</p>
+<p>main：即“基本”组件，其中只包含符合Ubuntu的协议要求并由Ubuntu团队维护支持的软件。</p>
+<p>restricted：即“受限”组件，其中包含了非常重要的，但并不具有合适的自由协议的软件，如显卡驱动，同样有 Ubuntu团队维护支持。</p>
+<p>universe：即“社区维护”组件，其中包含的软件种类繁多，它们可能采用受限于协议，可能不是，但都不为Ubuntu 团队维护。</p>
+<p>multiverse：即“非自由”组件，其中包括了不符合自由软体要求而且不被Ubuntu团队支援的软件，通常为商业公司编写的软件。</p>
+<p>下面我们来看一下Ubuntu软件源镜像站的目录结构（以阿里云镜像站为例）：</p>
+<p><a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> ，在浏览器地址栏中输入此地址便进入了Ubuntu软件源镜像站，如下图所示：</p>
+<p>重点看两个文件夹dists和pool</p>
+<p>dists目录包含的全是Ubuntu发行版目录及其附加仓库目录（如：xenial、xenial-update、xenial-security、xenial-backports就是Ubuntu xenial发行版目录及其附加仓库目录）。</p>
+<p>pool/:</p>
+<p>所有 Ubuntu 发布版及已发布版的软件包的物理地址。按照源码包名称分类存放。pool目录下按属性再分类（main、restricted、 universe和multiverse），分类下面再按源码包名称的首字母归档。这些目录包含的文件有：运行于各种系统架构的二进制软件包，生成这些二进制软件包的源码包。  </p>
+<p>我们知道Ubuntu还有其他的附加仓库，Ubuntu附加仓库的命名格式是“版本代号-限定词”，限定词是这update、security、proposed、backports四个词中的一个，比方说版本代号xenial和限定词update组合就是xenial-update附加仓库，xenial和security组合就是xenial-security附加仓库，以此类推可以自行写出Ubuntu所有的附加仓库的目录名称</p>
+<p>在sources.list文件里只有一条包含发行版仓库xenial的软件源还不够，我们还要写出包含其他4个附加仓库的软件源，只要把已经写好的软件源中的xenial依次替换成xenial-update、xenial-security、xenial-proposed、xenial-backports即可，下面是完整的包含所有附加仓库的软件源：</p>
+<p>deb <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-update main universe restricted multiverse</p>
+<p>deb <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-security main universe restricted multiverse</p>
+<p>deb <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-proposed main universe restricted multiverse</p>
+<p>deb <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial-backports main universe restricted multiverse</p>
+<p>将这四条软件源再一并写入sources.list，再加上</p>
+<p>deb <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial main universe restricted multiverse</p>
+<p>总共五条</p>
+<p>另外为了防止运营商劫持大家可以使用https，但是要求镜像站支持https，一般现在大型镜像站都是支持https的，比如清华镜像站，阿里镜像站，163等等</p>
+<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>版本    开发代号    中译    发布日期    支持结束时间     内核版本<br>桌面版    服务器版<br>4.10    Warty Warthog    多疣的 疣猪    2004-10-20    2006-04-30    2.6.8<br>5.04    Hoary Hedgehog    白发的 刺猬    2005-04-08    2006-10-31    2.6.10<br>5.10    Breezy Badger    活泼的 獾    2005-10-13    2007-04-13    2.6.12<br>6.06 LTS    Dapper Drake    整洁的公 鸭    2006-06-01    2009-07-14    2011-06-01    2.6.15<br>6.10    Edgy Eft    尖利的小 蜥蜴    2006-10-26    2008-04-25    2.6.17<br>7.04    Feisty Fawn    烦躁不安的 鹿    2007-04-19    2008-10-19    2.6.20<br>7.10    Gutsy Gibbon    胆大的 长臂猿    2007-10-18    2009-04-18    2.6.22<br>8.04 LTS    Hardy Heron    坚强的 鹭    2008-04-24    2011-05-12    2013-05-09    2.6.24<br>8.10    Intrepid Ibex    无畏的 羱羊    2008-10-30    2010-04-30    2.6.27<br>9.04    Jaunty Jackalope    活泼的 鹿角兔    2009-04-23    2010-10-23    2.6.28<br>9.10    Karmic Koala    幸运的 树袋熊    2009-10-29    2011-04-30    2.6.31<br>10.04 LTS    Lucid Lynx    清醒的 山猫    2010-04-29    2013-05-09    2015-04-30    2.6.32<br>10.10    Maverick Meerkat    标新立异的 狐獴    2010-10-10    2012-04-10    2.6.35<br>11.04    Natty Narwhal    敏捷的 独角鲸    2011-04-28    2012-10-28    2.6.38<br>11.10    Oneiric Ocelot    有梦的 虎猫    2011-10-13    2013-05-09    3.0<br>12.04 LTS    Precise Pangolin    精准的 穿山甲    2012-04-26 [39]    2017-04-28 [40]    3.2 [41]<br>12.10    Quantal Quetzal    量子的 格查尔鸟    2012-10-18    2014-05-16 [42]    3.5 [43]<br>13.04    Raring Ringtail    铆足了劲的 环尾猫熊    2013-04-25    2014-01-27 [44]    3.8 [45]<br>13.10    Saucy Salamander    活泼的 蝾螈    2013-10-17 [46]    2014-07-17 [47]    3.11<br>14.04 LTS    Trusty Tahr    可靠的 塔尔羊    2014-04-17 [48]    2019-04    3.13<br>14.10    Utopic Unicorn    乌托邦的 独角兽    2014-10-23 [49]    2015-07-23 [50]    3.16 [51]<br>15.04    Vivid Vervet    活泼的 长尾黑颚猴    2015-04-23 [52]    2016-02-04 [53]    3.19 [54]<br>15.10    Wily Werewolf    老谋深算的 狼人    2015-10-22 [55]    2016-07-28 [56]    4.2 [57]<br>16.04 LTS    Xenial Xerus    好客的 非洲地松鼠    2016-04-21 [58]    2021-04    4.4 [59]<br>16.10    Yakkety Yak    喋喋不休的 牦牛    2016-10-13 [60]    2017-07-20    4.8<br>17.04    Zesty Zapus    热情的 美洲林跳鼠    2017-04-13 [61]    2018-01-13    4.10 [62]<br>17.10    Artful Aardvark    巧妙的 土豚    2017-10-19 [63]    2018-07-19    4.13 [64]<br>18.04 LTS    Bionic Beaver [65] [66]    仿生的 海狸    2018-04-26 [67]    2028-04 [68]    4.15<br>18.10    Cosmic Cuttlefish    宇宙的 墨鱼    2018-10-18 [69]    2019-07    4.18 [70]</p>
+<h2 id="19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA"><a href="#19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA" class="headerlink" title="19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA"></a>19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA</h2><h2 id="ROS安装"><a href="#ROS安装" class="headerlink" title="ROS安装"></a>ROS安装</h2><ol>
+<li><p><img src="https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70" alt="img"></p>
+</li>
+<li><p> 设置软件源</p>
+</li>
+</ol>
+<p><code>sudo sh -c &#39;. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;</code></p>
+<ol start="3">
+<li><p>设置密钥</p>
+<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654</code></p>
+</li>
+<li><p>安装</p>
+<blockquote>
+<p>sudo apt-get update<br>sudo apt-get install ros-melodic-desktop-full<br>sudo apt-get install ros-melodic-rqt*</p>
+</blockquote>
+</li>
+<li><p>初始化rosdep</p>
+<blockquote>
+<p>sudo apt-get install python-rosdep</p>
+<p>sudo rosdep init<br>rosdep update</p>
+</blockquote>
+</li>
+<li><p>配置环境变量</p>
+<blockquote>
+<p>source /opt/ros/melodic/setup.bash</p>
+<p>#ifconfig查看你的电脑ip地址<br>export ROS_HOSTNAME=localhost<br>export ROS_MASTER_URI=http://${ROS_HOSTNAME}:11311 </p>
+</blockquote>
+</li>
+</ol>
+<h1 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h1><blockquote>
+<p>export http_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export https_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export http_proxy=”socks5://127.0.0.1:1080”<br>export https_proxy=”socks5://127.0.0.1:1080”<br>export ftp_proxy=http://<user>:<password>@<proxy_server>:<port></p>
+</blockquote>
+<h1 id="更改文件夹下所有文件的权限"><a href="#更改文件夹下所有文件的权限" class="headerlink" title="更改文件夹下所有文件的权限"></a>更改文件夹下所有文件的权限</h1><blockquote>
+<p>sudo chmod -R 777 filename</p>
+</blockquote>
+<h1 id="git常用操作"><a href="#git常用操作" class="headerlink" title="git常用操作"></a>git常用操作</h1><blockquote>
+<p>$ git config –global user.name “username”</p>
+<p>$ git config –global user.email “email”</p>
+<p>用vscode多方便</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2022/03/20/%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E8%A3%85/" rel="prev" title="双系统的安装">
+      <i class="fa fa-chevron-left"></i> 双系统的安装
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2022/03/23/JetsonTX2%E7%9A%84%E4%BA%8B%E6%83%85/" rel="next" title="JetsonTX2的事情">
+      JetsonTX2的事情 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#apt%E5%92%8Capt-get%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">apt和apt-get的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">挂载命令：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEroot%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81"><span class="nav-number">0.1.</span> <span class="nav-text">设置root用户密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">zsh的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85incr%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E6%8F%92%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">安装incr自动补全插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2agnoster%E4%B8%BB%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">更换agnoster主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-git%E5%8D%A1%E9%A1%BF"><span class="nav-number">1.3.</span> <span class="nav-text">其他问题 git卡顿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="nav-number">2.</span> <span class="nav-text">验证代理是否正常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95http"><span class="nav-number">2.0.1.</span> <span class="nav-text">测试http</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95https"><span class="nav-number">2.0.2.</span> <span class="nav-text">测试https</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">netstat的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">远程桌面连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">df命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bcpu"><span class="nav-number">5.</span> <span class="nav-text">查看cpu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98"><span class="nav-number">6.</span> <span class="nav-text">查看内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85KDE%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83"><span class="nav-number">7.</span> <span class="nav-text">安装KDE桌面环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%85%8D%E7%BD%AE%E6%97%A0%E7%BA%BF%E6%9C%89%E7%BA%BF%E7%BD%91%E7%BB%9C"><span class="nav-number">8.</span> <span class="nav-text">命令行配置无线有线网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PS%E5%91%BD%E4%BB%A4"><span class="nav-number">9.</span> <span class="nav-text">PS命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81IP%E8%AE%BE%E7%BD%AE"><span class="nav-number">10.</span> <span class="nav-text">静态IP设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-not-found"><span class="nav-number">11.</span> <span class="nav-text">source not found</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D"><span class="nav-number">12.</span> <span class="nav-text">设置别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99"><span class="nav-number">13.</span> <span class="nav-text">脚本编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%BB%E6%9C%BA%E4%B9%8B%E9%97%B4%E6%B5%8B%E9%80%9F"><span class="nav-number">14.</span> <span class="nav-text">局域网主机之间测速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%97%B6%E6%B5%8B%E9%80%9F"><span class="nav-number">15.</span> <span class="nav-text">实时测速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDu%E7%9B%98"><span class="nav-number">16.</span> <span class="nav-text">开机自动挂载u盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script%E7%BC%96%E5%86%99"><span class="nav-number">17.</span> <span class="nav-text">script编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo-%E9%80%89%E9%A1%B9-%E5%8F%82%E6%95%B0-%E9%80%89%E9%A1%B9"><span class="nav-number">17.1.</span> <span class="nav-text">echo(选项)(参数)选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E8%BF%90%E4%BD%9C%E7%9A%84%E9%A1%BA%E5%BA%8F%EF%BC%9A"><span class="nav-number">17.2.</span> <span class="nav-text">指令运作的顺序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4%E5%92%8C%E5%85%89%E6%A0%87%E5%BF%AB%E9%80%9F%E7%A7%BB%E5%8A%A8"><span class="nav-number">17.3.</span> <span class="nav-text">快速删除和光标快速移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%BC%95%E5%8F%B7%E5%92%8C%E5%8F%8C%E5%BC%95%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">17.4.</span> <span class="nav-text">单引号和双引号的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%BD%E5%8A%A0%E5%8F%98%E9%87%8F%E5%86%85%E5%AE%B9"><span class="nav-number">17.5.</span> <span class="nav-text">追加变量内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E6%8C%87%E4%BB%A4%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">17.6.</span> <span class="nav-text">使用其他指令提供的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3"><span class="nav-number">17.7.</span> <span class="nav-text">仓库详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">17.8.</span> <span class="nav-text">版本号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-04-Disco-Dingo-%E8%BF%AA%E6%96%AF%E5%8F%AF%E7%9A%84-%E6%BE%B3%E6%B4%B2%E9%87%8E%E7%8A%AC-2019-04-18-71-2020-01-TBA"><span class="nav-number">18.</span> <span class="nav-text">19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS%E5%AE%89%E8%A3%85"><span class="nav-number">19.</span> <span class="nav-text">ROS安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="nav-number"></span> <span class="nav-text">设置代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E7%9A%84%E6%9D%83%E9%99%90"><span class="nav-number"></span> <span class="nav-text">更改文件夹下所有文件的权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number"></span> <span class="nav-text">git常用操作</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">咦蜘蛛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">咦蜘蛛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/muse.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pleasecallmeboss.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Word2vec1.Word2Vec是用来生成词向量的工具2词向量（https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;81032021）2.1字典序​    含义：词典中的第几个字 ​     2.2one-hot编码​    构建一个由 n个0组成的序列 (n是字典总数)，其中将第字典序个0 换成 1 ​    例如：n &#x3D;3，则所有的字典序对应one-hot 编码有 1: 1 , 0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="doc2vec与聚类">
+<meta property="og:url" content="https://pleasecallmeboss.github.io/blog/2022/04/08/doc2vec%E4%B8%8E%E8%81%9A%E7%B1%BB/index.html">
+<meta property="og:site_name" content="咦蜘蛛的个人博客">
+<meta property="og:description" content="Word2vec1.Word2Vec是用来生成词向量的工具2词向量（https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;81032021）2.1字典序​    含义：词典中的第几个字 ​     2.2one-hot编码​    构建一个由 n个0组成的序列 (n是字典总数)，其中将第字典序个0 换成 1 ​    例如：n &#x3D;3，则所有的字典序对应one-hot 编码有 1: 1 , 0">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-3c9a38cc5722f46beffcc10470237768_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-e1a97fadf10aaf6e62a5f2ed807800d4_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-c79467c3bc8e519b67f720924d3874f1_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-3d7e19c00358605c893e51d666327284_720w.png">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-3677468e93f3ed0b1b15244a39373e51_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-564acd6b926af536a9abcc2739b5b85f_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-921d5ff0b665e67d5df54047b9d6531a_720w.jpg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=+Lp+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=p%E2%89%A51">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=p=1,2,%E2%88%9E+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=+C_i+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=+C_j">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=C_i+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=C_j">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-efc243a0fd595089412bd617eaa0d78b_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-0141f21130b60f7ac23fa05d7e417cee_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-be2a7cf798fdc983e6521a68b1eb952d_720w.jpg">
+<meta property="article:published_time" content="2022-04-08T11:14:38.000Z">
+<meta property="article:modified_time" content="2022-04-29T07:40:24.000Z">
+<meta property="article:author" content="咦蜘蛛">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-3c9a38cc5722f46beffcc10470237768_720w.jpg">
+
+<link rel="canonical" href="https://pleasecallmeboss.github.io/blog/2022/04/08/doc2vec%E4%B8%8E%E8%81%9A%E7%B1%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>doc2vec与聚类 | 咦蜘蛛的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">咦蜘蛛的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/04/08/doc2vec%E4%B8%8E%E8%81%9A%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          doc2vec与聚类
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-08 19:14:38" itemprop="dateCreated datePublished" datetime="2022-04-08T19:14:38+08:00">2022-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-29 15:40:24" itemprop="dateModified" datetime="2022-04-29T15:40:24+08:00">2022-04-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><h3 id="1-Word2Vec是用来生成词向量的工具"><a href="#1-Word2Vec是用来生成词向量的工具" class="headerlink" title="1.Word2Vec是用来生成词向量的工具"></a>1.Word2Vec是用来生成词向量的工具</h3><h3 id="2词向量（https-zhuanlan-zhihu-com-p-81032021）"><a href="#2词向量（https-zhuanlan-zhihu-com-p-81032021）" class="headerlink" title="2词向量（https://zhuanlan.zhihu.com/p/81032021）"></a>2词向量（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/81032021%EF%BC%89">https://zhuanlan.zhihu.com/p/81032021）</a></h3><h4 id="2-1字典序"><a href="#2-1字典序" class="headerlink" title="2.1字典序"></a>2.1字典序</h4><p>​    含义：词典中的第几个字</p>
+<p>​    <img src="https://pic1.zhimg.com/80/v2-3c9a38cc5722f46beffcc10470237768_720w.jpg" alt="img"></p>
+<h4 id="2-2one-hot编码"><a href="#2-2one-hot编码" class="headerlink" title="2.2one-hot编码"></a>2.2one-hot编码</h4><p>​    构建一个由 n个0组成的序列 (n是字典总数)，其中将第字典序个0 换成 1</p>
+<p>​    例如：n =3，则所有的字典序对应one-hot 编码有</p>
+<pre><code class="text">1: 1 , 0 , 0
+2: 0 , 1 , 0
+3: 0 , 0 , 1
+</code></pre>
+<p><img src="https://pic1.zhimg.com/80/v2-e1a97fadf10aaf6e62a5f2ed807800d4_720w.jpg" alt="img"></p>
+<h4 id="2-3深度学习的本质"><a href="#2-3深度学习的本质" class="headerlink" title="2.3深度学习的本质"></a>2.3深度学习的本质</h4><p>​    给定大量级样本及模型（负杂函数），求解模型参数（函数解析式）<img src="https://pic2.zhimg.com/80/v2-c79467c3bc8e519b67f720924d3874f1_720w.jpg" alt="img"></p>
+<p>​    简单来说深度学习，就是通过待定系数法、求导更新，最小化模型和真实世界模型的误差。其中模型就是：一大堆负杂的矩阵乘法、加法及变换</p>
+<h4 id="2-4embedding"><a href="#2-4embedding" class="headerlink" title="2.4embedding"></a>2.4embedding</h4><p>​    既然已经有了 one-hot 来表达文本，那么为什么还需要词向量呢？</p>
+<p>​    让我们做一个假设，通过 one-hot 我们可以对APP上的外卖店都编了一个号。仅通过这个编号我们可以知道每家店的口味吗？答案是否定的，因为单独的one-hot 编码仅仅只代表了一个无意义的编码。</p>
+<p>​    人类为了对未知的事物进行描述，会通过事物的其他方向来进行类比。就像我们会将外卖按照：口味、速度、价格、好评等等维度进行打分，以此希望能够通过这些维度的评分来体现这家外卖的好坏。</p>
+<p>​    因此，embedding可以抽象的理解为：为了让one-hot 具有更强的语义特征而设计的描述one-hot不同维度的特征。只不过这个维度和特征是通过某种形式学习得到。</p>
+<h4 id="2-5目标任务"><a href="#2-5目标任务" class="headerlink" title="2.5目标任务"></a>2.5目标任务</h4><p>​    首先，看看nlp embedding 的鼻祖之一：word2vec (2013)</p>
+<p><img src="https://pic1.zhimg.com/80/v2-3d7e19c00358605c893e51d666327284_720w.png" alt="img"></p>
+<p>​    直观的来讲，word2vec 就是进一步在语言的算法表达上，做了一个映射任务：</p>
+<p>​    语言 ——&gt; 函数 ——&gt; 目标任务</p>
+<p>​    目标任务有两种做法 :</p>
+<ol>
+<li>skip-gram : 给定句子中的当前词，预测周围的词</li>
+<li>cbow : 给定句子中的周围词，预测当前词</li>
+</ol>
+<p><img src="https://pic2.zhimg.com/80/v2-3677468e93f3ed0b1b15244a39373e51_720w.jpg" alt="img"></p>
+<p>​    其核心观点是在one-hot 的文本表征基础上，乘以一个参数矩阵，得到一个dim 长度的参数，这个就是embedding</p>
+<p>​    因为该矩阵通过Skip-gram 或 CBOW 方式在大量语料中训练得到 ， 所以，通过w2c训练得到的embedding 也就带有了相似词相近这么一个特点。</p>
+<p>​    因为同义词、近义词可能在大量语料上有着相同的上下文，因此，训练后embedding 也相近</p>
+<blockquote>
+<p>w2c 提供了一种有效的文本数值化方法，为深度学习发展提供了标准范式</p>
+</blockquote>
+<p>w2c 的本质是通过embedding 的方式，将原有的one-hot 矩阵通过大量的语料扩展出了dim 维度的特征信息。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-564acd6b926af536a9abcc2739b5b85f_720w.jpg" alt="img"></p>
+<p>就像我们给大众店家打分一样，本来店家可能只是 某地区、第几家 店铺。</p>
+<p>通过5个维度，给店家打了一个评分，这个评分一定意义上就能代表这个店家。</p>
+<h2 id="Doc2vec"><a href="#Doc2vec" class="headerlink" title="Doc2vec"></a>Doc2vec</h2><h2 id="（https-zhuanlan-zhihu-com-p-136096645）"><a href="#（https-zhuanlan-zhihu-com-p-136096645）" class="headerlink" title="（https://zhuanlan.zhihu.com/p/136096645）"></a>（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/136096645%EF%BC%89">https://zhuanlan.zhihu.com/p/136096645）</a></h2><p>Doc2vec可以获得句子、段落和文档的向量表达，是Word2Vec的拓展。</p>
+<p>代码</p>
+<h2 id="层次聚类"><a href="#层次聚类" class="headerlink" title="层次聚类"></a>层次聚类</h2><h3 id="1聚类（https-zhuanlan-zhihu-com-p-104355127）"><a href="#1聚类（https-zhuanlan-zhihu-com-p-104355127）" class="headerlink" title="1聚类（https://zhuanlan.zhihu.com/p/104355127）"></a>1聚类（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/104355127%EF%BC%89">https://zhuanlan.zhihu.com/p/104355127）</a></h3><p><code>聚类(Clustering)</code>是按照某个特定标准(如距离)把一个数据集分割成不同的类或簇，使得<strong>同一个簇内的数据对象的相似性尽可能大，同时不在同一个簇中的数据对象的差异性也尽可能地大</strong>。也即聚类后同一类的数据尽可能聚集到一起，不同类数据尽量分离。</p>
+<h4 id="1-1-聚类的一般过程"><a href="#1-1-聚类的一般过程" class="headerlink" title="1.1 聚类的一般过程"></a><strong>1.1 聚类的一般过程</strong></h4><ol>
+<li>数据准备：特征标准化和降维</li>
+<li>特征选择：从最初的特征中选择最有效的特征，并将其存储在向量中</li>
+<li>特征提取：通过对选择的特征进行转换形成新的突出特征</li>
+<li>聚类：基于某种距离函数进行相似度度量，获取簇</li>
+<li>聚类结果评估：分析聚类结果，如<code>距离误差和(SSE)</code>等</li>
+</ol>
+<h4 id="1-2-数据对象间的相似度度量"><a href="#1-2-数据对象间的相似度度量" class="headerlink" title="1.2 数据对象间的相似度度量"></a><strong>1.2 数据对象间的相似度度量</strong></h4><p>对于数值型数据，可以使用下表中的相似度度量方法。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-921d5ff0b665e67d5df54047b9d6531a_720w.jpg" alt="img"></p>
+<p><code>Minkowski</code>距离就是<img src="https://www.zhihu.com/equation?tex=+Lp+" alt="[公式]">范数（<img src="https://www.zhihu.com/equation?tex=p%E2%89%A51" alt="[公式]">)，而 <code>Manhattan</code> 距离、<code>Euclidean</code>距离、<code>Chebyshev</code>距离分别对应 <img src="https://www.zhihu.com/equation?tex=p=1,2,%E2%88%9E+" alt="[公式]">时的情形。</p>
+<h4 id="1-3-cluster之间的相似度度量"><a href="#1-3-cluster之间的相似度度量" class="headerlink" title="1.3 cluster之间的相似度度量"></a><strong>1.3 cluster之间的相似度度量</strong></h4><p>除了需要衡量对象之间的距离之外，有些聚类算法（如层次聚类）还需要衡量<code>cluster</code>之间的距离 ，假设<img src="https://www.zhihu.com/equation?tex=+C_i+" alt="[公式]">和<img src="https://www.zhihu.com/equation?tex=+C_j" alt="[公式]"> 为两个 <code>cluster</code>，则前四种方法定义的 <img src="https://www.zhihu.com/equation?tex=C_i+" alt="[公式]">和 <img src="https://www.zhihu.com/equation?tex=C_j" alt="[公式]"> 之间的距离如下表所示。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-efc243a0fd595089412bd617eaa0d78b_720w.jpg" alt="img"></p>
+<ul>
+<li><code>Single-link</code>定义两个<code>cluster</code>之间的距离为两个<code>cluster</code>之间距离最近的两个点之间的距离，这种方法会在聚类的过程中产生<code>链式效应</code>，即有可能会出现非常大的<code>cluster</code></li>
+<li><code>Complete-link</code>定义的是两个<code>cluster</code>之间的距离为两个``cluster<code>之间距离最远的两个点之间的距离，这种方法可以避免</code>链式效应`,对异常样本点（不符合数据集的整体分布的噪声点）却非常敏感，容易产生不合理的聚类</li>
+<li><code>UPGMA</code>正好是<code>Single-link</code>和<code>Complete-link</code>方法的折中，他定义两个<code>cluster</code>之间的距离为两个<code>cluster</code>之间所有点距离的平均值</li>
+<li>最后一种<code>WPGMA</code>方法计算的是两个 <code>cluster</code> 之间两个对象之间的距离的加权平均值，加权的目的是为了使两个 <code>cluster</code> 对距离的计算的影响在同一层次上，而不受 <code>cluster</code> 大小的影响，具体公式和采用的权重方案有关。</li>
+</ul>
+<h3 id="层次聚类-1"><a href="#层次聚类-1" class="headerlink" title="层次聚类"></a>层次聚类</h3><p>前面介绍的几种算法确实可以在较小的复杂度内获取较好的结果，但是这几种算法却存在一个<code>链式效应</code>的现象，比如：A与B相似，B与C相似，那么在聚类的时候便会将A、B、C聚合到一起，但是如果A与C不相似，就会造成聚类误差，严重的时候这个误差可以一直传递下去。为了降低<code>链式效应</code>，这时候层次聚类就该发挥作用了。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-0141f21130b60f7ac23fa05d7e417cee_720w.jpg" alt="img"></p>
+<p><strong>层次聚类算法 (hierarchical clustering)</strong> 将数据集划分为一层一层的 <code>clusters</code>，后面一层生成的 <code>clusters</code> 基于前面一层的结果。层次聚类算法一般分为两类：</p>
+<ul>
+<li><strong>Agglomerative 层次聚类</strong>：又称自底向上（bottom-up）的层次聚类，每一个对象最开始都是一个 <code>cluster</code>，每次按一定的准则将最相近的两个 <code>cluster</code> 合并生成一个新的 <code>cluster</code>，如此往复，直至最终所有的对象都属于一个 <code>cluster</code>。这里主要关注此类算法。</li>
+<li><strong>Divisive 层次聚类</strong>： 又称自顶向下（top-down）的层次聚类，最开始所有的对象均属于一个 <code>cluster</code>，每次按一定的准则将某个 <code>cluster</code> 划分为多个 <code>cluster</code>，如此往复，直至每个对象均是一个 <code>cluster</code>。</li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/v2-be2a7cf798fdc983e6521a68b1eb952d_720w.jpg" alt="img"></p>
+<p>另外，需指出的是，层次聚类算法是一种贪心算法（greedy algorithm），因其每一次合并或划分都是基于某种局部最优的选择。</p>
+<h2 id="层次聚类代码"><a href="#层次聚类代码" class="headerlink" title="层次聚类代码"></a>层次聚类代码</h2><p>（<a target="_blank" rel="noopener" href="https://blog.csdn.net/elaine_bao/article/details/50242867%EF%BC%89">https://blog.csdn.net/elaine_bao/article/details/50242867）</a></p>
+<p>scipy cluster库简介<br>scipy.cluster是scipy下的一个做聚类的package, 共包含了两类聚类方法:</p>
+<ol>
+<li>矢量量化(scipy.cluster.vq):支持vector quantization 和 k-means 聚类方法</li>
+<li>层次聚类(scipy.cluster.hierarchy):支持hierarchical clustering 和 agglomerative clustering(凝聚聚类)</li>
+</ol>
+<h1 id="轮廓系数分析"><a href="#轮廓系数分析" class="headerlink" title="轮廓系数分析"></a><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%BD%AE%E5%BB%93%E7%B3%BB%E6%95%B0&spm=1001.2101.3001.7020">轮廓系数</a>分析</h1><ul>
+<li>对于第i i<em>i</em>个对象，计算它到所属簇中所有其他元素的平均距离，记作a i a_i<em>a**i</em>(体现凝聚度)</li>
+<li>对于第 i i<em>i</em> 个对象和不包含该对象的任意簇，计算该对象到给定簇中所有对象的平均距离，记 b i b_i<em>b**i</em> （体现分离度）</li>
+<li>第 i 个对象的轮廓系数为 s i = ( b i − a i ) m a x ( a i , b i ) s_i = \frac{(bi-ai)}{max(ai, bi)}<em>s**i</em>=<em>m<strong>a</strong>x</em>(<em>a**i</em>,<em>b**i</em>)(<em>b**i</em>−<em>a**i</em>)</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2022/03/31/python%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="python的使用">
+      <i class="fa fa-chevron-left"></i> python的使用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2022/04/18/Port-Swigger%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Port_Swigger学习笔记">
+      Port_Swigger学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-number">1.</span> <span class="nav-text">Word2vec</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Word2Vec%E6%98%AF%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E8%AF%8D%E5%90%91%E9%87%8F%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="nav-number">1.1.</span> <span class="nav-text">1.Word2Vec是用来生成词向量的工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E8%AF%8D%E5%90%91%E9%87%8F%EF%BC%88https-zhuanlan-zhihu-com-p-81032021%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2词向量（https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;81032021）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1%E5%AD%97%E5%85%B8%E5%BA%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1字典序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2one-hot%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2one-hot编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3深度学习的本质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4embedding"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4embedding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5%E7%9B%AE%E6%A0%87%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5目标任务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Doc2vec"><span class="nav-number">2.</span> <span class="nav-text">Doc2vec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88https-zhuanlan-zhihu-com-p-136096645%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">（https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;136096645）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E8%81%9A%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">层次聚类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E8%81%9A%E7%B1%BB%EF%BC%88https-zhuanlan-zhihu-com-p-104355127%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">1聚类（https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;104355127）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E8%81%9A%E7%B1%BB%E7%9A%84%E4%B8%80%E8%88%AC%E8%BF%87%E7%A8%8B"><span class="nav-number">4.1.1.</span> <span class="nav-text">1.1 聚类的一般过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%BA%A6%E5%BA%A6%E9%87%8F"><span class="nav-number">4.1.2.</span> <span class="nav-text">1.2 数据对象间的相似度度量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-cluster%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%BA%A6%E5%BA%A6%E9%87%8F"><span class="nav-number">4.1.3.</span> <span class="nav-text">1.3 cluster之间的相似度度量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E8%81%9A%E7%B1%BB-1"><span class="nav-number">4.2.</span> <span class="nav-text">层次聚类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E8%81%9A%E7%B1%BB%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">层次聚类代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AE%E5%BB%93%E7%B3%BB%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-number"></span> <span class="nav-text">轮廓系数分析</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">咦蜘蛛</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">咦蜘蛛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/muse.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
