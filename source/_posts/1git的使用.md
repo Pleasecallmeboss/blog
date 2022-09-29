@@ -19,4 +19,5 @@ git remote add 远程仓库别名 远程仓库地址
 ssh-add 私钥文件
 
 
-
+### .gitignore的使用
+vscode

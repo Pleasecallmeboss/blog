@@ -564,3 +564,43 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial main universe restricted multiverse
 > $ git config --global user.email "email"
 >
 > 用vscode多方便
+
+# 中文输入法
+ubuntu 在最新的版本中已经可以不用用户自己单独去下载中文输入法使用了，本次使用为 ubuntu18.04LTS版本(登陆是界面选择的是ubuntu on wayland)，设置方式非常简单
+
+1、打开设置，不知道的请点击右上角的工具栏即可看到。
+
+2、找到设置中语言项，点击语言安装管理，安装中文语言后选择输入方式。
+
+
+点击关闭，然后添加输入语言，在其中找到中文拼音添加即可
+
+
+https://blog.csdn.net/yedongsheng8238045/article/details/107185130/
+
+# eigen库路径问题
+大多数的程序包含的都是 <Eigen/Dense> 头文件, 如果想这样包含的话需要将 eigen 下的 Eigen 文件提升一级目录, 即将 Eigen 从 /usr/include/eigen3 放到 /usr/include/ 下, 如下命令:
+
+sudo cp -r  /usr/include/eigen3/Eigen /usr/include/
+
+
+# eigen:vector3d
+Eigen::Vector3d默认定义为一个列向量
+
+Eigen::Vector3d T(2, 1, 6)
+std::cout << "T = \n" << T << std::endl;
+std::cout << "T.transpose() = \n" << T.transpose() << std::endl;
+1
+2
+3
+输出结果为：
+
+T = 
+2
+1
+6
+T.transpose() = 
+2  1  6
+
+# eigen::matrix
+直接输出
