@@ -127,7 +127,7 @@ https://blog.csdn.net/jiangchao3392/article/details/73252291
 ### parted提示更新/etc/fstab 文件内容
 
 添加固态的挂载到/media/nvidia(新建即可)
-
+=i
 ### dd命令速度太慢
 
 以后应该使用 `pv` 来获取运行进度条。

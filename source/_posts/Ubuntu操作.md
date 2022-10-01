@@ -4,11 +4,9 @@ date: 2022-03-22 16:23:31
 tags:
 ---
 
-apt换源
-/etc/apt/sources.list
-https://mirrors.bfsu.edu.cn/ubuntu
 
-apt和apt-get的区别
+
+## apt和apt-get的区别
 简单来说就是：apt = apt-get、apt-cache 和 apt-config 中最常用命令选项的集合。
 apt 命令	取代的命令	命令的功能
 apt install	apt-get install	安装软件包
@@ -26,7 +24,7 @@ apt show	apt-cache show	显示安装细节
 apt list	列出包含条件的包（已安装，可升级等）
 apt edit-sources	编辑源列表
 
-挂载命令：
+# 挂载命令：
 mount [-t vfstype] [-o options] device dir
 umount /mnt/cdrom
 
@@ -512,3 +510,60 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial main universe restricted multiverse
 
 
 
+<<<<<<< HEAD
+=======
+## ROS安装
+
+1. ![img](https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70)
+
+2.  设置软件源
+
+```sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/ros-latest.list'```
+
+3. 设置密钥
+
+   ```sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654```
+
+4. 安装
+
+   > sudo apt-get update
+   > sudo apt-get install ros-melodic-desktop-full
+   > sudo apt-get install ros-melodic-rqt*
+
+5. 初始化rosdep
+
+   > sudo apt-get install python-rosdep
+   >
+   > sudo rosdep init
+   > rosdep update
+
+6. 配置环境变量
+
+   
+
+   > source /opt/ros/melodic/setup.bash
+   >
+   > #ifconfig查看你的电脑ip地址
+   > export ROS_HOSTNAME=localhost
+   > export ROS_MASTER_URI=http://${ROS_HOSTNAME}:11311 
+
+# 设置代理
+
+> export http_proxy="http://<user>:<password>@<proxy_server>:<port>"
+> export https_proxy="http://<user>:<password>@<proxy_server>:<port>"
+> export http_proxy="socks5://127.0.0.1:1080"
+> export https_proxy="socks5://127.0.0.1:1080"
+> export ftp_proxy=http://<user>:<password>@<proxy_server>:<port>
+
+# 更改文件夹下所有文件的权限
+
+> sudo chmod -R 777 filename
+
+# git常用操作
+
+> $ git config --global user.name "username"
+>
+> $ git config --global user.email "email"
+>
+> 用vscode多方便
+>>>>>>> 9fe0423c3a24031c913d166b3ac7ff3ebdfc73d8
