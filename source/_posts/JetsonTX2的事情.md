@@ -42,7 +42,19 @@ sudo gedit /sys/devices/pwm-fan/target_pwm
 sensors
 系统会显示当前温度，一般不开风扇的话系统温度能达到40度左右。
 
+持续显示
+tegrastats
 
+watch
+命令功能：
+可以将命令的输出结果输出到标准输出设备，多用于周期性执行命令/定时执行命令
+
+命令参数：
+参数	详解
+-n或–interval	watch缺省每2秒运行一下程序，可以用-n或-interval来指定间隔的时间。
+-d或–differences	用 -d 或 –differences 选项,watch 会高亮显示变化的区域。而-d=cumulative选项会把变动过的地方(不管最近的那次有没有变动)都高亮显示出来。
+-t 或 -no-title	会关闭watch命令在顶部的时间间隔,命令，当前时间的输出。
+-h,	–help 查看帮助文档
 
 ## 查看L4T版本
 
@@ -55,6 +67,8 @@ head -n 1 /etc/nv_tegra_release
 ## 重装系统
 
 ### 使用命令：
+
+https://blog.csdn.net/qq_43715489/article/details/107980338
 
 https://blog.csdn.net/greepex/article/details/103876921
 
