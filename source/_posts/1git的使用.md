@@ -42,3 +42,13 @@ source .git-completion.bash
 
 需要在git自带的bash中才可以运行，想在powershell使用将git下的bash.exe添加到环境变量中，然后注销生效，输入bash进入bash环境
 
+# 解决git命令行下中文无法显示的问题
+解决办法
+          通过修改配置让git 能显示中文，利用中文文件名来 add 到 git
+
+git bash 终端输入命令：git config --global core.quotepath false
+在git bash的界面中右击空白处，弹出菜单，选择Options->Text->Locale改为zh_CN，Character set改为UTF-8
+          动图演示
+
+
+          在看看是不是变成中文了，的确变了
