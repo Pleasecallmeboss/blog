@@ -18,5 +18,12 @@ git remote add 远程仓库别名 远程仓库地址
 
 ssh-add 私钥文件
 
+# git使用
 
+初始化
+git init
+git config --global user.name=''
+git config --global user.email=''
 
+创建合并分支
+git checkout -b 分支名
