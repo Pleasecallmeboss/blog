@@ -510,6 +510,8 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial main universe restricted multiverse
 
 
 
+<<<<<<< HEAD
+=======
 ## ROS安装
 
 1. ![img](https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70)
@@ -564,6 +566,7 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial main universe restricted multiverse
 > $ git config --global user.email "email"
 >
 > 用vscode多方便
+<<<<<<< HEAD
 
 # 中文输入法
 ubuntu 在最新的版本中已经可以不用用户自己单独去下载中文输入法使用了，本次使用为 ubuntu18.04LTS版本(登陆是界面选择的是ubuntu on wayland)，设置方式非常简单
@@ -624,3 +627,6 @@ alias cman='man -M /usr/share/man/zh_CN'
 为永久生效，可把上面的命令写进启动文件中
 如：修改 ~/.bashrc ，添加上面的命令
 我修改的是 /etc/bash.bashrc
+=======
+>>>>>>> 9fe0423c3a24031c913d166b3ac7ff3ebdfc73d8
+>>>>>>> 3d419ebd75fa478d0e144fedfe1049e3bc140131
