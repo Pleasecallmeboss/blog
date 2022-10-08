@@ -604,3 +604,23 @@ T.transpose() =
 
 # eigen::matrix
 直接输出
+
+
+# man zh_cn
+1.安装中文man手册
+sudo apt-get install manpages-zh
+2.查看中文man手册安装路径
+dpkg -L manpages-zh | less
+
+![](https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/man位置.png)
+ 
+
+可见中文man手册是安装在路径/usr/share/man/zh_CN/下
+
+3.给中文man设置一个命令
+为了和系统原来的man区分开，用alias给中文man的命令设置一个别名
+
+alias cman='man -M /usr/share/man/zh_CN'
+为永久生效，可把上面的命令写进启动文件中
+如：修改 ~/.bashrc ，添加上面的命令
+我修改的是 /etc/bash.bashrc
