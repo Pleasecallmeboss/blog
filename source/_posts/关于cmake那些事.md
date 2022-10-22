@@ -25,4 +25,14 @@ MSVC，就是微软（MS）的VC运行库。
 
 Windows 下，CMake 默认使用微软的 MSVC 作为编译器
 
-### 3.
+# catkin_make
+
+### 3.只编译指定的包
+
+catkin_make -DCATKIN_WHITELIST_PACKAGES="package_name1;package_name2"
+1
+注意不是src下的文件夹名字，而是文件夹下package.xml里面的包的名字，或者CMaklists.txt的项目的名字。不然会找不到，导致不会编译。
+
+### 不编译某些包
+不编译某个功能包：
+在功能包下面建立文件夹CATKIN_IGNORE

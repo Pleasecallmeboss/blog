@@ -759,3 +759,7 @@ https://www.lxlinux.net/install-network-card-driver-on-linux.html
 ```text
 %sudo  ALL=(ALL:ALL) NOPASSWD:ALL 
 ```
+
+## 返回上一次的目录
+
+cd -
