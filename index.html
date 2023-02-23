@@ -155,6 +155,147 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2023/02/22/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2023/02/22/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">每周工作日志</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-22 11:02:40" itemprop="dateCreated datePublished" datetime="2023-02-22T11:02:40+08:00">2023-02-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-23 20:57:34" itemprop="dateModified" datetime="2023-02-23T20:57:34+08:00">2023-02-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%AE%9E%E9%AA%8C%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">实验工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="第二周2-20-2-24"><a href="#第二周2-20-2-24" class="headerlink" title="第二周2.20-2.24"></a>第二周2.20-2.24</h2><h2 id="实验工作"><a href="#实验工作" class="headerlink" title="实验工作"></a>实验工作</h2><p>周二下午</p>
+<p>没想到仿真如何进行，想通过实验飞行验证猜想</p>
+<p>两次飞行。第一次，从3，3飞行到4，4. 不能确定是UWB定位转圈移动还是规划移动。</p>
+<p>第二次，进入offboard模式后UWB定位丢失，表现为位置突然为0，无人机在获得错误的自身定位和原本的预期位置后急速飞行。有录屏和录像。</p>
+<p>等待uwb定位？无法100%确定规划坐标系方向是对的。</p>
+<p>周三</p>
+<p>飞行中途y坐标变为0</p>
+<p>周四</p>
+<p>1.切换offboard后一直碰撞发生重规划</p>
+<p>2.重规划的起点一直没有变</p>
+<p>3.给飞控的位置应该一直在原来位置，为什么会向东北方向一直飞？</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ol>
+<li><p>tf树</p>
+<p>坐标系的转换工具。单向流动。静态转换节点static_transform_publisher的使用。</p>
+<node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster" args="0.1 0 0 -1.5707963 0 -1.5707963 base_link camera_link 50 " />
+
+<p>其中args的前六个数字代表具体的tf矩阵，之后的两个字符串代表是谁和谁之间的tf，最后一个数字代表发布频率。</p>
+</li>
+<li><p>catkin_make 和catkin build</p>
+</li>
+</ol>
+<h2 id="代码阅读"><a href="#代码阅读" class="headerlink" title="代码阅读"></a>代码阅读</h2><h3 id="rviz图像"><a href="#rviz图像" class="headerlink" title="rviz图像"></a>rviz图像</h3><ol>
+<li><p>position_cmd </p>
+<p><img src="C:\Users\ljy\AppData\Roaming\Typora\typora-user-images\image-20230223132143634.png" alt="image-20230223132143634"></p>
+<p>topic : /planning/position_cmd_vis</p>
+<p>type: visualization_msgs::Marker</p>
+<p>功能：表示cmd下一时刻的位置朝向</p>
+<p>代码位置：traj_server.cpp</p>
+<p>执行逻辑：traj_server从话题planning/bspline获取轨迹数据保存在vector<NonUniformBspline> traj_中，定时0.01s画出箭头</p>
+</li>
+<li><p>executed_traj</p>
+<p>topic : /planning/travel_traj</p>
+<p>type: visualization_msgs::Marker</p>
+<p>功能：表示所有发给traj_server的pos集合</p>
+<p>代码位置：traj_server.cpp</p>
+<p>执行逻辑：traj_server从话题planning/bspline获取轨迹pos数据保存在vector<a href="Eigen::Vector3d">Eigen::Vector3d</a>中，定时0.25s画出箭头</p>
+</li>
+<li><p>bspline_traj</p>
+<p>topic : /planning_vis/trajectory</p>
+<p>type:visualization_msgs::Marker</p>
+<p>功能：1.画出淡黄色的kino_path_ 2.画出红色的bspline</p>
+<p>代码位置：kino_replan_fsm.cpp </p>
+<p>执行逻辑：1. kino_replan_fsm有负责规划控制的planner_manager_类指针。规划数据保存在planner_manager_类的plan_data(MidPlanData)-&gt;kino_path_(vector<a href="Eigen::Vector3d">Eigen::Vector3d</a>)变量。b样条优化成功后kino_replan_fsm使用PlanningVisualization类指针调用drawGeometricPath方法画出_kino_path。</p>
+<p>​    2.planner_manager_-&gt;local_data_（LocalTrajData）-&gt;position_traj_(NonUniformBspline).规划的轨迹保存在local_data中，规划数据包括（position_traj_, velocity_traj_, acceleration_traj_, yaw_traj_, yawdot_traj_,yawdotdot_traj_）。b样条优化成功后kino_replan_fsm使用PlanningVisualization类指针调用drawBspline方法画出b样条轨迹和控制点（可选）。</p>
+</li>
+</ol>
+<h2 id="需实验验证"><a href="#需实验验证" class="headerlink" title="需实验验证"></a>需实验验证</h2><ol>
+<li><p>在gazebo下的static_transform_publisher</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/456831527">https://zhuanlan.zhihu.com/p/456831527</a></p>
+</li>
+<li></li>
+</ol>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ol>
+<li><p>t265图像的矫正和去失真</p>
+<table>
+<thead>
+<tr>
+<th><code>roslaunch vision_to_mavros t265_fisheye_undistort.launch</code></th>
+<th>订阅原始立体图像的节点，对其进行去失真和矫正，然后发布矫正后的图像以及相应的<code>camera_info</code>主题。</th>
+</tr>
+</thead>
+</table>
+</li>
+<li><p>apriltag_ros</p>
+<p>能够计算标签在相机坐标系下的姿态</p>
+</li>
+</ol>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>公众号 空中机器人前沿 讲的挺好的</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/10/09/PowerShell%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -948,72 +1089,6 @@ mat.rowwise()：返回矩阵每行的值
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/09/26/1clion/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="咦蜘蛛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咦蜘蛛的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2022/09/26/1clion/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-26 17:15:39" itemprop="dateCreated datePublished" datetime="2022-09-26T17:15:39+08:00">2022-09-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-17 09:56:42" itemprop="dateModified" datetime="2022-06-17T09:56:42+08:00">2022-06-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="devel目录"><a href="#devel目录" class="headerlink" title="devel目录"></a>devel目录</h3><p>-DCATKIN_DEVEL_PREFIX:PATH=/home/ljy/projects/fast-planner/devel</p>
-<h3 id="build目录"><a href="#build目录" class="headerlink" title="build目录"></a>build目录</h3><p>/home/ljy/projects/fast-planner/build</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1082,20 +1157,20 @@ mat.rowwise()：返回矩阵每行的值
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

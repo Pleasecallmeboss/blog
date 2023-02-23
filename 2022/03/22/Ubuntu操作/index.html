@@ -20,18 +20,19 @@
     var CONFIG = {"hostname":"pleasecallmeboss.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="apt和apt-get的区别 aptitude 在删除一个包时，会同时删除本身所依赖的包。而apt-get这时做的不彻底，导致包混乱。整个系统更为干净。  起初GNU&#x2F;Linux系统中只有.tar.gz。用户 必须自己编译他们想使用的每一个程序。在Debian出现之後，人们认为有必要在系统 中添加一种机 制用来管理 安装在计算机上的软件包。人们将这套系统称为dpkg。至此着名的‘package’首">
+  <meta name="description" content="apt-get和aptitude的区别 apt-getapt-get update——在修改&#x2F;etc&#x2F;apt&#x2F;sources.list或者&#x2F;etc&#x2F;apt&#x2F;preferences之後运行该命令。此外您需要定期运行这一命令以确保您的软件包列表是最新的。apt-get install packagename——安装一个新软件包（参见下文的aptitude ）apt-get remove package">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu操作">
 <meta property="og:url" content="https://pleasecallmeboss.github.io/blog/2022/03/22/Ubuntu%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="咦蜘蛛的个人博客">
-<meta property="og:description" content="apt和apt-get的区别 aptitude 在删除一个包时，会同时删除本身所依赖的包。而apt-get这时做的不彻底，导致包混乱。整个系统更为干净。  起初GNU&#x2F;Linux系统中只有.tar.gz。用户 必须自己编译他们想使用的每一个程序。在Debian出现之後，人们认为有必要在系统 中添加一种机 制用来管理 安装在计算机上的软件包。人们将这套系统称为dpkg。至此着名的‘package’首">
+<meta property="og:description" content="apt-get和aptitude的区别 apt-getapt-get update——在修改&#x2F;etc&#x2F;apt&#x2F;sources.list或者&#x2F;etc&#x2F;apt&#x2F;preferences之後运行该命令。此外您需要定期运行这一命令以确保您的软件包列表是最新的。apt-get install packagename——安装一个新软件包（参见下文的aptitude ）apt-get remove package">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/man%E4%BD%8D%E7%BD%AE.png">
 <meta property="article:published_time" content="2022-03-22T08:23:31.000Z">
-<meta property="article:modified_time" content="2022-10-22T02:21:21.669Z">
+<meta property="article:modified_time" content="2023-02-23T13:30:56.210Z">
 <meta property="article:author" content="咦蜘蛛">
+<meta property="article:tag" content="ubuntu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70">
 
@@ -193,8 +194,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-22 10:21:21" itemprop="dateModified" datetime="2022-10-22T10:21:21+08:00">2022-10-22</time>
+                <time title="修改时间：2023-02-23 21:30:56" itemprop="dateModified" datetime="2023-02-23T21:30:56+08:00">2023-02-23</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+                </span>
+            </span>
 
           
 
@@ -207,66 +217,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="apt和apt-get的区别"><a href="#apt和apt-get的区别" class="headerlink" title="apt和apt-get的区别"></a>apt和apt-get的区别</h2><ol>
-<li>aptitude 在删除一个包时，会同时删除本身所依赖的包。而apt-get这时做的不彻底，导致包混乱。整个系统更为干净。</li>
+        <h2 id="apt-get和aptitude的区别"><a href="#apt-get和aptitude的区别" class="headerlink" title="apt-get和aptitude的区别"></a>apt-get和aptitude的区别</h2><ol>
+<li><p>apt-get<br>apt-get update——在修改/etc/apt/sources.list或者/etc/apt/preferences之後运行该命令。此外您需要定期运行这一命令以确保您的软件包列表是最新的。<br>apt-get install packagename——安装一个新软件包（参见下文的aptitude ）<br>apt-get remove packagename——卸载一个已安装的软件包（保留配置文件）<br>apt-get –purge remove packagename——卸载一个已安装的软件包（删除配置文件）<br>dpkg –force-all –purge packagename 有些软件很难卸载，而且还阻止了别的软件的应用 ，就可以用这个，不过有点冒险。<br>apt-get autoclean apt会把已装或已卸的软件都备份在硬盘上，所以如果需要空间 的话，可以让这个命令来删除你已经删掉的软件<br>apt-get clean 这个命令会把安装的软件的备份也删除，不过这样不会影响软件的使用的。<br>apt-get upgrade——更新所有已安装的软件包<br>apt-get dist-upgrade——将系统升级到新版本<br>apt-cache search string——在软件包列表中搜索字符串<br>dpkg -l package-name-pattern——列出所有与模式相匹配的软件包。如果您不知道软件包的全名，您可以使用“<em>package-name-pattern</em>”。<br>aptitude——详细查看已安装或可用的软件包。与apt-get类似，aptitude可以通过命令行方式调用，但仅限于某些命令——最常见的有安装和卸载命令。由于aptitude比apt-get了解更多信息，可以说它更适合用来进行安装载。<br>apt-cache showpkg pkgs——显示软件包信息。<br>apt-cache dumpavail——打印可用软件包列表。<br>apt-cache show pkgs——显示软件包记录，类似于dpkg –print-avail。<br>apt-cache pkgnames——打印软件包列表中所有软件包的名称。<br>dpkg -S file——这个文件属于哪个已安装软件包。<br>dpkg -L package——列出软件包中的所有文件。<br>apt-file search filename——查找包含特定文件的软件包（不一定是已安装的），这些文件的文件名中含有指定的字符串。apt-file是一个独立的软件包。您必须 先使用apt-get install来安装它，然後运行apt-fileupdate。如果apt-file search filename输出的内容太多，您可以尝试使用apt-file search filename | grep -w filename（只显示指定字符串作为完整的单词出现在其中的那些文件名）或者类似方法，例如apt-file search filename | grep /qfdgk/（只显示位于诸如/qfdgk或/usr/qfdgk这些文件夹中的文件，如果您要查找的是某个特定的执行文件的话，这样做是有帮助的）。</p>
+</li>
+<li><p>aptitude<br>aptitude 与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大的包管理工具。与 apt-get 不同的是，aptitude 在处理依赖问题上更佳一些。举例来说，aptitude 在删除一个包时，会同时删除本身所依赖的包。这样，系统中不会残留无用的包，整个系统更为干净。以下是笔者总结的一些常用 aptitude 命令，仅供参考。<br>命令 作用<br>aptitude update 更新可用的包列表<br>aptitude upgrade 升级可用的包<br>aptitude dist-upgrade 将系统升级到新的发行版<br>aptitude install pkgname 安装包<br>aptitude remove pkgname 删除包<br>aptitude purge pkgname 删除包及其配置文件<br>aptitude search string 搜索包<br>aptitude show pkgname 显示包的详细信息<br>aptitude clean 删除下载的包文件<br>aptitude autoclean 仅删除过期的包文件</p>
+</li>
 </ol>
-<p>起初GNU/Linux系统中只有.tar.gz。用户 必须自己编译他们想使用的每一个程序。在Debian出现之後，人们认为有必要在系统 中添加一种机 制用来管理 安装在计算机上的软件包。人们将这套系统称为dpkg。至此着名的‘package’首次在GNU/Linux上出现。不久之後红帽子也开始着 手建立自己的包管理系统 ‘rpm’。</p>
-<p>GNU/Linux的创造者们很快又陷入了新的窘境。他们希望通过一种快捷、实用而且高效的方式来安装软件包。这些软件包可以自动处理相互之间 的依赖关系，并且在升级过程中维护他们的配置文件 。Debian又一次充当了开路先锋的角色。她首创了APT（Advanced Packaging Tool）。这一工具後来被Conectiva 移植到红帽子系统中用于对rpm包的管理。在其他一些发行版中我们也能看到她的身影。</p>
-<p>“同时，apt是一个很完整和先进的软件包管理程序，使用它可以让你，又简单，又准确的找到你要的的软件包， 并且安装或卸载都很简洁。 它还可以让你的所有软件都更新到最新状态，而且也可以用来对ubuntu 进行升级。”</p>
-<p>“apt是需要用命令 来操作的软件，不过现在也出现了很多有图形的软件，比如Synaptic, Kynaptic 和 Adept。”</p>
-<p>命令</p>
-<p>下面将要介绍的所有命令都需要sudo！使用时请将“packagename”和“string”替换成您想要安装或者查找的程序。</p>
-<pre><code> * apt-get update——在修改/etc/apt/sources.list或者/etc/apt/preferences之後运行该命令。此外您需要定期运行这一命令以确保您的软件包列表是最新的。
- * apt-get install packagename——安装一个新软件包（参见下文的aptitude ）
- * apt-get remove packagename——卸载一个已安装的软件包（保留配置文件）
- * apt-get --purge remove packagename——卸载一个已安装的软件包（删除配置文件）
- * dpkg --force-all --purge packagename 有些软件很难卸载，而且还阻止了别的软件的应用 ，就可以用这个，不过有点冒险。
- * apt-get autoclean apt会把已装或已卸的软件都备份在硬盘上，所以如果需要空间 的话，可以让这个命令来删除你已经删掉的软件
- * apt-get clean 这个命令会把安装的软件的备份也删除，不过这样不会影响软件的使用的。
- * apt-get upgrade——更新所有已安装的软件包
- * apt-get dist-upgrade——将系统升级到新版本
- * apt-cache search string——在软件包列表中搜索字符串
- * dpkg -l package-name-pattern——列出所有与模式相匹配的软件包。如果您不知道软件包的全名，您可以使用“*package-name-pattern*”。
- * aptitude——详细查看已安装或可用的软件包。与apt-get类似，aptitude可以通过命令行方式调用，但仅限于某些命令——最常见的有安装和卸载命令。由于aptitude比apt-get了解更多信息，可以说它更适合用来进行安装和卸载。
- * apt-cache showpkg pkgs——显示软件包信息。
- * apt-cache dumpavail——打印可用软件包列表。
- * apt-cache show pkgs——显示软件包记录，类似于dpkg –print-avail。
- * apt-cache pkgnames——打印软件包列表中所有软件包的名称。
- * dpkg -S file——这个文件属于哪个已安装软件包。
- * dpkg -L package——列出软件包中的所有文件。
- * apt-file search filename——查找包含特定文件的软件包（不一定是已安装的），这些文件的文件名中含有指定的字符串。apt-file是一个独立的软件包。您必须 先使用apt-get install来安装它，然後运行apt-file update。如果apt-file search filename输出的内容太多，您可以尝试使用apt-file search filename | grep -w filename（只显示指定字符串作为完整的单词出现在其中的那些文件名）或者类似方法，例如：apt-file search filename | grep /qfdgk/（只显示位于诸如/qfdgk或/usr/qfdgk这些文件夹中的文件，如果您要查找的是某个特定的执行文件的话，这样做是有帮助的）。
-</code></pre>
-<p>＊ apt-get autoclean——定期运行这个命令来清除那些已经卸载的软件包的.deb文件。通过这种方式，您可以释放大量的磁盘空间。如果您的需求十分迫切，可 以使用apt-get clean以释放更多空间。这个命令会将已安装软件包裹的.deb文件一并删除。大多数情况下您不会再用到这些.debs文件，因此如果您为磁盘空间不足 而感到焦头烂额，这个办法也许值得一试。</p>
-<p>典型应用</p>
-<p>我是个赛车发烧友，想装个赛车类游戏玩玩。有哪些赛车类游戏可供选择呢？</p>
-<p>apt-cache search racing game</p>
-<p>出来了一大堆结果。看看有没有更多关于torcs这个游戏的信息。</p>
-<p>apt-cache show torcs</p>
-<p>看上去不错。这个游戏是不是已经安装了？最新版本是多少？它属于哪一类软件，universe还是main?</p>
-<p>apt-cache policy torcs</p>
-<p>好吧，现在我要来安装它！</p>
-<p>apt-get install torcs</p>
-<p>在 控制台下我应该调用什么命令来运行这个游戏呢？在这个例子中，直接用torcs就行了，但并不是每次都这么简单。我们可一通过查找哪些文件被安 装到了 “/usr/qfdgk”文件夹下来确定二进制文件名。对于游戏软件，这些二进制文件将被安装到“/usr/games”下面。对于系统管理工具相应的文件夹 是“/usr/sqfdgk”。</p>
-<p>dpkg -L torcs|grep /usr/games/</p>
-<p>这个命令的前面一部分显示软件包“torcs”安装的所有文件（您自己试试看）。通过命令的第二部分，我们告诉系统只显示前一部分的输出结果中含有“/usr/games”的那些行。</p>
-<p>这个游戏很酷哦。说不定还有其他赛道可玩的？</p>
-<p>apt-cache search torcs</p>
-<p>我的磁盘空间不够用了。我得把apt的缓存空间清空才行。</p>
-<p>apt-get clean</p>
-<p>哦不，老妈叫我把机器上的所有游戏都删掉。但是我想把配置文件保留下来，这样待会我只要重装一下就可以继续玩了。</p>
-<p>apt-get remove torcs</p>
-<p>如果我想连配置文件一块删除：</p>
-<p>apt-get remove –purge torcs</p>
-<p>额外的软件包</p>
-<p>deborphan和debfoster工具可以找出已经安装在系统上的不会被用到的软件包。</p>
-<p>提高命令行方式下的工作效率</p>
-<p>您可以通过定义别名（alias）来提高这些命令的输入速度。例如，您可以在您的*~/.bashrc*文件中添加下列内容</p>
-<p>alias acs=’apt-cache search’<br>alias agu=’sudo apt-get update’<br>alias agg=’sudo apt-get upgrade’<br>alias agd=’sudo apt-get dist-upgrade’<br>alias agi=’sudo apt-get install’<br>alias agr=’sudo apt-get remove’</p>
-<p>或者使用前面介绍的aptitude命令，如“alias agi=’sudo aptitude install’”。</p>
-<hr>
-<p>aptitude 与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大的包管理工具。与 apt-get 不同的是，aptitude 在处理依赖问题上更佳一些。举例来说，aptitude 在删除一个包时，会同时删除本身所依赖的包。这样，系统中不会残留无用的包，整个系统更为干净。以下是笔者总结的一些常用 aptitude 命令，仅供参考。<br>命令 作用<br>aptitude update 更新可用的包列表<br>aptitude upgrade 升级可用的包<br>aptitude dist-upgrade 将系统升级到新的发行版<br>aptitude install pkgname 安装包<br>aptitude remove pkgname 删除包<br>aptitude purge pkgname 删除包及其配置文件<br>aptitude search string 搜索包<br>aptitude show pkgname 显示包的详细信息<br>aptitude clean 删除下载的包文件<br>aptitude autoclean 仅删除过期的包文件</p>
 <p>当然，你也可以在文本界面模式中使用 aptitude。</p>
-<h1 id="挂载命令："><a href="#挂载命令：" class="headerlink" title="挂载命令："></a>挂载命令：</h1><p>mount [-t vfstype] [-o options] device dir<br>umount /mnt/cdrom</p>
+<h2 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h2><p>mount [-t vfstype] [-o options] device dir<br>umount /mnt/cdrom</p>
 <p>systemd:</p>
 <p>hostnamectl:查看主机名，操作系统，内核，架构<br>systemd启动的第一个进程<br>Systemd 默认从目录/etc/systemd/system/读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录/usr/lib/systemd/system/，真正的配置文件存放在那个目录。</p>
 <p>systemctl enable命令用于在上面两个目录之间，建立符号链接关系。</p>
@@ -276,58 +234,26 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 </code></pre>
 <p>如果配置文件里面设置了开机启动，systemctl enable命令相当于激活开机启动。</p>
 <p>与之对应的，systemctl disable命令用于在两个目录之间，撤销符号链接关系，相当于撤销开机启动。</p>
-<pre><code>$ sudo systemctl disable clamd@scan.service
+<pre><code>sudo systemctl disable clamd@scan.service
 </code></pre>
 <p>配置文件的后缀名，就是该 Unit 的种类，比如sshd.socket。如果省略，Systemd 默认后缀名为.service，所以sshd会被理解成sshd.service。</p>
 <p>学习systemd：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1516125">https://cloud.tencent.com/developer/article/1516125</a></p>
 <p>新建开机服务：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/396272999">https://zhuanlan.zhihu.com/p/396272999</a></p>
-<p>开机自动运行任务的四种方法：</p>
-<ol>
-<li>开机启动时自动运行程序</li>
-</ol>
-<p>Linux加载后, 它将初始化硬件和设备驱动, 然后运行第一个进程init。init根据配置文件继续引导过程，启动其它进程。通常情况下，修改放置在</p>
-<p>/etc/rc或</p>
-<p>/etc/rc.d 或</p>
-<p>/etc/rc?.d</p>
-<p>目录下的脚本文件，可以使init自动启动其它程序。例如：编辑/etc/rc.d/rc.local 文件(该文件通常是系统最后启动的脚本)，在文件最末加上一行“xinit”或“startx”，可以在开机启动后直接进入X－Window。</p>
-<ol start="2">
-<li>登录时自动运行程序</li>
-</ol>
-<p>用户登录时，bash先自动执行系统管理员建立的全局登录script ：</p>
-<p>/ect/profile</p>
-<p>然后bash在用户起始目录下按顺序查找三个特殊文件中的一个：</p>
-<p>/.bash_profile、</p>
-<p>/.bash_login、</p>
-<p>/.profile，</p>
-<p>但只执行最先找到的一个。因此，只需根据实际需要在上述文件中加入命令就可以实现用户登录时自动运行某些程序（类似于DOS下的Autoexec.bat）。</p>
-<ol start="3">
-<li>退出登录时自动运行程序</li>
-</ol>
-<p>退出登录时，bash自动执行个人的退出登录脚本</p>
-<p>/.bash_logout。</p>
-<p>例如，在/.bash_logout中加入命令“tar －cvzf c.source.tgz ＊.c”，则在每次退出登录时自动执行 “tar” 命令备份 ＊.c 文件。</p>
-<ol start="4">
-<li>定期自动运行程序</li>
-</ol>
-<p>Linux有一个称为crond的守护程序，主要功能是周期性地检查 /var/spool/cron目录下的一组命令文件的内容，并在设定的时间执行这些文件中的命令。用户可以通过crontab 命令来建立、修改、删除这些命令文件。</p>
+<h2 id="定期自动运行程序"><a href="#定期自动运行程序" class="headerlink" title="定期自动运行程序"></a>定期自动运行程序</h2><p>Linux有一个称为crond的守护程序，主要功能是周期性地检查 /var/spool/cron目录下的一组命令文件的内容，并在设定的时间执行这些文件中的命令。用户可以通过crontab 命令来建立、修改、删除这些命令文件。</p>
 <p>例如，建立文件crondFile，内容为“00 9 23 Jan ＊ HappyBirthday”，运行“crontabcronFile”命令后，每当元月23日上午9:00系统自动执行“HappyBirthday”的程序（“＊”表示不管当天是星期几）。</p>
 <p>设置定时任务：</p>
 <p>sudo crontab -e</p>
 <p>填入以下内容</p>
-<p>//每月1号和15号的4点30分开始更新<br>30 4 1,15 * * sh [脚本目录]/[脚本名称]</p>
+<p>//每月1号和15号的4点30分开始更新<br>30 4 1,15 ** sh [脚本目录]/[脚本名称]</p>
 <p>重启crontab，使配置生效</p>
 <p>sudo systemctl restart cron.service</p>
-<p>github的push操作认证：</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sober-orange/p/git-token-push.html">https://www.cnblogs.com/sober-orange/p/git-token-push.html</a></p>
-<p>hexo环境上传到github</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/eidolonw/p/13066869.html">https://www.cnblogs.com/eidolonw/p/13066869.html</a></p>
+<h2 id="github的push操作认证"><a href="#github的push操作认证" class="headerlink" title="github的push操作认证"></a>github的push操作认证</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sober-orange/p/git-token-push.html">https://www.cnblogs.com/sober-orange/p/git-token-push.html</a></p>
+<h2 id="hexo环境上传到github"><a href="#hexo环境上传到github" class="headerlink" title="hexo环境上传到github"></a>hexo环境上传到github</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/eidolonw/p/13066869.html">https://www.cnblogs.com/eidolonw/p/13066869.html</a></p>
 <p>(参考)<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39431829/article/details/88959366">https://blog.csdn.net/qq_39431829/article/details/88959366</a></p>
-<p>双系统引导过程</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liao20081228/article/details/82591728">https://blog.csdn.net/liao20081228/article/details/82591728</a></p>
-<p>git ssh配置</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lqlqlq007/article/details/78983879">https://blog.csdn.net/lqlqlq007/article/details/78983879</a></p>
-<h3 id="设置root用户密码"><a href="#设置root用户密码" class="headerlink" title="设置root用户密码"></a>设置root用户密码</h3><p>sudo passwd</p>
+<h2 id="双系统引导过程"><a href="#双系统引导过程" class="headerlink" title="双系统引导过程"></a>双系统引导过程</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liao20081228/article/details/82591728">https://blog.csdn.net/liao20081228/article/details/82591728</a></p>
+<h2 id="git-ssh配置"><a href="#git-ssh配置" class="headerlink" title="git ssh配置"></a>git ssh配置</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lqlqlq007/article/details/78983879">https://blog.csdn.net/lqlqlq007/article/details/78983879</a></p>
+<h3 id="设置root用户密码"><a href="#设置root用户密码" class="headerlink" title="设置root用户密码"></a>设置root用户密码</h3><p><code>sudo passwd</code></p>
 <p>输入的密码为root用户的新密码</p>
 <h2 id="zsh的安装"><a href="#zsh的安装" class="headerlink" title="zsh的安装"></a>zsh的安装</h2><p>查看系统当前使用的shell</p>
 <blockquote>
@@ -345,7 +271,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <pre><code class="bash">chsh -s /bin/zsh
 </code></pre>
 <p>安装主题 on-my-zsh</p>
-<p>sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</a></p>
+<p>sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh</a>)”</p>
 <h3 id="安装incr自动补全插件"><a href="#安装incr自动补全插件" class="headerlink" title="安装incr自动补全插件"></a>安装incr自动补全插件</h3><p>下载插件</p>
 <blockquote>
 <p>wget <a target="_blank" rel="noopener" href="http://mimosa-pudica.net/src/incr-0.2.zsh">http://mimosa-pudica.net/src/incr-0.2.zsh</a></p>
@@ -386,11 +312,16 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>source ~/.zshrc</p>
 </blockquote>
 <h3 id="其他问题-git卡顿"><a href="#其他问题-git卡顿" class="headerlink" title="其他问题 git卡顿"></a>其他问题 git卡顿</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/anlz729/article/details/108768918">https://blog.csdn.net/anlz729/article/details/108768918</a></p>
-<h2 id="验证代理是否正常"><a href="#验证代理是否正常" class="headerlink" title="验证代理是否正常"></a>验证代理是否正常</h2><h4 id="测试http"><a href="#测试http" class="headerlink" title="测试http"></a>测试http</h4><p>curl ‘ip111.cn’</p>
+<h2 id="验证代理是否正常"><a href="#验证代理是否正常" class="headerlink" title="验证代理是否正常"></a>验证代理是否正常</h2><pre><code>测试http
+</code></pre>
+<p>curl ‘ip111.cn’</p>
 <p>curl -s <a target="_blank" rel="noopener" href="http://myip.ipip.net/">http://myip.ipip.net</a></p>
-<h4 id="测试https"><a href="#测试https" class="headerlink" title="测试https"></a>测试https</h4><p>curl ‘<a target="_blank" rel="noopener" href="https://api.myip.la/cn?json&#39;">https://api.myip.la/cn?json&#39;</a></p>
+<ol start="2">
+<li>测试https</li>
+</ol>
+<p>curl ‘<a target="_blank" rel="noopener" href="https://api.myip.la/cn?json">https://api.myip.la/cn?json</a>‘</p>
 <p>curl ‘<a target="_blank" rel="noopener" href="https://ipinfo.io/&#39;">https://ipinfo.io/&#39;</a></p>
-<h3 id="netstat的使用"><a href="#netstat的使用" class="headerlink" title="netstat的使用"></a>netstat的使用</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
+<h2 id="netstat的使用"><a href="#netstat的使用" class="headerlink" title="netstat的使用"></a>netstat的使用</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
 <h2 id="远程桌面连接"><a href="#远程桌面连接" class="headerlink" title="远程桌面连接"></a>远程桌面连接</h2><p>vnc方式：<a target="_blank" rel="noopener" href="https://blog.csdn.net/langyou0/article/details/107959002">https://blog.csdn.net/langyou0/article/details/107959002</a></p>
 <h2 id="df命令"><a href="#df命令" class="headerlink" title="df命令"></a>df命令</h2><p>df</p>
 <p>df -a 显示全部文件系统</p>
@@ -413,31 +344,31 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>2.添加 alias name=’command’即可。重启后即可生效,或执行source .bashrc也可立即生效</p>
 <h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhang-jun-jie/p/9266858.html">https://www.cnblogs.com/zhang-jun-jie/p/9266858.html</a></p>
 <h2 id="局域网主机之间测速"><a href="#局域网主机之间测速" class="headerlink" title="局域网主机之间测速"></a>局域网主机之间测速</h2><p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/25648fc16e8c9d9191fd00a0.html">https://jingyan.baidu.com/article/25648fc16e8c9d9191fd00a0.html</a></p>
-<h2 id="实时测速"><a href="#实时测速" class="headerlink" title="实时测速"></a>实时测速</h2><p>添加在上方图标 </p>
+<h2 id="实时测速"><a href="#实时测速" class="headerlink" title="实时测速"></a>实时测速</h2><p>添加在上方图标</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jsdy/p/11461277.html">https://www.cnblogs.com/jsdy/p/11461277.html</a></p>
 <p>命令行 slurm</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_paycolumn_v3&amp;utm_relevant_index=1">https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&amp;utm_relevant_index=1</a></p>
-<h2 id="开机自动挂载u盘"><a href="#开机自动挂载u盘" class="headerlink" title="开机自动挂载u盘"></a>开机自动挂载u盘</h2><p>[UUID=************] [挂载磁盘分区] [挂载磁盘格式] 0 2 </p>
+<h2 id="开机自动挂载u盘"><a href="#开机自动挂载u盘" class="headerlink" title="开机自动挂载u盘"></a>开机自动挂载u盘</h2><p>[UUID=************] [挂载磁盘分区] [挂载磁盘格式] 0 2</p>
 <p>添加的行是13行，UUID和挂载目录/home/sqp/Data以及硬盘格式ext4</p>
 <p>第一数字0，0是开机不检查磁盘，1是开机检查磁盘</p>
-<p>第二个数2，0表示交换分区，1表示启动分区，2表示普通分区 </p>
+<p>第二个数2，0表示交换分区，1表示启动分区，2表示普通分区</p>
 <h2 id="script编写"><a href="#script编写" class="headerlink" title="script编写"></a>script编写</h2><h3 id="echo-选项-参数-选项"><a href="#echo-选项-参数-选项" class="headerlink" title="echo(选项)(参数)选项"></a>echo(选项)(参数)选项</h3><p>-e：激活转义字符。使用-e选项时，若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：</p>
 <p>•\a 发出警告声；</p>
-<h3 id="指令运作的顺序："><a href="#指令运作的顺序：" class="headerlink" title="指令运作的顺序："></a>指令运作的顺序：</h3><ol>
-<li>以相对/绝对路径执行指令，例如『 /bin/ls 』或『 ./ls 』； </li>
-<li>由 alias 找到该指令来执行； </li>
-<li>由 bash 内建的 (builtin) 指令来执行； </li>
+<h3 id="指令运作的顺序"><a href="#指令运作的顺序" class="headerlink" title="指令运作的顺序"></a>指令运作的顺序</h3><ol>
+<li>以相对/绝对路径执行指令，例如『 /bin/ls 』或『 ./ls 』；</li>
+<li>由 alias 找到该指令来执行；</li>
+<li>由 bash 内建的 (builtin) 指令来执行；</li>
 <li>透过 $PATH 这个变量的顺序搜寻到的第一个指令来执行。</li>
 </ol>
 <h3 id="快速删除和光标快速移动"><a href="#快速删除和光标快速移动" class="headerlink" title="快速删除和光标快速移动"></a>快速删除和光标快速移动</h3><p>[ctrl]+u/[ctrl]+k 分别是从光标处向前删除指令串 ([ctrl]+u) 及向后删除指令串 ([ctrl]+k)。 [ctrl]+a/[ctrl]+e 分别是让光标移动到整个指令串的最前面 ([ctrl]+a) 或最后面 ([ctrl]+e)</p>
 <h3 id="单引号和双引号的区别"><a href="#单引号和双引号的区别" class="headerlink" title="单引号和双引号的区别"></a>单引号和双引号的区别</h3><p>变量内容若有空格符可使用双引号『”』或单引号『’』将变量内容结合起来，</p>
-<p>但 o双引号内的特殊字符如 $ 等，可以保有原本的特性，如下所示： </p>
-<p>『var=”lang is $LANG”』则『echo $var』可得『lang is zh_TW.UTF-8』 </p>
-<p>单引号内的特殊字符则仅为一般字符 (纯文本)，如下所示： </p>
+<p>但 o双引号内的特殊字符如 $ 等，可以保有原本的特性，如下所示：</p>
+<p>『var=”lang is $LANG”』则『echo $var』可得『lang is zh_TW.UTF-8』</p>
+<p>单引号内的特殊字符则仅为一般字符 (纯文本)，如下所示：</p>
 <p>『var=’lang is $LANG’』则『echo $var』可得『lang is $LANG』</p>
 <h3 id="追加变量内容"><a href="#追加变量内容" class="headerlink" title="追加变量内容"></a>追加变量内容</h3><p>『PATH=”$PATH”:/home/bin』或『PATH=${PATH}:/home/bin』</p>
 <h3 id="使用其他指令提供的信息"><a href="#使用其他指令提供的信息" class="headerlink" title="使用其他指令提供的信息"></a>使用其他指令提供的信息</h3><p>『version=$(uname -r)』再『echo $version』可得『3.10.0-229.el7.x86_64』</p>
-<h1 id="仓库详解"><a href="#仓库详解" class="headerlink" title="仓库详解"></a>仓库详解</h1><h2 id="版本号-代号-时间"><a href="#版本号-代号-时间" class="headerlink" title="版本号 代号 时间"></a>版本号 代号 时间</h2><blockquote>
+<h2 id="仓库详解"><a href="#仓库详解" class="headerlink" title="仓库详解"></a>仓库详解</h2><h3 id="版本号-代号-时间"><a href="#版本号-代号-时间" class="headerlink" title="版本号 代号 时间"></a>版本号 代号 时间</h3><blockquote>
 <p>Ubuntu可谓是Linux世界中的黑马，其第一个正式版本于2004年10月正式推出。需要详细解释的是Ubuntu版本编号的定义，其编号以“年份的最后一位.发布月份”的格式命名，因此Ubuntu的第一个版本就称为4.10(2004.10)。除了代号之外，每个Ubuntu版本在开发之初还有一个开发代号。Ubuntu开发代号比较有意思，格式为“形容词+动物”，且形容词和动物名称的第一个字母要一致，如Ubuntu16.04的开发代号是Xenial Xerus，译为“好客的非洲地松鼠”。 [6]  从Ubuntu 6.06开始，两个词的首字母按照英文字母表的排列顺序取用。</p>
 </blockquote>
 <table>
@@ -474,11 +405,11 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <td>2022-04-22</td>
 </tr>
 </tbody></table>
-<h2 id="软件源结构"><a href="#软件源结构" class="headerlink" title="软件源结构"></a>软件源结构</h2><blockquote>
+<h3 id="软件源结构"><a href="#软件源结构" class="headerlink" title="软件源结构"></a>软件源结构</h3><blockquote>
 <p>Ubuntu的软件软分为两部分官方源和ppa，ppa其实是一个网站，即－launchpad.net。Launchpad 是 Ubuntu 母公司 Canonical 有限公司所架设的网站，是一个提供维护、支援或联络 Ubuntu 开发者的平台。由于不是所有的软件都能进入 Ubuntu 的官方的软件库，launchpad.net 提供了 PPA，允许开发者建立自己的软件仓库，自由的上传软件。供用户安装和查看更新。</p>
 </blockquote>
 <p>整个软件源结构可以分解为四个部分:</p>
-<p>第一部分    第二部分    第三部分    第四部分<br>软件包格式    软件包服务器地址    发行版版本代号    软件包的分类目录<br>deb/deb-src    <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a>     xenial/xenial-updates/xenial-security/xenial-backports/proposed    main、restricted、universe、multiverse<br>第一部分的deb是deb软件包，deb-src则是源代码包</p>
+<p>第一部分 第二部分 第三部分 第四部分<br>软件包格式 软件包服务器地址 发行版版本代号 软件包的分类目录<br>deb/deb-src <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a>  xenial/xenial-updates/xenial-security/xenial-backports/proposed main、restricted、universe、multiverse<br>第一部分的deb是deb软件包，deb-src则是源代码包</p>
 <p>第三部分严格来说不算是发行版版本代号，它应该是Ubuntu系统发布之后，在此基础上进行的安全性更新的分类。</p>
 <p>第四部分是按照软件包的自由度来分类的：</p>
 <p>main：即“基本”组件，其中只包含符合Ubuntu的协议要求并由Ubuntu团队维护支持的软件。</p>
@@ -501,11 +432,12 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>deb <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial main universe restricted multiverse</p>
 <p>总共五条</p>
 <p>另外为了防止运营商劫持大家可以使用https，但是要求镜像站支持https，一般现在大型镜像站都是支持https的，比如清华镜像站，阿里镜像站，163等等</p>
-<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>版本    开发代号    中译    发布日期    支持结束时间     内核版本<br>桌面版    服务器版<br>4.10    Warty Warthog    多疣的 疣猪    2004-10-20    2006-04-30    2.6.8<br>5.04    Hoary Hedgehog    白发的 刺猬    2005-04-08    2006-10-31    2.6.10<br>5.10    Breezy Badger    活泼的 獾    2005-10-13    2007-04-13    2.6.12<br>6.06 LTS    Dapper Drake    整洁的公 鸭    2006-06-01    2009-07-14    2011-06-01    2.6.15<br>6.10    Edgy Eft    尖利的小 蜥蜴    2006-10-26    2008-04-25    2.6.17<br>7.04    Feisty Fawn    烦躁不安的 鹿    2007-04-19    2008-10-19    2.6.20<br>7.10    Gutsy Gibbon    胆大的 长臂猿    2007-10-18    2009-04-18    2.6.22<br>8.04 LTS    Hardy Heron    坚强的 鹭    2008-04-24    2011-05-12    2013-05-09    2.6.24<br>8.10    Intrepid Ibex    无畏的 羱羊    2008-10-30    2010-04-30    2.6.27<br>9.04    Jaunty Jackalope    活泼的 鹿角兔    2009-04-23    2010-10-23    2.6.28<br>9.10    Karmic Koala    幸运的 树袋熊    2009-10-29    2011-04-30    2.6.31<br>10.04 LTS    Lucid Lynx    清醒的 山猫    2010-04-29    2013-05-09    2015-04-30    2.6.32<br>10.10    Maverick Meerkat    标新立异的 狐獴    2010-10-10    2012-04-10    2.6.35<br>11.04    Natty Narwhal    敏捷的 独角鲸    2011-04-28    2012-10-28    2.6.38<br>11.10    Oneiric Ocelot    有梦的 虎猫    2011-10-13    2013-05-09    3.0<br>12.04 LTS    Precise Pangolin    精准的 穿山甲    2012-04-26 [39]    2017-04-28 [40]    3.2 [41]<br>12.10    Quantal Quetzal    量子的 格查尔鸟    2012-10-18    2014-05-16 [42]    3.5 [43]<br>13.04    Raring Ringtail    铆足了劲的 环尾猫熊    2013-04-25    2014-01-27 [44]    3.8 [45]<br>13.10    Saucy Salamander    活泼的 蝾螈    2013-10-17 [46]    2014-07-17 [47]    3.11<br>14.04 LTS    Trusty Tahr    可靠的 塔尔羊    2014-04-17 [48]    2019-04    3.13<br>14.10    Utopic Unicorn    乌托邦的 独角兽    2014-10-23 [49]    2015-07-23 [50]    3.16 [51]<br>15.04    Vivid Vervet    活泼的 长尾黑颚猴    2015-04-23 [52]    2016-02-04 [53]    3.19 [54]<br>15.10    Wily Werewolf    老谋深算的 狼人    2015-10-22 [55]    2016-07-28 [56]    4.2 [57]<br>16.04 LTS    Xenial Xerus    好客的 非洲地松鼠    2016-04-21 [58]    2021-04    4.4 [59]<br>16.10    Yakkety Yak    喋喋不休的 牦牛    2016-10-13 [60]    2017-07-20    4.8<br>17.04    Zesty Zapus    热情的 美洲林跳鼠    2017-04-13 [61]    2018-01-13    4.10 [62]<br>17.10    Artful Aardvark    巧妙的 土豚    2017-10-19 [63]    2018-07-19    4.13 [64]<br>18.04 LTS    Bionic Beaver [65] [66]    仿生的 海狸    2018-04-26 [67]    2028-04 [68]    4.15<br>18.10    Cosmic Cuttlefish    宇宙的 墨鱼    2018-10-18 [69]    2019-07    4.18 [70]</p>
-<h2 id="19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA"><a href="#19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA" class="headerlink" title="19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA"></a>19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA</h2><h1 id="lt-lt-lt-lt-lt-lt-lt-HEAD"><a href="#lt-lt-lt-lt-lt-lt-lt-HEAD" class="headerlink" title="&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1><h2 id="ROS安装"><a href="#ROS安装" class="headerlink" title="ROS安装"></a>ROS安装</h2><ol>
+<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>版本 开发代号 中译 发布日期 支持结束时间  内核版本<br>桌面版 服务器版<br>4.10 Warty Warthog 多疣的 疣猪 2004-10-20 2006-04-30 2.6.8<br>5.04 Hoary Hedgehog 白发的 刺猬 2005-04-08 2006-10-31 2.6.10<br>5.10 Breezy Badger 活泼的 獾 2005-10-13 2007-04-13 2.6.12<br>6.06 LTS Dapper Drake 整洁的公 鸭 2006-06-01 2009-07-14 2011-06-01 2.6.15<br>6.10 Edgy Eft 尖利的小 蜥蜴 2006-10-26 2008-04-25 2.6.17<br>7.04 Feisty Fawn 烦躁不安的 鹿 2007-04-19 2008-10-19 2.6.20<br>7.10 Gutsy Gibbon 胆大的 长臂猿 2007-10-18 2009-04-18 2.6.22<br>8.04 LTS Hardy Heron 坚强的 鹭 2008-04-24 2011-05-12 2013-05-09 2.6.24<br>8.10 Intrepid Ibex 无畏的 羱羊 2008-10-30 2010-04-30 2.6.27<br>9.04 Jaunty Jackalope 活泼的 鹿角兔 2009-04-23 2010-10-23 2.6.28<br>9.10 Karmic Koala 幸运的 树袋熊 2009-10-29 2011-04-30 2.6.31<br>10.04 LTS Lucid Lynx 清醒的 山猫 2010-04-29 2013-05-09 2015-04-30 2.6.32<br>10.10 Maverick Meerkat 标新立异的 狐獴 2010-10-10 2012-04-10 2.6.35<br>11.04 Natty Narwhal 敏捷的 独角鲸 2011-04-28 2012-10-28 2.6.38<br>11.10 Oneiric Ocelot 有梦的 虎猫 2011-10-13 2013-05-09 3.0<br>12.04 LTS Precise Pangolin 精准的 穿山甲 2012-04-26 [39] 2017-04-28 [40] 3.2 [41]<br>12.10 Quantal Quetzal 量子的 格查尔鸟 2012-10-18 2014-05-16 [42] 3.5 [43]<br>13.04 Raring Ringtail 铆足了劲的 环尾猫熊 2013-04-25 2014-01-27 [44] 3.8 [45]<br>13.10 Saucy Salamander 活泼的 蝾螈 2013-10-17 [46] 2014-07-17 [47] 3.11<br>14.04 LTS Trusty Tahr 可靠的 塔尔羊 2014-04-17 [48] 2019-04 3.13<br>14.10 Utopic Unicorn 乌托邦的 独角兽 2014-10-23 [49] 2015-07-23 [50] 3.16 [51]<br>15.04 Vivid Vervet 活泼的 长尾黑颚猴 2015-04-23 [52] 2016-02-04 [53] 3.19 [54]<br>15.10 Wily Werewolf 老谋深算的 狼人 2015-10-22 [55] 2016-07-28 [56] 4.2 [57]<br>16.04 LTS Xenial Xerus 好客的 非洲地松鼠 2016-04-21 [58] 2021-04 4.4 [59]<br>16.10 Yakkety Yak 喋喋不休的 牦牛 2016-10-13 [60] 2017-07-20 4.8<br>17.04 Zesty Zapus 热情的 美洲林跳鼠 2017-04-13 [61] 2018-01-13 4.10 [62]<br>17.10 Artful Aardvark 巧妙的 土豚 2017-10-19 [63] 2018-07-19 4.13 [64]<br>18.04 LTS Bionic Beaver [65] [66] 仿生的 海狸 2018-04-26 [67] 2028-04 [68] 4.15<br>18.10 Cosmic Cuttlefish 宇宙的 墨鱼 2018-10-18 [69] 2019-07 4.18 [70]</p>
+<p>19.04 Disco Dingo 迪斯可的 澳洲野犬 2019-04-18 [71] 2020-01 TBA</p>
+<h2 id="ROS安装"><a href="#ROS安装" class="headerlink" title="ROS安装"></a>ROS安装</h2><ol>
 <li><p><img src="https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70" alt="img"></p>
 </li>
-<li><p> 设置软件源</p>
+<li><p>设置软件源</p>
 </li>
 </ol>
 <p><code>sudo sh -c &#39;. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;</code></p>
@@ -527,33 +459,33 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <li><p>配置环境变量</p>
 <blockquote>
 <p>source /opt/ros/melodic/setup.bash</p>
-<p>#ifconfig查看你的电脑ip地址<br>export ROS_HOSTNAME=localhost<br>export ROS_MASTER_URI=http://${ROS_HOSTNAME}:11311 </p>
+<p>#ifconfig查看你的电脑ip地址<br>export ROS_HOSTNAME=localhost<br>export ROS_MASTER_URI=<a target="_blank" rel="noopener" href="http://${ros_hostname}:11311/">http://${ROS_HOSTNAME}:11311</a></p>
 </blockquote>
 </li>
 </ol>
-<h1 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h1><blockquote>
-<p>export http_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export https_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export http_proxy=”socks5://127.0.0.1:1080”<br>export https_proxy=”socks5://127.0.0.1:1080”<br>export ftp_proxy=http://<user>:<password>@<proxy_server>:<port></p>
+<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><blockquote>
+<p>export http_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export https_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export http_proxy=”socks5://127.0.0.1:1080”<br>export https_proxy=”socks5://127.0.0.1:1080”<br>export ftp_proxy=&lt;http://<user>:<password>@<proxy_server>:<port>&gt;</p>
 </blockquote>
-<h1 id="更改文件夹下所有文件的权限"><a href="#更改文件夹下所有文件的权限" class="headerlink" title="更改文件夹下所有文件的权限"></a>更改文件夹下所有文件的权限</h1><blockquote>
+<h2 id="更改文件夹下所有文件的权限"><a href="#更改文件夹下所有文件的权限" class="headerlink" title="更改文件夹下所有文件的权限"></a>更改文件夹下所有文件的权限</h2><blockquote>
 <p>sudo chmod -R 777 filename</p>
 </blockquote>
-<h1 id="git常用操作"><a href="#git常用操作" class="headerlink" title="git常用操作"></a>git常用操作</h1><blockquote>
+<h2 id="git常用操作"><a href="#git常用操作" class="headerlink" title="git常用操作"></a>git常用操作</h2><blockquote>
 <p>$ git config –global user.name “username”</p>
 <p>$ git config –global user.email “email”</p>
 <p>用vscode多方便<br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 </blockquote>
-<h1 id="中文输入法"><a href="#中文输入法" class="headerlink" title="中文输入法"></a>中文输入法</h1><p>ubuntu 在最新的版本中已经可以不用用户自己单独去下载中文输入法使用了，本次使用为 ubuntu18.04LTS版本(登陆是界面选择的是ubuntu on wayland)，设置方式非常简单</p>
+<h2 id="中文输入法"><a href="#中文输入法" class="headerlink" title="中文输入法"></a>中文输入法</h2><p>ubuntu 在最新的版本中已经可以不用用户自己单独去下载中文输入法使用了，本次使用为 ubuntu18.04LTS版本(登陆是界面选择的是ubuntu on wayland)，设置方式非常简单</p>
 <p>1、打开设置，不知道的请点击右上角的工具栏即可看到。</p>
 <p>2、找到设置中语言项，点击语言安装管理，安装中文语言后选择输入方式。</p>
 <p>点击关闭，然后添加输入语言，在其中找到中文拼音添加即可</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yedongsheng8238045/article/details/107185130/">https://blog.csdn.net/yedongsheng8238045/article/details/107185130/</a></p>
-<h1 id="eigen库路径问题"><a href="#eigen库路径问题" class="headerlink" title="eigen库路径问题"></a>eigen库路径问题</h1><p>大多数的程序包含的都是 &lt;Eigen/Dense&gt; 头文件, 如果想这样包含的话需要将 eigen 下的 Eigen 文件提升一级目录, 即将 Eigen 从 /usr/include/eigen3 放到 /usr/include/ 下, 如下命令:</p>
+<h2 id="eigen库路径问题"><a href="#eigen库路径问题" class="headerlink" title="eigen库路径问题"></a>eigen库路径问题</h2><p>大多数的程序包含的都是 &lt;Eigen/Dense&gt; 头文件, 如果想这样包含的话需要将 eigen 下的 Eigen 文件提升一级目录, 即将 Eigen 从 /usr/include/eigen3 放到 /usr/include/ 下, 如下命令:</p>
 <p>sudo cp -r  /usr/include/eigen3/Eigen /usr/include/</p>
-<h1 id="eigen-vector3d"><a href="#eigen-vector3d" class="headerlink" title="eigen:vector3d"></a>eigen:vector3d</h1><p>Eigen::Vector3d默认定义为一个列向量</p>
+<h2 id="eigen-vector3d"><a href="#eigen-vector3d" class="headerlink" title="eigen:vector3d"></a>eigen:vector3d</h2><p>Eigen::Vector3d默认定义为一个列向量</p>
 <p>Eigen::Vector3d T(2, 1, 6)<br>std::cout &lt;&lt; “T = \n” &lt;&lt; T &lt;&lt; std::endl;<br>std::cout &lt;&lt; “T.transpose() = \n” &lt;&lt; T.transpose() &lt;&lt; std::endl;<br>1<br>2<br>3<br>输出结果为：</p>
 <p>T =<br>2<br>1<br>6<br>T.transpose() =<br>2  1  6</p>
-<h1 id="eigen-matrix"><a href="#eigen-matrix" class="headerlink" title="eigen::matrix"></a>eigen::matrix</h1><p>直接输出</p>
-<h1 id="man-zh-cn"><a href="#man-zh-cn" class="headerlink" title="man zh_cn"></a>man zh_cn</h1><p>1.安装中文man手册<br>sudo apt-get install manpages-zh<br>2.查看中文man手册安装路径<br>dpkg -L manpages-zh | less</p>
+<h2 id="eigen-matrix"><a href="#eigen-matrix" class="headerlink" title="eigen::matrix"></a>eigen::matrix</h2><p>直接输出</p>
+<h2 id="man-zh-cn"><a href="#man-zh-cn" class="headerlink" title="man zh_cn"></a>man zh_cn</h2><p>1.安装中文man手册<br>sudo apt-get install manpages-zh<br>2.查看中文man手册安装路径<br>dpkg -L manpages-zh | less</p>
 <p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/man%E4%BD%8D%E7%BD%AE.png"></p>
 <p>可见中文man手册是安装在路径/usr/share/man/zh_CN/下</p>
 <p>3.给中文man设置一个命令<br>为了和系统原来的man区分开，用alias给中文man的命令设置一个别名</p>
@@ -573,7 +505,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 </blockquote>
 </blockquote>
 </blockquote>
-<h3 id="网卡驱动安装"><a href="#网卡驱动安装" class="headerlink" title="网卡驱动安装"></a>网卡驱动安装</h3><p><a target="_blank" rel="noopener" href="https://www.lxlinux.net/install-network-card-driver-on-linux.html">https://www.lxlinux.net/install-network-card-driver-on-linux.html</a></p>
+<h2 id="网卡驱动安装"><a href="#网卡驱动安装" class="headerlink" title="网卡驱动安装"></a>网卡驱动安装</h2><p><a target="_blank" rel="noopener" href="https://www.lxlinux.net/install-network-card-driver-on-linux.html">https://www.lxlinux.net/install-network-card-driver-on-linux.html</a></p>
 <h2 id="设置sudo免密"><a href="#设置sudo免密" class="headerlink" title="设置sudo免密"></a>设置sudo免密</h2><p>运行sudo visudo在打开的页面将</p>
 <pre><code class="text">%sudo ALL=(ALL:ALL) ALL
 </code></pre>
@@ -589,6 +521,9 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/ubuntu/" rel="tag"># ubuntu</a>
+          </div>
 
         
 
@@ -661,7 +596,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#apt%E5%92%8Capt-get%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">apt和apt-get的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">挂载命令：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEroot%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81"><span class="nav-number">0.1.</span> <span class="nav-text">设置root用户密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">zsh的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85incr%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E6%8F%92%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">安装incr自动补全插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2agnoster%E4%B8%BB%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">更换agnoster主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-git%E5%8D%A1%E9%A1%BF"><span class="nav-number">1.3.</span> <span class="nav-text">其他问题 git卡顿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="nav-number">2.</span> <span class="nav-text">验证代理是否正常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95http"><span class="nav-number">2.0.1.</span> <span class="nav-text">测试http</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95https"><span class="nav-number">2.0.2.</span> <span class="nav-text">测试https</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">netstat的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">远程桌面连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">df命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bcpu"><span class="nav-number">5.</span> <span class="nav-text">查看cpu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98"><span class="nav-number">6.</span> <span class="nav-text">查看内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85KDE%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83"><span class="nav-number">7.</span> <span class="nav-text">安装KDE桌面环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%85%8D%E7%BD%AE%E6%97%A0%E7%BA%BF%E6%9C%89%E7%BA%BF%E7%BD%91%E7%BB%9C"><span class="nav-number">8.</span> <span class="nav-text">命令行配置无线有线网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PS%E5%91%BD%E4%BB%A4"><span class="nav-number">9.</span> <span class="nav-text">PS命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81IP%E8%AE%BE%E7%BD%AE"><span class="nav-number">10.</span> <span class="nav-text">静态IP设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-not-found"><span class="nav-number">11.</span> <span class="nav-text">source not found</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D"><span class="nav-number">12.</span> <span class="nav-text">设置别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99"><span class="nav-number">13.</span> <span class="nav-text">脚本编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%BB%E6%9C%BA%E4%B9%8B%E9%97%B4%E6%B5%8B%E9%80%9F"><span class="nav-number">14.</span> <span class="nav-text">局域网主机之间测速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%97%B6%E6%B5%8B%E9%80%9F"><span class="nav-number">15.</span> <span class="nav-text">实时测速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDu%E7%9B%98"><span class="nav-number">16.</span> <span class="nav-text">开机自动挂载u盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script%E7%BC%96%E5%86%99"><span class="nav-number">17.</span> <span class="nav-text">script编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo-%E9%80%89%E9%A1%B9-%E5%8F%82%E6%95%B0-%E9%80%89%E9%A1%B9"><span class="nav-number">17.1.</span> <span class="nav-text">echo(选项)(参数)选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E8%BF%90%E4%BD%9C%E7%9A%84%E9%A1%BA%E5%BA%8F%EF%BC%9A"><span class="nav-number">17.2.</span> <span class="nav-text">指令运作的顺序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4%E5%92%8C%E5%85%89%E6%A0%87%E5%BF%AB%E9%80%9F%E7%A7%BB%E5%8A%A8"><span class="nav-number">17.3.</span> <span class="nav-text">快速删除和光标快速移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%BC%95%E5%8F%B7%E5%92%8C%E5%8F%8C%E5%BC%95%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">17.4.</span> <span class="nav-text">单引号和双引号的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%BD%E5%8A%A0%E5%8F%98%E9%87%8F%E5%86%85%E5%AE%B9"><span class="nav-number">17.5.</span> <span class="nav-text">追加变量内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E6%8C%87%E4%BB%A4%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">17.6.</span> <span class="nav-text">使用其他指令提供的信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3"><span class="nav-number"></span> <span class="nav-text">仓库详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E5%8F%B7-%E4%BB%A3%E5%8F%B7-%E6%97%B6%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">版本号 代号 时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%BA%90%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">软件源结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">2.1.</span> <span class="nav-text">版本号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-04-Disco-Dingo-%E8%BF%AA%E6%96%AF%E5%8F%AF%E7%9A%84-%E6%BE%B3%E6%B4%B2%E9%87%8E%E7%8A%AC-2019-04-18-71-2020-01-TBA"><span class="nav-number">3.</span> <span class="nav-text">19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-lt-lt-lt-lt-lt-lt-HEAD"><span class="nav-number"></span> <span class="nav-text">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">ROS安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="nav-number"></span> <span class="nav-text">设置代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E7%9A%84%E6%9D%83%E9%99%90"><span class="nav-number"></span> <span class="nav-text">更改文件夹下所有文件的权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number"></span> <span class="nav-text">git常用操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95"><span class="nav-number"></span> <span class="nav-text">中文输入法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#eigen%E5%BA%93%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="nav-number"></span> <span class="nav-text">eigen库路径问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#eigen-vector3d"><span class="nav-number"></span> <span class="nav-text">eigen:vector3d</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#eigen-matrix"><span class="nav-number"></span> <span class="nav-text">eigen::matrix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#man-zh-cn"><span class="nav-number"></span> <span class="nav-text">man zh_cn</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85"><span class="nav-number">0.1.</span> <span class="nav-text">网卡驱动安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEsudo%E5%85%8D%E5%AF%86"><span class="nav-number">1.</span> <span class="nav-text">设置sudo免密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">返回上一次的目录</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#apt-get%E5%92%8Captitude%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">apt-get和aptitude的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">挂载命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%9C%9F%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">定期自动运行程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github%E7%9A%84push%E6%93%8D%E4%BD%9C%E8%AE%A4%E8%AF%81"><span class="nav-number">4.</span> <span class="nav-text">github的push操作认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo%E7%8E%AF%E5%A2%83%E4%B8%8A%E4%BC%A0%E5%88%B0github"><span class="nav-number">5.</span> <span class="nav-text">hexo环境上传到github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">双系统引导过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-ssh%E9%85%8D%E7%BD%AE"><span class="nav-number">7.</span> <span class="nav-text">git ssh配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEroot%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81"><span class="nav-number">7.1.</span> <span class="nav-text">设置root用户密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">8.</span> <span class="nav-text">zsh的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85incr%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E6%8F%92%E4%BB%B6"><span class="nav-number">8.1.</span> <span class="nav-text">安装incr自动补全插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2agnoster%E4%B8%BB%E9%A2%98"><span class="nav-number">8.2.</span> <span class="nav-text">更换agnoster主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98-git%E5%8D%A1%E9%A1%BF"><span class="nav-number">8.3.</span> <span class="nav-text">其他问题 git卡顿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="nav-number">9.</span> <span class="nav-text">验证代理是否正常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netstat%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">10.</span> <span class="nav-text">netstat的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5"><span class="nav-number">11.</span> <span class="nav-text">远程桌面连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df%E5%91%BD%E4%BB%A4"><span class="nav-number">12.</span> <span class="nav-text">df命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bcpu"><span class="nav-number">13.</span> <span class="nav-text">查看cpu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98"><span class="nav-number">14.</span> <span class="nav-text">查看内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85KDE%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83"><span class="nav-number">15.</span> <span class="nav-text">安装KDE桌面环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%85%8D%E7%BD%AE%E6%97%A0%E7%BA%BF%E6%9C%89%E7%BA%BF%E7%BD%91%E7%BB%9C"><span class="nav-number">16.</span> <span class="nav-text">命令行配置无线有线网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PS%E5%91%BD%E4%BB%A4"><span class="nav-number">17.</span> <span class="nav-text">PS命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81IP%E8%AE%BE%E7%BD%AE"><span class="nav-number">18.</span> <span class="nav-text">静态IP设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-not-found"><span class="nav-number">19.</span> <span class="nav-text">source not found</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D"><span class="nav-number">20.</span> <span class="nav-text">设置别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99"><span class="nav-number">21.</span> <span class="nav-text">脚本编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%BB%E6%9C%BA%E4%B9%8B%E9%97%B4%E6%B5%8B%E9%80%9F"><span class="nav-number">22.</span> <span class="nav-text">局域网主机之间测速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%97%B6%E6%B5%8B%E9%80%9F"><span class="nav-number">23.</span> <span class="nav-text">实时测速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BDu%E7%9B%98"><span class="nav-number">24.</span> <span class="nav-text">开机自动挂载u盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script%E7%BC%96%E5%86%99"><span class="nav-number">25.</span> <span class="nav-text">script编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo-%E9%80%89%E9%A1%B9-%E5%8F%82%E6%95%B0-%E9%80%89%E9%A1%B9"><span class="nav-number">25.1.</span> <span class="nav-text">echo(选项)(参数)选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E8%BF%90%E4%BD%9C%E7%9A%84%E9%A1%BA%E5%BA%8F"><span class="nav-number">25.2.</span> <span class="nav-text">指令运作的顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4%E5%92%8C%E5%85%89%E6%A0%87%E5%BF%AB%E9%80%9F%E7%A7%BB%E5%8A%A8"><span class="nav-number">25.3.</span> <span class="nav-text">快速删除和光标快速移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%BC%95%E5%8F%B7%E5%92%8C%E5%8F%8C%E5%BC%95%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">25.4.</span> <span class="nav-text">单引号和双引号的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%BD%E5%8A%A0%E5%8F%98%E9%87%8F%E5%86%85%E5%AE%B9"><span class="nav-number">25.5.</span> <span class="nav-text">追加变量内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E6%8C%87%E4%BB%A4%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">25.6.</span> <span class="nav-text">使用其他指令提供的信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3"><span class="nav-number">26.</span> <span class="nav-text">仓库详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E5%8F%B7-%E4%BB%A3%E5%8F%B7-%E6%97%B6%E9%97%B4"><span class="nav-number">26.1.</span> <span class="nav-text">版本号 代号 时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%BA%90%E7%BB%93%E6%9E%84"><span class="nav-number">26.2.</span> <span class="nav-text">软件源结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">26.3.</span> <span class="nav-text">版本号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS%E5%AE%89%E8%A3%85"><span class="nav-number">27.</span> <span class="nav-text">ROS安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="nav-number">28.</span> <span class="nav-text">设置代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E7%9A%84%E6%9D%83%E9%99%90"><span class="nav-number">29.</span> <span class="nav-text">更改文件夹下所有文件的权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">30.</span> <span class="nav-text">git常用操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95"><span class="nav-number">31.</span> <span class="nav-text">中文输入法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eigen%E5%BA%93%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="nav-number">32.</span> <span class="nav-text">eigen库路径问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eigen-vector3d"><span class="nav-number">33.</span> <span class="nav-text">eigen:vector3d</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eigen-matrix"><span class="nav-number">34.</span> <span class="nav-text">eigen::matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#man-zh-cn"><span class="nav-number">35.</span> <span class="nav-text">man zh_cn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85"><span class="nav-number">36.</span> <span class="nav-text">网卡驱动安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEsudo%E5%85%8D%E5%AF%86"><span class="nav-number">37.</span> <span class="nav-text">设置sudo免密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="nav-number">38.</span> <span class="nav-text">返回上一次的目录</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -674,20 +609,20 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

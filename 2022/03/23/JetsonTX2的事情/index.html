@@ -20,16 +20,17 @@
     var CONFIG = {"hostname":"pleasecallmeboss.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="APT换源注意使用hostnamectl查看系统架构是arm64 使用阿里云\清华大学\北京外国语大学的ubuntu ports开源软件镜像站都存在问题 使用中科大镜像站即可 控制风扇转速在任意路径下，输入： sudo nvpmodel –query显示工作在m2模式下，即15w模式，此时风扇默认不开，此时输入：sudo jetson_clocks会听到风扇转起来了，声音很大，再次查看当前Xavi">
+  <meta name="description" content="APT换源注意使用hostnamectl查看系统架构是arm64 使用阿里云\清华大学\北京外国语大学的ubuntu ports开源软件镜像站都存在问题 使用中科大镜像站即可 控制风扇转速在任意路径下，输入: sudo nvpmodel --query显示工作在m2模式下，即15w模式，此时风扇默认不开，此时输入：sudo jetson_clocks会听到风扇转起来了，声音很大，再次查看当前Xav">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JetsonTX2的事情">
 <meta property="og:url" content="https://pleasecallmeboss.github.io/blog/2022/03/23/JetsonTX2%E7%9A%84%E4%BA%8B%E6%83%85/index.html">
 <meta property="og:site_name" content="咦蜘蛛的个人博客">
-<meta property="og:description" content="APT换源注意使用hostnamectl查看系统架构是arm64 使用阿里云\清华大学\北京外国语大学的ubuntu ports开源软件镜像站都存在问题 使用中科大镜像站即可 控制风扇转速在任意路径下，输入： sudo nvpmodel –query显示工作在m2模式下，即15w模式，此时风扇默认不开，此时输入：sudo jetson_clocks会听到风扇转起来了，声音很大，再次查看当前Xavi">
+<meta property="og:description" content="APT换源注意使用hostnamectl查看系统架构是arm64 使用阿里云\清华大学\北京外国语大学的ubuntu ports开源软件镜像站都存在问题 使用中科大镜像站即可 控制风扇转速在任意路径下，输入: sudo nvpmodel --query显示工作在m2模式下，即15w模式，此时风扇默认不开，此时输入：sudo jetson_clocks会听到风扇转起来了，声音很大，再次查看当前Xav">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-23T11:38:04.000Z">
-<meta property="article:modified_time" content="2022-09-24T06:54:30.981Z">
+<meta property="article:modified_time" content="2023-02-23T13:19:39.189Z">
 <meta property="article:author" content="咦蜘蛛">
+<meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://pleasecallmeboss.github.io/blog/2022/03/23/JetsonTX2%E7%9A%84%E4%BA%8B%E6%83%85/">
@@ -190,8 +191,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-24 14:54:30" itemprop="dateModified" datetime="2022-09-24T14:54:30+08:00">2022-09-24</time>
+                <time title="修改时间：2023-02-23 21:19:39" itemprop="dateModified" datetime="2023-02-23T21:19:39+08:00">2023-02-23</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/TX2/" itemprop="url" rel="index"><span itemprop="name">TX2</span></a>
+                </span>
+            </span>
 
           
 
@@ -204,20 +214,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="APT换源"><a href="#APT换源" class="headerlink" title="APT换源"></a>APT换源</h2><p>注意使用hostnamectl查看系统架构是arm64</p>
-<p>使用阿里云\清华大学\北京外国语大学的ubuntu ports开源软件镜像站都存在问题</p>
+        <h2 id="APT换源"><a href="#APT换源" class="headerlink" title="APT换源"></a>APT换源</h2><p>注意使用<code>hostnamectl</code>查看系统架构是arm64</p>
+<p>使用阿里云\清华大学\北京外国语大学的<strong>ubuntu ports</strong>开源软件镜像站都存在问题</p>
 <p>使用中科大镜像站即可</p>
-<h2 id="控制风扇转速"><a href="#控制风扇转速" class="headerlink" title="控制风扇转速"></a>控制风扇转速</h2><p>在任意路径下，输入：</p>
-<p>sudo nvpmodel –query<br>显示工作在m2模式下，即15w模式，此时风扇默认不开，此时输入：<br>sudo jetson_clocks<br>会听到风扇转起来了，声音很大，再次查看当前Xavier的工作模式：<br>sudo nvpmodel –query<br>输出m0模式，也就是全速模式。</p>
-<p>查看及更改风扇转速文件（要失败的话，重启试下）：<br>cat /sys/devices/pwm-fan/target_pwm<br>正常情况下会显示 0，此时风扇不转。如果用了上文的全速模式jetson_clocks会显示255。</p>
-<p>我们尝试更改一下数字：<br>sudo gedit /sys/devices/pwm-fan/target_pwm<br>将转速改为200，保存，转速立即发生变化。重启后失效。</p>
-<h3 id="温度检测"><a href="#温度检测" class="headerlink" title="温度检测"></a>温度检测</h3><p>安装硬件温度检测工具sensors。sudo apt install lm-sensors<br>安装成功以后，输入：<br>sensors<br>系统会显示当前温度，一般不开风扇的话系统温度能达到40度左右。</p>
+<h2 id="控制风扇转速"><a href="#控制风扇转速" class="headerlink" title="控制风扇转速"></a>控制风扇转速</h2><p>在任意路径下，输入: <code>sudo nvpmodel --query</code><br>显示工作在m2模式下，即15w模式，此时风扇默认不开，此时输入：<br><code>sudo jetson_clocks</code><br>会听到风扇转起来了，声音很大，再次查看当前Xavier的工作模式：<br><code>sudo nvpmodel --query</code><br>输出m0模式，也就是全速模式。</p>
+<p><code>sudo gedit /sys/devices/pwm-fan/target_pwm</code><br>修改数字为0-255之间的值即可改变转速</p>
+<h2 id="温度检测"><a href="#温度检测" class="headerlink" title="温度检测"></a>温度检测</h2><p>硬件温度检测工具<strong>sensors</strong>。<br><code>sudo apt install lm-sensors</code><br>安装成功以后，输入：<br><code>sensors</code><br>系统会显示当前温度，一般不开风扇的话系统温度能达到40度左右。</p>
 <p>持续显示<br>tegrastats</p>
 <p>watch<br>命令功能：<br>可以将命令的输出结果输出到标准输出设备，多用于周期性执行命令/定时执行命令</p>
-<p>命令参数：<br>参数    详解<br>-n或–interval    watch缺省每2秒运行一下程序，可以用-n或-interval来指定间隔的时间。<br>-d或–differences    用 -d 或 –differences 选项,watch 会高亮显示变化的区域。而-d=cumulative选项会把变动过的地方(不管最近的那次有没有变动)都高亮显示出来。<br>-t 或 -no-title    会关闭watch命令在顶部的时间间隔,命令，当前时间的输出。<br>-h,    –help 查看帮助文档</p>
-<h2 id="查看L4T版本"><a href="#查看L4T版本" class="headerlink" title="查看L4T版本"></a>查看L4T版本</h2><pre><code>head -n 1 /etc/nv_tegra_release
-</code></pre>
-<h2 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h2><h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43715489/article/details/107980338">https://blog.csdn.net/qq_43715489/article/details/107980338</a></p>
+<p>命令参数：<br>参数详解<br>-n或–intervalwatch缺省每2秒运行一下程序，可以用-n或-interval来指定间隔的时间。<br>-d或–differences用 -d 或 –differences 选项,watch 会高亮显示变化的区域。而</p>
+<h2 id="查看L4T版本"><a href="#查看L4T版本" class="headerlink" title="查看L4T版本"></a>查看L4T版本</h2><p><code>head -n 1 /etc/nv_tegra_release</code></p>
+<h2 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h2><h3 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43715489/article/details/107980338">https://blog.csdn.net/qq_43715489/article/details/107980338</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/greepex/article/details/103876921">https://blog.csdn.net/greepex/article/details/103876921</a></p>
 <p>先下载文件系统</p>
 <p>进入Linux_for_Tegra目录，执行一次（以后要用就不执行了）<code>sudo ./apply_binaries.sh</code></p>
@@ -229,27 +236,27 @@
 <h2 id="TX2控制界面-desktop-sharing打不开"><a href="#TX2控制界面-desktop-sharing打不开" class="headerlink" title="TX2控制界面 desktop sharing打不开"></a>TX2控制界面 desktop sharing打不开</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38129331/article/details/107859137">https://blog.csdn.net/qq_38129331/article/details/107859137</a></p>
 <h2 id="TX2远程桌面"><a href="#TX2远程桌面" class="headerlink" title="TX2远程桌面"></a>TX2远程桌面</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jiangchao3392/article/details/73252291">https://blog.csdn.net/jiangchao3392/article/details/73252291</a></p>
 <h2 id="将固态作为启动盘"><a href="#将固态作为启动盘" class="headerlink" title="将固态作为启动盘"></a>将固态作为启动盘</h2><ol>
-<li><p>准备 TX2 系统 准备一个有系统 TX2 设备，该系统版本要和 host pc 机上烧录环境的系统版本要一致。查看 TX2 系统 版 本 $ head –n 1 /etc/nv_tegra_release 如 果 host pc 上 未 搭 建 过 烧 录 环 境 ， 参 考 <a target="_blank" rel="noopener" href="https://www.realtimes.cn/cn/help.html">https://www.realtimes.cn/cn/help.html</a> 帮助文档-《TX2 系统烧录说明》搭建烧录环境。 该文档以使用 9002u 载板为例，50GB mSATA SSD。 </p>
+<li><p>准备 TX2 系统 准备一个有系统 TX2 设备，该系统版本要和 host pc 机上烧录环境的系统版本要一致。查看 TX2 系统 版 本 $ head –n 1 /etc/nv_tegra_release 如 果 host pc 上 未 搭 建 过 烧 录 环 境 ， 参 考 <a target="_blank" rel="noopener" href="https://www.realtimes.cn/cn/help.html">https://www.realtimes.cn/cn/help.html</a> 帮助文档-《TX2 系统烧录说明》搭建烧录环境。 该文档以使用 9002u 载板为例，50GB mSATA SSD。</p>
 </li>
-<li><p>检查 SSD 设备名称 把 mSATASSD 插到设备上的 mSATA 接口上。使用 sudo fdisk -l 查看 ssd 设备名称。比如：sda，本文 档中之后 ssd 设备名都以 sda 为例。 </p>
+<li><p>检查 SSD 设备名称 把 mSATASSD 插到设备上的 mSATA 接口上。使用 sudo fdisk -l 查看 ssd 设备名称。比如：sda，本文 档中之后 ssd 设备名都以 sda 为例。</p>
 </li>
-<li><p> 创建一个新的 GPT $ sudo parted /dev/sda mklabel gpt</p>
+<li><p>创建一个新的 GPT $ sudo parted /dev/sda mklabel gpt</p>
 </li>
-<li><p> 添加分区 $ sudo parted /dev/sda mkpart primary 0GB  Size 是分区的大小，最小 8GB，建议 32GB 以上 例如：准备分区大小为 40GB $ sudo parted /dev/sda mkpart primary 0GB 40GB 添加完分区后，使用 sudo fdisk -l 可以看到 sda 新增一个分区，比如 sda1。 </p>
+<li><p>添加分区 $ sudo parted /dev/sda mkpart primary 0GB  Size 是分区的大小，最小 8GB，建议 32GB 以上 例如：准备分区大小为 40GB $ sudo parted /dev/sda mkpart primary 0GB 40GB 添加完分区后，使用 sudo fdisk -l 可以看到 sda 新增一个分区，比如 sda1。</p>
 </li>
-<li><p>格式化分区 $ sudo mkfs.ext4 /dev/sda1 把分区格式化为 ext4 格式 </p>
+<li><p>格式化分区 $ sudo mkfs.ext4 /dev/sda1 把分区格式化为 ext4 格式</p>
 </li>
-<li><p> 查看分区的 UUID $sudo blkid /dev/sda1 例如：/dev/sda1: UUID=”7b568e36-831e-4975-babe-6d2eaf585aa4” TYPE=”ext4” PARTLABEL=”primary”  PARTUUID=”4f71e1b5-70b5-4582-8a1e-51ef993b3bd0” </p>
+<li><p>查看分区的 UUID $sudo blkid /dev/sda1 例如：/dev/sda1: UUID=”7b568e36-831e-4975-babe-6d2eaf585aa4” TYPE=”ext4” PARTLABEL=”primary”  PARTUUID=”4f71e1b5-70b5-4582-8a1e-51ef993b3bd0”</p>
 </li>
-<li><p>保存 PARTUUID 的值 把 PARTUUID 的值保存到临时存储设备上，u 盘或者其他方式保存，以备后续使用。 </p>
+<li><p>保存 PARTUUID 的值 把 PARTUUID 的值保存到临时存储设备上，u 盘或者其他方式保存，以备后续使用。</p>
 </li>
-<li><p>拷贝根文件系统到 sdd 分区上 $ sudo dd if=/dev/mmcblk0p1 of=/dev/sda1 </p>
+<li><p>拷贝根文件系统到 sdd 分区上 $ sudo dd if=/dev/mmcblk0p1 of=/dev/sda1</p>
 </li>
-<li><p> 调整分区大小 1)卸载磁盘：umount /media/xxx(路径) 2)$ e2fsck -f /dev/sda1 3)$ sudo resize2fs /dev/sda1 </p>
+<li><p>调整分区大小 1)卸载磁盘：umount /media/xxx(路径) 2)$ e2fsck -f /dev/sda1 3)$ sudo resize2fs /dev/sda1</p>
 </li>
-<li><p>向 l4t-rootfs-uuid.txt 写入 PARTUUID 的值 在 host pc 机上切换到烧录环境 Linux_for_Tegra 目录 $ echo ‘4f71e1b5-70b5-4582-8a1e-51ef993b3bd0’ &gt; /bootloader/l4t-rootfs-uuid.txt </p>
+<li><p>向 l4t-rootfs-uuid.txt 写入 PARTUUID 的值 在 host pc 机上切换到烧录环境 Linux_for_Tegra 目录 $ echo ‘4f71e1b5-70b5-4582-8a1e-51ef993b3bd0’ &gt; /bootloader/l4t-rootfs-uuid.txt</p>
 </li>
-<li><p>向 TX2 设备烧写一个从外部设备启动的系统 在 host pc 机 以使用 RTSO-9002u 载板为例 使 TX2 设备进入 recovery 模式 $sudo ./flash.sh realtimes/rtso-9002u external </p>
+<li><p>向 TX2 设备烧写一个从外部设备启动的系统 在 host pc 机 以使用 RTSO-9002u 载板为例 使 TX2 设备进入 recovery 模式 $sudo ./flash.sh realtimes/rtso-9002u external</p>
 </li>
 <li><p>查看是否从 SSD 中启动系统 在 TX2 系统启动后 $ df -h  显示 sda1 已经成为根目录以及文件系统大</p>
 </li>
@@ -274,18 +281,41 @@
 <h3 id="在根目录创建工作空间后catkin-init-workspace找不到命令"><a href="#在根目录创建工作空间后catkin-init-workspace找不到命令" class="headerlink" title="在根目录创建工作空间后catkin_init_workspace找不到命令"></a>在根目录创建工作空间后catkin_init_workspace找不到命令</h3><p>sudo apt-get install python-catkin-tools</p>
 <p>sudo su<br>echo “source /opt/ros/kinetic/setup.bash” &gt;&gt;/etc/profile</p>
 <p>最开始我们都在.bashrc中配置过环境变量，这里也要改。/etc/profile是配置所有用户的环境变量</p>
-<h3 id="Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found"><a href="#Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found" class="headerlink" title="Project ‘cv_bridge’ specifies ‘/usr/include/opencv’ as an include dir, which is not found."></a>Project ‘cv_bridge’ specifies ‘/usr/include/<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=opencv&spm=1001.2101.3001.7020">opencv</a>’ as an include dir, which is not found.</h3><p>将cmake文件100行左右的两个opencv改为opencv4</p>
+<h3 id="Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found"><a href="#Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found" class="headerlink" title="Project ‘cv_bridge’ specifies ‘/usr/include/opencv’ as an include dir, which is not found"></a>Project ‘cv_bridge’ specifies ‘/usr/include/<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=opencv&spm=1001.2101.3001.7020">opencv</a>’ as an include dir, which is not found</h3><p>将cmake文件100行左右的两个opencv改为opencv4</p>
 <p>这不是因为我们编写的程序有误，而是NVIDIA的32.3.1image自带的是opencv4版本，把opencv命名成了opencv4</p>
 <p>修改方法：只需修改上述路径中的cv_bridgeconfig.cmke文件，将100行附近的两个opencv改成opencv4即可（注意，只需要改动单独一个的opencv,前面有连字符的opencv不需要改动）</p>
 <p>注意：如果jetson nano的版本自带的opencv是3版本，可能不会出现此问题</p>
 <h2 id="Frames-didn’t-arrived-within-5-seconds"><a href="#Frames-didn’t-arrived-within-5-seconds" class="headerlink" title="Frames didn’t arrived within 5 seconds"></a>Frames didn’t arrived within 5 seconds</h2><h3 id="或者SDK中点击启动后会报错：device-or-resource-is-not-available之类的"><a href="#或者SDK中点击启动后会报错：device-or-resource-is-not-available之类的" class="headerlink" title="或者SDK中点击启动后会报错：device or resource is not available之类的"></a>或者SDK中点击启动后会报错：device or resource is not available之类的</h3><p>这其实是因为相机中的固件(firmware)需要更新版本。<br>连上相机，按照以下链接更新固件部分操作即可：<br><a target="_blank" rel="noopener" href="http://www.pianshen.com/article/6519141340/">http://www.pianshen.com/article/6519141340/</a></p>
-<h3 id="报错cmake的问题或者和ddynamic-reconfigure有关"><a href="#报错cmake的问题或者和ddynamic-reconfigure有关" class="headerlink" title="报错cmake的问题或者和ddynamic_reconfigure有关"></a>报错cmake的问题或者和ddynamic_reconfigure有关</h3><p>是缺少安装ddynamic_reconfigure的包,所以要再安装一下,打开链接<a target="_blank" rel="noopener" href="https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel,%E7%9B%B4%E6%8E%A5%E5%B0%86%E8%BF%99%E4%B8%AA%E4%BB%93%E5%BA%93%E4%B8%8B%E8%BD%BD%E5%88%B0%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4src%E4%B8%AD,%E4%B9%9F%E5%B0%B1%E6%98%AF%E7%94%A8git">https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel,直接将这个仓库下载到工作空间src中,也就是用git</a> clone命令即可</p>
-<h3 id="ros环境复习"><a href="#ros环境复习" class="headerlink" title="ros环境复习"></a>ros环境复习</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94583753">https://zhuanlan.zhihu.com/p/94583753</a></p>
+<h3 id="报错cmake的问题或者和ddynamic-reconfigure有关"><a href="#报错cmake的问题或者和ddynamic-reconfigure有关" class="headerlink" title="报错cmake的问题或者和ddynamic_reconfigure有关"></a>报错cmake的问题或者和ddynamic_reconfigure有关</h3><p>是缺少安装ddynamic_reconfigure的包,所以要再安装一下,打开链接<a target="_blank" rel="noopener" href="https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel">https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel</a>,直接将这个仓库下载到工作空间src中,也就是用git clone命令即可</p>
+<h3 id="ros常用操作"><a href="#ros常用操作" class="headerlink" title="ros常用操作"></a>ros常用操作</h3><ol>
+<li>创建工作空间</li>
+</ol>
+<pre><code>  mkdir -p  /program1/src
+  cd /program1/src
+  catkin_init_workspace
+  cd  /program/
+  catkin_make
+  source devel/setup.bash
+  echo &quot;source /program1/devel/setup.bash&quot;&gt;&gt;~/.bashrc
+</code></pre>
+<ol start="2">
+<li>创建功能包<ul>
+<li><code>cd /program1/src</code></li>
+<li><code>catkin_create_pkg package1 std_msgs rospy roscpp</code></li>
+</ul>
+</li>
+</ol>
 <h2 id="安装opencv"><a href="#安装opencv" class="headerlink" title="安装opencv"></a>安装opencv</h2><p>一行命令</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45885232/article/details/108994685">https://blog.csdn.net/weixin_45885232/article/details/108994685</a></p>
 <p>sudo apt install python3-opencv</p>
-<h2 id="固态硬盘接口"><a href="#固态硬盘接口" class="headerlink" title="固态硬盘接口"></a>固态硬盘接口</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/shuai0845/article/details/98330290">https://blog.csdn.net/shuai0845/article/details/98330290</a></p>
-<h2 id="ROS主从机"><a href="#ROS主从机" class="headerlink" title="ROS主从机"></a>ROS主从机</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/FSKEps/article/details/106731579">https://blog.csdn.net/FSKEps/article/details/106731579</a></p>
+<h2 id="固态硬盘接口种类"><a href="#固态硬盘接口种类" class="headerlink" title="固态硬盘接口种类"></a>固态硬盘接口种类</h2><ol>
+<li>SATA接口</li>
+<li>mSATA接口</li>
+<li>M.2接口<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/shuai0845/article/details/98330290">https://blog.csdn.net/shuai0845/article/details/98330290</a></li>
+</ol>
+<h2 id="ROS主从机"><a href="#ROS主从机" class="headerlink" title="ROS主从机"></a>ROS主从机</h2><ul>
+<li>使用localhost要ping的通</li>
+</ul>
 
     </div>
 
@@ -294,6 +324,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+          </div>
 
         
 
@@ -366,7 +399,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#APT%E6%8D%A2%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">APT换源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E9%A3%8E%E6%89%87%E8%BD%AC%E9%80%9F"><span class="nav-number">2.</span> <span class="nav-text">控制风扇转速</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%A9%E5%BA%A6%E6%A3%80%E6%B5%8B"><span class="nav-number">2.1.</span> <span class="nav-text">温度检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BL4T%E7%89%88%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">查看L4T版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.</span> <span class="nav-text">重装系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">使用命令：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX2%E7%9A%84%E4%B8%8D%E5%90%8C%E6%A8%A1%E5%BC%8F%E5%8F%8A%E5%88%87%E6%8D%A2"><span class="nav-number">5.</span> <span class="nav-text">TX2的不同模式及切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX2%E6%8E%A7%E5%88%B6%E7%95%8C%E9%9D%A2-desktop-sharing%E6%89%93%E4%B8%8D%E5%BC%80"><span class="nav-number">6.</span> <span class="nav-text">TX2控制界面 desktop sharing打不开</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX2%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2"><span class="nav-number">7.</span> <span class="nav-text">TX2远程桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E5%9B%BA%E6%80%81%E4%BD%9C%E4%B8%BA%E5%90%AF%E5%8A%A8%E7%9B%98"><span class="nav-number">8.</span> <span class="nav-text">将固态作为启动盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#parted%E6%8F%90%E7%A4%BA%E6%9B%B4%E6%96%B0-etc-fstab-%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="nav-number">8.1.</span> <span class="nav-text">parted提示更新&#x2F;etc&#x2F;fstab 文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dd%E5%91%BD%E4%BB%A4%E9%80%9F%E5%BA%A6%E5%A4%AA%E6%85%A2"><span class="nav-number">8.2.</span> <span class="nav-text">dd命令速度太慢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX2%E5%AE%89%E8%A3%85ROS"><span class="nav-number">9.</span> <span class="nav-text">TX2安装ROS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ros-wrapper"><span class="nav-number">10.</span> <span class="nav-text">安装ros wrapper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%A0%B9%E7%9B%AE%E5%BD%95%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E5%90%8Ecatkin-init-workspace%E6%89%BE%E4%B8%8D%E5%88%B0%E5%91%BD%E4%BB%A4"><span class="nav-number">10.1.</span> <span class="nav-text">在根目录创建工作空间后catkin_init_workspace找不到命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-%E2%80%98cv-bridge%E2%80%99-specifies-%E2%80%98-usr-include-opencv%E2%80%99-as-an-include-dir-which-is-not-found"><span class="nav-number">10.2.</span> <span class="nav-text">Project ‘cv_bridge’ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv’ as an include dir, which is not found.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Frames-didn%E2%80%99t-arrived-within-5-seconds"><span class="nav-number">11.</span> <span class="nav-text">Frames didn’t arrived within 5 seconds</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%96%E8%80%85SDK%E4%B8%AD%E7%82%B9%E5%87%BB%E5%90%AF%E5%8A%A8%E5%90%8E%E4%BC%9A%E6%8A%A5%E9%94%99%EF%BC%9Adevice-or-resource-is-not-available%E4%B9%8B%E7%B1%BB%E7%9A%84"><span class="nav-number">11.1.</span> <span class="nav-text">或者SDK中点击启动后会报错：device or resource is not available之类的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E9%94%99cmake%E7%9A%84%E9%97%AE%E9%A2%98%E6%88%96%E8%80%85%E5%92%8Cddynamic-reconfigure%E6%9C%89%E5%85%B3"><span class="nav-number">11.2.</span> <span class="nav-text">报错cmake的问题或者和ddynamic_reconfigure有关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ros%E7%8E%AF%E5%A2%83%E5%A4%8D%E4%B9%A0"><span class="nav-number">11.3.</span> <span class="nav-text">ros环境复习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85opencv"><span class="nav-number">12.</span> <span class="nav-text">安装opencv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E6%8E%A5%E5%8F%A3"><span class="nav-number">13.</span> <span class="nav-text">固态硬盘接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS%E4%B8%BB%E4%BB%8E%E6%9C%BA"><span class="nav-number">14.</span> <span class="nav-text">ROS主从机</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#APT%E6%8D%A2%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">APT换源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E9%A3%8E%E6%89%87%E8%BD%AC%E9%80%9F"><span class="nav-number">2.</span> <span class="nav-text">控制风扇转速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%A9%E5%BA%A6%E6%A3%80%E6%B5%8B"><span class="nav-number">3.</span> <span class="nav-text">温度检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BL4T%E7%89%88%E6%9C%AC"><span class="nav-number">4.</span> <span class="nav-text">查看L4T版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.</span> <span class="nav-text">重装系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">5.1.</span> <span class="nav-text">使用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX2%E7%9A%84%E4%B8%8D%E5%90%8C%E6%A8%A1%E5%BC%8F%E5%8F%8A%E5%88%87%E6%8D%A2"><span class="nav-number">6.</span> <span class="nav-text">TX2的不同模式及切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX2%E6%8E%A7%E5%88%B6%E7%95%8C%E9%9D%A2-desktop-sharing%E6%89%93%E4%B8%8D%E5%BC%80"><span class="nav-number">7.</span> <span class="nav-text">TX2控制界面 desktop sharing打不开</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX2%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2"><span class="nav-number">8.</span> <span class="nav-text">TX2远程桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E5%9B%BA%E6%80%81%E4%BD%9C%E4%B8%BA%E5%90%AF%E5%8A%A8%E7%9B%98"><span class="nav-number">9.</span> <span class="nav-text">将固态作为启动盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#parted%E6%8F%90%E7%A4%BA%E6%9B%B4%E6%96%B0-etc-fstab-%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="nav-number">9.1.</span> <span class="nav-text">parted提示更新&#x2F;etc&#x2F;fstab 文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dd%E5%91%BD%E4%BB%A4%E9%80%9F%E5%BA%A6%E5%A4%AA%E6%85%A2"><span class="nav-number">9.2.</span> <span class="nav-text">dd命令速度太慢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX2%E5%AE%89%E8%A3%85ROS"><span class="nav-number">10.</span> <span class="nav-text">TX2安装ROS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ros-wrapper"><span class="nav-number">11.</span> <span class="nav-text">安装ros wrapper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%A0%B9%E7%9B%AE%E5%BD%95%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E5%90%8Ecatkin-init-workspace%E6%89%BE%E4%B8%8D%E5%88%B0%E5%91%BD%E4%BB%A4"><span class="nav-number">11.1.</span> <span class="nav-text">在根目录创建工作空间后catkin_init_workspace找不到命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-%E2%80%98cv-bridge%E2%80%99-specifies-%E2%80%98-usr-include-opencv%E2%80%99-as-an-include-dir-which-is-not-found"><span class="nav-number">11.2.</span> <span class="nav-text">Project ‘cv_bridge’ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv’ as an include dir, which is not found</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Frames-didn%E2%80%99t-arrived-within-5-seconds"><span class="nav-number">12.</span> <span class="nav-text">Frames didn’t arrived within 5 seconds</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%96%E8%80%85SDK%E4%B8%AD%E7%82%B9%E5%87%BB%E5%90%AF%E5%8A%A8%E5%90%8E%E4%BC%9A%E6%8A%A5%E9%94%99%EF%BC%9Adevice-or-resource-is-not-available%E4%B9%8B%E7%B1%BB%E7%9A%84"><span class="nav-number">12.1.</span> <span class="nav-text">或者SDK中点击启动后会报错：device or resource is not available之类的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E9%94%99cmake%E7%9A%84%E9%97%AE%E9%A2%98%E6%88%96%E8%80%85%E5%92%8Cddynamic-reconfigure%E6%9C%89%E5%85%B3"><span class="nav-number">12.2.</span> <span class="nav-text">报错cmake的问题或者和ddynamic_reconfigure有关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ros%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">12.3.</span> <span class="nav-text">ros常用操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85opencv"><span class="nav-number">13.</span> <span class="nav-text">安装opencv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E6%8E%A5%E5%8F%A3%E7%A7%8D%E7%B1%BB"><span class="nav-number">14.</span> <span class="nav-text">固态硬盘接口种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS%E4%B8%BB%E4%BB%8E%E6%9C%BA"><span class="nav-number">15.</span> <span class="nav-text">ROS主从机</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -379,20 +412,20 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

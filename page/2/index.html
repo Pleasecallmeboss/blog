@@ -155,6 +155,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/09/26/1clion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2022/09/26/1clion/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-26 17:15:39" itemprop="dateCreated datePublished" datetime="2022-09-26T17:15:39+08:00">2022-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-17 09:56:42" itemprop="dateModified" datetime="2022-06-17T09:56:42+08:00">2022-06-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="devel目录"><a href="#devel目录" class="headerlink" title="devel目录"></a>devel目录</h3><p>-DCATKIN_DEVEL_PREFIX:PATH=/home/ljy/projects/fast-planner/devel</p>
+<h3 id="build目录"><a href="#build目录" class="headerlink" title="build目录"></a>build目录</h3><p>/home/ljy/projects/fast-planner/build</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/09/26/1c++primer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1235,8 +1301,17 @@ CATKIN_DEPENDS message_runtime
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-24 14:54:30" itemprop="dateModified" datetime="2022-09-24T14:54:30+08:00">2022-09-24</time>
+                <time title="修改时间：2023-02-23 21:19:39" itemprop="dateModified" datetime="2023-02-23T21:19:39+08:00">2023-02-23</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/TX2/" itemprop="url" rel="index"><span itemprop="name">TX2</span></a>
+                </span>
+            </span>
 
           
 
@@ -1249,20 +1324,17 @@ CATKIN_DEPENDS message_runtime
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="APT换源"><a href="#APT换源" class="headerlink" title="APT换源"></a>APT换源</h2><p>注意使用hostnamectl查看系统架构是arm64</p>
-<p>使用阿里云\清华大学\北京外国语大学的ubuntu ports开源软件镜像站都存在问题</p>
+          <h2 id="APT换源"><a href="#APT换源" class="headerlink" title="APT换源"></a>APT换源</h2><p>注意使用<code>hostnamectl</code>查看系统架构是arm64</p>
+<p>使用阿里云\清华大学\北京外国语大学的<strong>ubuntu ports</strong>开源软件镜像站都存在问题</p>
 <p>使用中科大镜像站即可</p>
-<h2 id="控制风扇转速"><a href="#控制风扇转速" class="headerlink" title="控制风扇转速"></a>控制风扇转速</h2><p>在任意路径下，输入：</p>
-<p>sudo nvpmodel –query<br>显示工作在m2模式下，即15w模式，此时风扇默认不开，此时输入：<br>sudo jetson_clocks<br>会听到风扇转起来了，声音很大，再次查看当前Xavier的工作模式：<br>sudo nvpmodel –query<br>输出m0模式，也就是全速模式。</p>
-<p>查看及更改风扇转速文件（要失败的话，重启试下）：<br>cat /sys/devices/pwm-fan/target_pwm<br>正常情况下会显示 0，此时风扇不转。如果用了上文的全速模式jetson_clocks会显示255。</p>
-<p>我们尝试更改一下数字：<br>sudo gedit /sys/devices/pwm-fan/target_pwm<br>将转速改为200，保存，转速立即发生变化。重启后失效。</p>
-<h3 id="温度检测"><a href="#温度检测" class="headerlink" title="温度检测"></a>温度检测</h3><p>安装硬件温度检测工具sensors。sudo apt install lm-sensors<br>安装成功以后，输入：<br>sensors<br>系统会显示当前温度，一般不开风扇的话系统温度能达到40度左右。</p>
+<h2 id="控制风扇转速"><a href="#控制风扇转速" class="headerlink" title="控制风扇转速"></a>控制风扇转速</h2><p>在任意路径下，输入: <code>sudo nvpmodel --query</code><br>显示工作在m2模式下，即15w模式，此时风扇默认不开，此时输入：<br><code>sudo jetson_clocks</code><br>会听到风扇转起来了，声音很大，再次查看当前Xavier的工作模式：<br><code>sudo nvpmodel --query</code><br>输出m0模式，也就是全速模式。</p>
+<p><code>sudo gedit /sys/devices/pwm-fan/target_pwm</code><br>修改数字为0-255之间的值即可改变转速</p>
+<h2 id="温度检测"><a href="#温度检测" class="headerlink" title="温度检测"></a>温度检测</h2><p>硬件温度检测工具<strong>sensors</strong>。<br><code>sudo apt install lm-sensors</code><br>安装成功以后，输入：<br><code>sensors</code><br>系统会显示当前温度，一般不开风扇的话系统温度能达到40度左右。</p>
 <p>持续显示<br>tegrastats</p>
 <p>watch<br>命令功能：<br>可以将命令的输出结果输出到标准输出设备，多用于周期性执行命令/定时执行命令</p>
-<p>命令参数：<br>参数    详解<br>-n或–interval    watch缺省每2秒运行一下程序，可以用-n或-interval来指定间隔的时间。<br>-d或–differences    用 -d 或 –differences 选项,watch 会高亮显示变化的区域。而-d=cumulative选项会把变动过的地方(不管最近的那次有没有变动)都高亮显示出来。<br>-t 或 -no-title    会关闭watch命令在顶部的时间间隔,命令，当前时间的输出。<br>-h,    –help 查看帮助文档</p>
-<h2 id="查看L4T版本"><a href="#查看L4T版本" class="headerlink" title="查看L4T版本"></a>查看L4T版本</h2><pre><code>head -n 1 /etc/nv_tegra_release
-</code></pre>
-<h2 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h2><h3 id="使用命令："><a href="#使用命令：" class="headerlink" title="使用命令："></a>使用命令：</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43715489/article/details/107980338">https://blog.csdn.net/qq_43715489/article/details/107980338</a></p>
+<p>命令参数：<br>参数详解<br>-n或–intervalwatch缺省每2秒运行一下程序，可以用-n或-interval来指定间隔的时间。<br>-d或–differences用 -d 或 –differences 选项,watch 会高亮显示变化的区域。而</p>
+<h2 id="查看L4T版本"><a href="#查看L4T版本" class="headerlink" title="查看L4T版本"></a>查看L4T版本</h2><p><code>head -n 1 /etc/nv_tegra_release</code></p>
+<h2 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h2><h3 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43715489/article/details/107980338">https://blog.csdn.net/qq_43715489/article/details/107980338</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/greepex/article/details/103876921">https://blog.csdn.net/greepex/article/details/103876921</a></p>
 <p>先下载文件系统</p>
 <p>进入Linux_for_Tegra目录，执行一次（以后要用就不执行了）<code>sudo ./apply_binaries.sh</code></p>
@@ -1274,27 +1346,27 @@ CATKIN_DEPENDS message_runtime
 <h2 id="TX2控制界面-desktop-sharing打不开"><a href="#TX2控制界面-desktop-sharing打不开" class="headerlink" title="TX2控制界面 desktop sharing打不开"></a>TX2控制界面 desktop sharing打不开</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38129331/article/details/107859137">https://blog.csdn.net/qq_38129331/article/details/107859137</a></p>
 <h2 id="TX2远程桌面"><a href="#TX2远程桌面" class="headerlink" title="TX2远程桌面"></a>TX2远程桌面</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jiangchao3392/article/details/73252291">https://blog.csdn.net/jiangchao3392/article/details/73252291</a></p>
 <h2 id="将固态作为启动盘"><a href="#将固态作为启动盘" class="headerlink" title="将固态作为启动盘"></a>将固态作为启动盘</h2><ol>
-<li><p>准备 TX2 系统 准备一个有系统 TX2 设备，该系统版本要和 host pc 机上烧录环境的系统版本要一致。查看 TX2 系统 版 本 $ head –n 1 /etc/nv_tegra_release 如 果 host pc 上 未 搭 建 过 烧 录 环 境 ， 参 考 <a target="_blank" rel="noopener" href="https://www.realtimes.cn/cn/help.html">https://www.realtimes.cn/cn/help.html</a> 帮助文档-《TX2 系统烧录说明》搭建烧录环境。 该文档以使用 9002u 载板为例，50GB mSATA SSD。 </p>
+<li><p>准备 TX2 系统 准备一个有系统 TX2 设备，该系统版本要和 host pc 机上烧录环境的系统版本要一致。查看 TX2 系统 版 本 $ head –n 1 /etc/nv_tegra_release 如 果 host pc 上 未 搭 建 过 烧 录 环 境 ， 参 考 <a target="_blank" rel="noopener" href="https://www.realtimes.cn/cn/help.html">https://www.realtimes.cn/cn/help.html</a> 帮助文档-《TX2 系统烧录说明》搭建烧录环境。 该文档以使用 9002u 载板为例，50GB mSATA SSD。</p>
 </li>
-<li><p>检查 SSD 设备名称 把 mSATASSD 插到设备上的 mSATA 接口上。使用 sudo fdisk -l 查看 ssd 设备名称。比如：sda，本文 档中之后 ssd 设备名都以 sda 为例。 </p>
+<li><p>检查 SSD 设备名称 把 mSATASSD 插到设备上的 mSATA 接口上。使用 sudo fdisk -l 查看 ssd 设备名称。比如：sda，本文 档中之后 ssd 设备名都以 sda 为例。</p>
 </li>
-<li><p> 创建一个新的 GPT $ sudo parted /dev/sda mklabel gpt</p>
+<li><p>创建一个新的 GPT $ sudo parted /dev/sda mklabel gpt</p>
 </li>
-<li><p> 添加分区 $ sudo parted /dev/sda mkpart primary 0GB  Size 是分区的大小，最小 8GB，建议 32GB 以上 例如：准备分区大小为 40GB $ sudo parted /dev/sda mkpart primary 0GB 40GB 添加完分区后，使用 sudo fdisk -l 可以看到 sda 新增一个分区，比如 sda1。 </p>
+<li><p>添加分区 $ sudo parted /dev/sda mkpart primary 0GB  Size 是分区的大小，最小 8GB，建议 32GB 以上 例如：准备分区大小为 40GB $ sudo parted /dev/sda mkpart primary 0GB 40GB 添加完分区后，使用 sudo fdisk -l 可以看到 sda 新增一个分区，比如 sda1。</p>
 </li>
-<li><p>格式化分区 $ sudo mkfs.ext4 /dev/sda1 把分区格式化为 ext4 格式 </p>
+<li><p>格式化分区 $ sudo mkfs.ext4 /dev/sda1 把分区格式化为 ext4 格式</p>
 </li>
-<li><p> 查看分区的 UUID $sudo blkid /dev/sda1 例如：/dev/sda1: UUID=”7b568e36-831e-4975-babe-6d2eaf585aa4” TYPE=”ext4” PARTLABEL=”primary”  PARTUUID=”4f71e1b5-70b5-4582-8a1e-51ef993b3bd0” </p>
+<li><p>查看分区的 UUID $sudo blkid /dev/sda1 例如：/dev/sda1: UUID=”7b568e36-831e-4975-babe-6d2eaf585aa4” TYPE=”ext4” PARTLABEL=”primary”  PARTUUID=”4f71e1b5-70b5-4582-8a1e-51ef993b3bd0”</p>
 </li>
-<li><p>保存 PARTUUID 的值 把 PARTUUID 的值保存到临时存储设备上，u 盘或者其他方式保存，以备后续使用。 </p>
+<li><p>保存 PARTUUID 的值 把 PARTUUID 的值保存到临时存储设备上，u 盘或者其他方式保存，以备后续使用。</p>
 </li>
-<li><p>拷贝根文件系统到 sdd 分区上 $ sudo dd if=/dev/mmcblk0p1 of=/dev/sda1 </p>
+<li><p>拷贝根文件系统到 sdd 分区上 $ sudo dd if=/dev/mmcblk0p1 of=/dev/sda1</p>
 </li>
-<li><p> 调整分区大小 1)卸载磁盘：umount /media/xxx(路径) 2)$ e2fsck -f /dev/sda1 3)$ sudo resize2fs /dev/sda1 </p>
+<li><p>调整分区大小 1)卸载磁盘：umount /media/xxx(路径) 2)$ e2fsck -f /dev/sda1 3)$ sudo resize2fs /dev/sda1</p>
 </li>
-<li><p>向 l4t-rootfs-uuid.txt 写入 PARTUUID 的值 在 host pc 机上切换到烧录环境 Linux_for_Tegra 目录 $ echo ‘4f71e1b5-70b5-4582-8a1e-51ef993b3bd0’ &gt; /bootloader/l4t-rootfs-uuid.txt </p>
+<li><p>向 l4t-rootfs-uuid.txt 写入 PARTUUID 的值 在 host pc 机上切换到烧录环境 Linux_for_Tegra 目录 $ echo ‘4f71e1b5-70b5-4582-8a1e-51ef993b3bd0’ &gt; /bootloader/l4t-rootfs-uuid.txt</p>
 </li>
-<li><p>向 TX2 设备烧写一个从外部设备启动的系统 在 host pc 机 以使用 RTSO-9002u 载板为例 使 TX2 设备进入 recovery 模式 $sudo ./flash.sh realtimes/rtso-9002u external </p>
+<li><p>向 TX2 设备烧写一个从外部设备启动的系统 在 host pc 机 以使用 RTSO-9002u 载板为例 使 TX2 设备进入 recovery 模式 $sudo ./flash.sh realtimes/rtso-9002u external</p>
 </li>
 <li><p>查看是否从 SSD 中启动系统 在 TX2 系统启动后 $ df -h  显示 sda1 已经成为根目录以及文件系统大</p>
 </li>
@@ -1319,18 +1391,41 @@ CATKIN_DEPENDS message_runtime
 <h3 id="在根目录创建工作空间后catkin-init-workspace找不到命令"><a href="#在根目录创建工作空间后catkin-init-workspace找不到命令" class="headerlink" title="在根目录创建工作空间后catkin_init_workspace找不到命令"></a>在根目录创建工作空间后catkin_init_workspace找不到命令</h3><p>sudo apt-get install python-catkin-tools</p>
 <p>sudo su<br>echo “source /opt/ros/kinetic/setup.bash” &gt;&gt;/etc/profile</p>
 <p>最开始我们都在.bashrc中配置过环境变量，这里也要改。/etc/profile是配置所有用户的环境变量</p>
-<h3 id="Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found"><a href="#Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found" class="headerlink" title="Project ‘cv_bridge’ specifies ‘/usr/include/opencv’ as an include dir, which is not found."></a>Project ‘cv_bridge’ specifies ‘/usr/include/<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=opencv&spm=1001.2101.3001.7020">opencv</a>’ as an include dir, which is not found.</h3><p>将cmake文件100行左右的两个opencv改为opencv4</p>
+<h3 id="Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found"><a href="#Project-‘cv-bridge’-specifies-‘-usr-include-opencv’-as-an-include-dir-which-is-not-found" class="headerlink" title="Project ‘cv_bridge’ specifies ‘/usr/include/opencv’ as an include dir, which is not found"></a>Project ‘cv_bridge’ specifies ‘/usr/include/<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=opencv&spm=1001.2101.3001.7020">opencv</a>’ as an include dir, which is not found</h3><p>将cmake文件100行左右的两个opencv改为opencv4</p>
 <p>这不是因为我们编写的程序有误，而是NVIDIA的32.3.1image自带的是opencv4版本，把opencv命名成了opencv4</p>
 <p>修改方法：只需修改上述路径中的cv_bridgeconfig.cmke文件，将100行附近的两个opencv改成opencv4即可（注意，只需要改动单独一个的opencv,前面有连字符的opencv不需要改动）</p>
 <p>注意：如果jetson nano的版本自带的opencv是3版本，可能不会出现此问题</p>
 <h2 id="Frames-didn’t-arrived-within-5-seconds"><a href="#Frames-didn’t-arrived-within-5-seconds" class="headerlink" title="Frames didn’t arrived within 5 seconds"></a>Frames didn’t arrived within 5 seconds</h2><h3 id="或者SDK中点击启动后会报错：device-or-resource-is-not-available之类的"><a href="#或者SDK中点击启动后会报错：device-or-resource-is-not-available之类的" class="headerlink" title="或者SDK中点击启动后会报错：device or resource is not available之类的"></a>或者SDK中点击启动后会报错：device or resource is not available之类的</h3><p>这其实是因为相机中的固件(firmware)需要更新版本。<br>连上相机，按照以下链接更新固件部分操作即可：<br><a target="_blank" rel="noopener" href="http://www.pianshen.com/article/6519141340/">http://www.pianshen.com/article/6519141340/</a></p>
-<h3 id="报错cmake的问题或者和ddynamic-reconfigure有关"><a href="#报错cmake的问题或者和ddynamic-reconfigure有关" class="headerlink" title="报错cmake的问题或者和ddynamic_reconfigure有关"></a>报错cmake的问题或者和ddynamic_reconfigure有关</h3><p>是缺少安装ddynamic_reconfigure的包,所以要再安装一下,打开链接<a target="_blank" rel="noopener" href="https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel,%E7%9B%B4%E6%8E%A5%E5%B0%86%E8%BF%99%E4%B8%AA%E4%BB%93%E5%BA%93%E4%B8%8B%E8%BD%BD%E5%88%B0%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4src%E4%B8%AD,%E4%B9%9F%E5%B0%B1%E6%98%AF%E7%94%A8git">https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel,直接将这个仓库下载到工作空间src中,也就是用git</a> clone命令即可</p>
-<h3 id="ros环境复习"><a href="#ros环境复习" class="headerlink" title="ros环境复习"></a>ros环境复习</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94583753">https://zhuanlan.zhihu.com/p/94583753</a></p>
+<h3 id="报错cmake的问题或者和ddynamic-reconfigure有关"><a href="#报错cmake的问题或者和ddynamic-reconfigure有关" class="headerlink" title="报错cmake的问题或者和ddynamic_reconfigure有关"></a>报错cmake的问题或者和ddynamic_reconfigure有关</h3><p>是缺少安装ddynamic_reconfigure的包,所以要再安装一下,打开链接<a target="_blank" rel="noopener" href="https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel">https://github.com/pal-robotics/ddynamic_reconfigure/tree/kinetic-devel</a>,直接将这个仓库下载到工作空间src中,也就是用git clone命令即可</p>
+<h3 id="ros常用操作"><a href="#ros常用操作" class="headerlink" title="ros常用操作"></a>ros常用操作</h3><ol>
+<li>创建工作空间</li>
+</ol>
+<pre><code>  mkdir -p  /program1/src
+  cd /program1/src
+  catkin_init_workspace
+  cd  /program/
+  catkin_make
+  source devel/setup.bash
+  echo &quot;source /program1/devel/setup.bash&quot;&gt;&gt;~/.bashrc
+</code></pre>
+<ol start="2">
+<li>创建功能包<ul>
+<li><code>cd /program1/src</code></li>
+<li><code>catkin_create_pkg package1 std_msgs rospy roscpp</code></li>
+</ul>
+</li>
+</ol>
 <h2 id="安装opencv"><a href="#安装opencv" class="headerlink" title="安装opencv"></a>安装opencv</h2><p>一行命令</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45885232/article/details/108994685">https://blog.csdn.net/weixin_45885232/article/details/108994685</a></p>
 <p>sudo apt install python3-opencv</p>
-<h2 id="固态硬盘接口"><a href="#固态硬盘接口" class="headerlink" title="固态硬盘接口"></a>固态硬盘接口</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/shuai0845/article/details/98330290">https://blog.csdn.net/shuai0845/article/details/98330290</a></p>
-<h2 id="ROS主从机"><a href="#ROS主从机" class="headerlink" title="ROS主从机"></a>ROS主从机</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/FSKEps/article/details/106731579">https://blog.csdn.net/FSKEps/article/details/106731579</a></p>
+<h2 id="固态硬盘接口种类"><a href="#固态硬盘接口种类" class="headerlink" title="固态硬盘接口种类"></a>固态硬盘接口种类</h2><ol>
+<li>SATA接口</li>
+<li>mSATA接口</li>
+<li>M.2接口<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/shuai0845/article/details/98330290">https://blog.csdn.net/shuai0845/article/details/98330290</a></li>
+</ol>
+<h2 id="ROS主从机"><a href="#ROS主从机" class="headerlink" title="ROS主从机"></a>ROS主从机</h2><ul>
+<li>使用localhost要ping的通</li>
+</ul>
 
       
     </div>
@@ -1381,8 +1476,17 @@ CATKIN_DEPENDS message_runtime
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-22 10:21:21" itemprop="dateModified" datetime="2022-10-22T10:21:21+08:00">2022-10-22</time>
+                <time title="修改时间：2023-02-23 21:30:56" itemprop="dateModified" datetime="2023-02-23T21:30:56+08:00">2023-02-23</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+                </span>
+            </span>
 
           
 
@@ -1395,66 +1499,14 @@ CATKIN_DEPENDS message_runtime
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="apt和apt-get的区别"><a href="#apt和apt-get的区别" class="headerlink" title="apt和apt-get的区别"></a>apt和apt-get的区别</h2><ol>
-<li>aptitude 在删除一个包时，会同时删除本身所依赖的包。而apt-get这时做的不彻底，导致包混乱。整个系统更为干净。</li>
+          <h2 id="apt-get和aptitude的区别"><a href="#apt-get和aptitude的区别" class="headerlink" title="apt-get和aptitude的区别"></a>apt-get和aptitude的区别</h2><ol>
+<li><p>apt-get<br>apt-get update——在修改/etc/apt/sources.list或者/etc/apt/preferences之後运行该命令。此外您需要定期运行这一命令以确保您的软件包列表是最新的。<br>apt-get install packagename——安装一个新软件包（参见下文的aptitude ）<br>apt-get remove packagename——卸载一个已安装的软件包（保留配置文件）<br>apt-get –purge remove packagename——卸载一个已安装的软件包（删除配置文件）<br>dpkg –force-all –purge packagename 有些软件很难卸载，而且还阻止了别的软件的应用 ，就可以用这个，不过有点冒险。<br>apt-get autoclean apt会把已装或已卸的软件都备份在硬盘上，所以如果需要空间 的话，可以让这个命令来删除你已经删掉的软件<br>apt-get clean 这个命令会把安装的软件的备份也删除，不过这样不会影响软件的使用的。<br>apt-get upgrade——更新所有已安装的软件包<br>apt-get dist-upgrade——将系统升级到新版本<br>apt-cache search string——在软件包列表中搜索字符串<br>dpkg -l package-name-pattern——列出所有与模式相匹配的软件包。如果您不知道软件包的全名，您可以使用“<em>package-name-pattern</em>”。<br>aptitude——详细查看已安装或可用的软件包。与apt-get类似，aptitude可以通过命令行方式调用，但仅限于某些命令——最常见的有安装和卸载命令。由于aptitude比apt-get了解更多信息，可以说它更适合用来进行安装载。<br>apt-cache showpkg pkgs——显示软件包信息。<br>apt-cache dumpavail——打印可用软件包列表。<br>apt-cache show pkgs——显示软件包记录，类似于dpkg –print-avail。<br>apt-cache pkgnames——打印软件包列表中所有软件包的名称。<br>dpkg -S file——这个文件属于哪个已安装软件包。<br>dpkg -L package——列出软件包中的所有文件。<br>apt-file search filename——查找包含特定文件的软件包（不一定是已安装的），这些文件的文件名中含有指定的字符串。apt-file是一个独立的软件包。您必须 先使用apt-get install来安装它，然後运行apt-fileupdate。如果apt-file search filename输出的内容太多，您可以尝试使用apt-file search filename | grep -w filename（只显示指定字符串作为完整的单词出现在其中的那些文件名）或者类似方法，例如apt-file search filename | grep /qfdgk/（只显示位于诸如/qfdgk或/usr/qfdgk这些文件夹中的文件，如果您要查找的是某个特定的执行文件的话，这样做是有帮助的）。</p>
+</li>
+<li><p>aptitude<br>aptitude 与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大的包管理工具。与 apt-get 不同的是，aptitude 在处理依赖问题上更佳一些。举例来说，aptitude 在删除一个包时，会同时删除本身所依赖的包。这样，系统中不会残留无用的包，整个系统更为干净。以下是笔者总结的一些常用 aptitude 命令，仅供参考。<br>命令 作用<br>aptitude update 更新可用的包列表<br>aptitude upgrade 升级可用的包<br>aptitude dist-upgrade 将系统升级到新的发行版<br>aptitude install pkgname 安装包<br>aptitude remove pkgname 删除包<br>aptitude purge pkgname 删除包及其配置文件<br>aptitude search string 搜索包<br>aptitude show pkgname 显示包的详细信息<br>aptitude clean 删除下载的包文件<br>aptitude autoclean 仅删除过期的包文件</p>
+</li>
 </ol>
-<p>起初GNU/Linux系统中只有.tar.gz。用户 必须自己编译他们想使用的每一个程序。在Debian出现之後，人们认为有必要在系统 中添加一种机 制用来管理 安装在计算机上的软件包。人们将这套系统称为dpkg。至此着名的‘package’首次在GNU/Linux上出现。不久之後红帽子也开始着 手建立自己的包管理系统 ‘rpm’。</p>
-<p>GNU/Linux的创造者们很快又陷入了新的窘境。他们希望通过一种快捷、实用而且高效的方式来安装软件包。这些软件包可以自动处理相互之间 的依赖关系，并且在升级过程中维护他们的配置文件 。Debian又一次充当了开路先锋的角色。她首创了APT（Advanced Packaging Tool）。这一工具後来被Conectiva 移植到红帽子系统中用于对rpm包的管理。在其他一些发行版中我们也能看到她的身影。</p>
-<p>“同时，apt是一个很完整和先进的软件包管理程序，使用它可以让你，又简单，又准确的找到你要的的软件包， 并且安装或卸载都很简洁。 它还可以让你的所有软件都更新到最新状态，而且也可以用来对ubuntu 进行升级。”</p>
-<p>“apt是需要用命令 来操作的软件，不过现在也出现了很多有图形的软件，比如Synaptic, Kynaptic 和 Adept。”</p>
-<p>命令</p>
-<p>下面将要介绍的所有命令都需要sudo！使用时请将“packagename”和“string”替换成您想要安装或者查找的程序。</p>
-<pre><code> * apt-get update——在修改/etc/apt/sources.list或者/etc/apt/preferences之後运行该命令。此外您需要定期运行这一命令以确保您的软件包列表是最新的。
- * apt-get install packagename——安装一个新软件包（参见下文的aptitude ）
- * apt-get remove packagename——卸载一个已安装的软件包（保留配置文件）
- * apt-get --purge remove packagename——卸载一个已安装的软件包（删除配置文件）
- * dpkg --force-all --purge packagename 有些软件很难卸载，而且还阻止了别的软件的应用 ，就可以用这个，不过有点冒险。
- * apt-get autoclean apt会把已装或已卸的软件都备份在硬盘上，所以如果需要空间 的话，可以让这个命令来删除你已经删掉的软件
- * apt-get clean 这个命令会把安装的软件的备份也删除，不过这样不会影响软件的使用的。
- * apt-get upgrade——更新所有已安装的软件包
- * apt-get dist-upgrade——将系统升级到新版本
- * apt-cache search string——在软件包列表中搜索字符串
- * dpkg -l package-name-pattern——列出所有与模式相匹配的软件包。如果您不知道软件包的全名，您可以使用“*package-name-pattern*”。
- * aptitude——详细查看已安装或可用的软件包。与apt-get类似，aptitude可以通过命令行方式调用，但仅限于某些命令——最常见的有安装和卸载命令。由于aptitude比apt-get了解更多信息，可以说它更适合用来进行安装和卸载。
- * apt-cache showpkg pkgs——显示软件包信息。
- * apt-cache dumpavail——打印可用软件包列表。
- * apt-cache show pkgs——显示软件包记录，类似于dpkg –print-avail。
- * apt-cache pkgnames——打印软件包列表中所有软件包的名称。
- * dpkg -S file——这个文件属于哪个已安装软件包。
- * dpkg -L package——列出软件包中的所有文件。
- * apt-file search filename——查找包含特定文件的软件包（不一定是已安装的），这些文件的文件名中含有指定的字符串。apt-file是一个独立的软件包。您必须 先使用apt-get install来安装它，然後运行apt-file update。如果apt-file search filename输出的内容太多，您可以尝试使用apt-file search filename | grep -w filename（只显示指定字符串作为完整的单词出现在其中的那些文件名）或者类似方法，例如：apt-file search filename | grep /qfdgk/（只显示位于诸如/qfdgk或/usr/qfdgk这些文件夹中的文件，如果您要查找的是某个特定的执行文件的话，这样做是有帮助的）。
-</code></pre>
-<p>＊ apt-get autoclean——定期运行这个命令来清除那些已经卸载的软件包的.deb文件。通过这种方式，您可以释放大量的磁盘空间。如果您的需求十分迫切，可 以使用apt-get clean以释放更多空间。这个命令会将已安装软件包裹的.deb文件一并删除。大多数情况下您不会再用到这些.debs文件，因此如果您为磁盘空间不足 而感到焦头烂额，这个办法也许值得一试。</p>
-<p>典型应用</p>
-<p>我是个赛车发烧友，想装个赛车类游戏玩玩。有哪些赛车类游戏可供选择呢？</p>
-<p>apt-cache search racing game</p>
-<p>出来了一大堆结果。看看有没有更多关于torcs这个游戏的信息。</p>
-<p>apt-cache show torcs</p>
-<p>看上去不错。这个游戏是不是已经安装了？最新版本是多少？它属于哪一类软件，universe还是main?</p>
-<p>apt-cache policy torcs</p>
-<p>好吧，现在我要来安装它！</p>
-<p>apt-get install torcs</p>
-<p>在 控制台下我应该调用什么命令来运行这个游戏呢？在这个例子中，直接用torcs就行了，但并不是每次都这么简单。我们可一通过查找哪些文件被安 装到了 “/usr/qfdgk”文件夹下来确定二进制文件名。对于游戏软件，这些二进制文件将被安装到“/usr/games”下面。对于系统管理工具相应的文件夹 是“/usr/sqfdgk”。</p>
-<p>dpkg -L torcs|grep /usr/games/</p>
-<p>这个命令的前面一部分显示软件包“torcs”安装的所有文件（您自己试试看）。通过命令的第二部分，我们告诉系统只显示前一部分的输出结果中含有“/usr/games”的那些行。</p>
-<p>这个游戏很酷哦。说不定还有其他赛道可玩的？</p>
-<p>apt-cache search torcs</p>
-<p>我的磁盘空间不够用了。我得把apt的缓存空间清空才行。</p>
-<p>apt-get clean</p>
-<p>哦不，老妈叫我把机器上的所有游戏都删掉。但是我想把配置文件保留下来，这样待会我只要重装一下就可以继续玩了。</p>
-<p>apt-get remove torcs</p>
-<p>如果我想连配置文件一块删除：</p>
-<p>apt-get remove –purge torcs</p>
-<p>额外的软件包</p>
-<p>deborphan和debfoster工具可以找出已经安装在系统上的不会被用到的软件包。</p>
-<p>提高命令行方式下的工作效率</p>
-<p>您可以通过定义别名（alias）来提高这些命令的输入速度。例如，您可以在您的*~/.bashrc*文件中添加下列内容</p>
-<p>alias acs=’apt-cache search’<br>alias agu=’sudo apt-get update’<br>alias agg=’sudo apt-get upgrade’<br>alias agd=’sudo apt-get dist-upgrade’<br>alias agi=’sudo apt-get install’<br>alias agr=’sudo apt-get remove’</p>
-<p>或者使用前面介绍的aptitude命令，如“alias agi=’sudo aptitude install’”。</p>
-<hr>
-<p>aptitude 与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大的包管理工具。与 apt-get 不同的是，aptitude 在处理依赖问题上更佳一些。举例来说，aptitude 在删除一个包时，会同时删除本身所依赖的包。这样，系统中不会残留无用的包，整个系统更为干净。以下是笔者总结的一些常用 aptitude 命令，仅供参考。<br>命令 作用<br>aptitude update 更新可用的包列表<br>aptitude upgrade 升级可用的包<br>aptitude dist-upgrade 将系统升级到新的发行版<br>aptitude install pkgname 安装包<br>aptitude remove pkgname 删除包<br>aptitude purge pkgname 删除包及其配置文件<br>aptitude search string 搜索包<br>aptitude show pkgname 显示包的详细信息<br>aptitude clean 删除下载的包文件<br>aptitude autoclean 仅删除过期的包文件</p>
 <p>当然，你也可以在文本界面模式中使用 aptitude。</p>
-<h1 id="挂载命令："><a href="#挂载命令：" class="headerlink" title="挂载命令："></a>挂载命令：</h1><p>mount [-t vfstype] [-o options] device dir<br>umount /mnt/cdrom</p>
+<h2 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h2><p>mount [-t vfstype] [-o options] device dir<br>umount /mnt/cdrom</p>
 <p>systemd:</p>
 <p>hostnamectl:查看主机名，操作系统，内核，架构<br>systemd启动的第一个进程<br>Systemd 默认从目录/etc/systemd/system/读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录/usr/lib/systemd/system/，真正的配置文件存放在那个目录。</p>
 <p>systemctl enable命令用于在上面两个目录之间，建立符号链接关系。</p>
@@ -1464,58 +1516,26 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 </code></pre>
 <p>如果配置文件里面设置了开机启动，systemctl enable命令相当于激活开机启动。</p>
 <p>与之对应的，systemctl disable命令用于在两个目录之间，撤销符号链接关系，相当于撤销开机启动。</p>
-<pre><code>$ sudo systemctl disable clamd@scan.service
+<pre><code>sudo systemctl disable clamd@scan.service
 </code></pre>
 <p>配置文件的后缀名，就是该 Unit 的种类，比如sshd.socket。如果省略，Systemd 默认后缀名为.service，所以sshd会被理解成sshd.service。</p>
 <p>学习systemd：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1516125">https://cloud.tencent.com/developer/article/1516125</a></p>
 <p>新建开机服务：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/396272999">https://zhuanlan.zhihu.com/p/396272999</a></p>
-<p>开机自动运行任务的四种方法：</p>
-<ol>
-<li>开机启动时自动运行程序</li>
-</ol>
-<p>Linux加载后, 它将初始化硬件和设备驱动, 然后运行第一个进程init。init根据配置文件继续引导过程，启动其它进程。通常情况下，修改放置在</p>
-<p>/etc/rc或</p>
-<p>/etc/rc.d 或</p>
-<p>/etc/rc?.d</p>
-<p>目录下的脚本文件，可以使init自动启动其它程序。例如：编辑/etc/rc.d/rc.local 文件(该文件通常是系统最后启动的脚本)，在文件最末加上一行“xinit”或“startx”，可以在开机启动后直接进入X－Window。</p>
-<ol start="2">
-<li>登录时自动运行程序</li>
-</ol>
-<p>用户登录时，bash先自动执行系统管理员建立的全局登录script ：</p>
-<p>/ect/profile</p>
-<p>然后bash在用户起始目录下按顺序查找三个特殊文件中的一个：</p>
-<p>/.bash_profile、</p>
-<p>/.bash_login、</p>
-<p>/.profile，</p>
-<p>但只执行最先找到的一个。因此，只需根据实际需要在上述文件中加入命令就可以实现用户登录时自动运行某些程序（类似于DOS下的Autoexec.bat）。</p>
-<ol start="3">
-<li>退出登录时自动运行程序</li>
-</ol>
-<p>退出登录时，bash自动执行个人的退出登录脚本</p>
-<p>/.bash_logout。</p>
-<p>例如，在/.bash_logout中加入命令“tar －cvzf c.source.tgz ＊.c”，则在每次退出登录时自动执行 “tar” 命令备份 ＊.c 文件。</p>
-<ol start="4">
-<li>定期自动运行程序</li>
-</ol>
-<p>Linux有一个称为crond的守护程序，主要功能是周期性地检查 /var/spool/cron目录下的一组命令文件的内容，并在设定的时间执行这些文件中的命令。用户可以通过crontab 命令来建立、修改、删除这些命令文件。</p>
+<h2 id="定期自动运行程序"><a href="#定期自动运行程序" class="headerlink" title="定期自动运行程序"></a>定期自动运行程序</h2><p>Linux有一个称为crond的守护程序，主要功能是周期性地检查 /var/spool/cron目录下的一组命令文件的内容，并在设定的时间执行这些文件中的命令。用户可以通过crontab 命令来建立、修改、删除这些命令文件。</p>
 <p>例如，建立文件crondFile，内容为“00 9 23 Jan ＊ HappyBirthday”，运行“crontabcronFile”命令后，每当元月23日上午9:00系统自动执行“HappyBirthday”的程序（“＊”表示不管当天是星期几）。</p>
 <p>设置定时任务：</p>
 <p>sudo crontab -e</p>
 <p>填入以下内容</p>
-<p>//每月1号和15号的4点30分开始更新<br>30 4 1,15 * * sh [脚本目录]/[脚本名称]</p>
+<p>//每月1号和15号的4点30分开始更新<br>30 4 1,15 ** sh [脚本目录]/[脚本名称]</p>
 <p>重启crontab，使配置生效</p>
 <p>sudo systemctl restart cron.service</p>
-<p>github的push操作认证：</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sober-orange/p/git-token-push.html">https://www.cnblogs.com/sober-orange/p/git-token-push.html</a></p>
-<p>hexo环境上传到github</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/eidolonw/p/13066869.html">https://www.cnblogs.com/eidolonw/p/13066869.html</a></p>
+<h2 id="github的push操作认证"><a href="#github的push操作认证" class="headerlink" title="github的push操作认证"></a>github的push操作认证</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sober-orange/p/git-token-push.html">https://www.cnblogs.com/sober-orange/p/git-token-push.html</a></p>
+<h2 id="hexo环境上传到github"><a href="#hexo环境上传到github" class="headerlink" title="hexo环境上传到github"></a>hexo环境上传到github</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/eidolonw/p/13066869.html">https://www.cnblogs.com/eidolonw/p/13066869.html</a></p>
 <p>(参考)<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39431829/article/details/88959366">https://blog.csdn.net/qq_39431829/article/details/88959366</a></p>
-<p>双系统引导过程</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liao20081228/article/details/82591728">https://blog.csdn.net/liao20081228/article/details/82591728</a></p>
-<p>git ssh配置</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lqlqlq007/article/details/78983879">https://blog.csdn.net/lqlqlq007/article/details/78983879</a></p>
-<h3 id="设置root用户密码"><a href="#设置root用户密码" class="headerlink" title="设置root用户密码"></a>设置root用户密码</h3><p>sudo passwd</p>
+<h2 id="双系统引导过程"><a href="#双系统引导过程" class="headerlink" title="双系统引导过程"></a>双系统引导过程</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liao20081228/article/details/82591728">https://blog.csdn.net/liao20081228/article/details/82591728</a></p>
+<h2 id="git-ssh配置"><a href="#git-ssh配置" class="headerlink" title="git ssh配置"></a>git ssh配置</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lqlqlq007/article/details/78983879">https://blog.csdn.net/lqlqlq007/article/details/78983879</a></p>
+<h3 id="设置root用户密码"><a href="#设置root用户密码" class="headerlink" title="设置root用户密码"></a>设置root用户密码</h3><p><code>sudo passwd</code></p>
 <p>输入的密码为root用户的新密码</p>
 <h2 id="zsh的安装"><a href="#zsh的安装" class="headerlink" title="zsh的安装"></a>zsh的安装</h2><p>查看系统当前使用的shell</p>
 <blockquote>
@@ -1533,7 +1553,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <pre><code class="bash">chsh -s /bin/zsh
 </code></pre>
 <p>安装主题 on-my-zsh</p>
-<p>sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</a></p>
+<p>sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh</a>)”</p>
 <h3 id="安装incr自动补全插件"><a href="#安装incr自动补全插件" class="headerlink" title="安装incr自动补全插件"></a>安装incr自动补全插件</h3><p>下载插件</p>
 <blockquote>
 <p>wget <a target="_blank" rel="noopener" href="http://mimosa-pudica.net/src/incr-0.2.zsh">http://mimosa-pudica.net/src/incr-0.2.zsh</a></p>
@@ -1574,11 +1594,16 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>source ~/.zshrc</p>
 </blockquote>
 <h3 id="其他问题-git卡顿"><a href="#其他问题-git卡顿" class="headerlink" title="其他问题 git卡顿"></a>其他问题 git卡顿</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/anlz729/article/details/108768918">https://blog.csdn.net/anlz729/article/details/108768918</a></p>
-<h2 id="验证代理是否正常"><a href="#验证代理是否正常" class="headerlink" title="验证代理是否正常"></a>验证代理是否正常</h2><h4 id="测试http"><a href="#测试http" class="headerlink" title="测试http"></a>测试http</h4><p>curl ‘ip111.cn’</p>
+<h2 id="验证代理是否正常"><a href="#验证代理是否正常" class="headerlink" title="验证代理是否正常"></a>验证代理是否正常</h2><pre><code>测试http
+</code></pre>
+<p>curl ‘ip111.cn’</p>
 <p>curl -s <a target="_blank" rel="noopener" href="http://myip.ipip.net/">http://myip.ipip.net</a></p>
-<h4 id="测试https"><a href="#测试https" class="headerlink" title="测试https"></a>测试https</h4><p>curl ‘<a target="_blank" rel="noopener" href="https://api.myip.la/cn?json&#39;">https://api.myip.la/cn?json&#39;</a></p>
+<ol start="2">
+<li>测试https</li>
+</ol>
+<p>curl ‘<a target="_blank" rel="noopener" href="https://api.myip.la/cn?json">https://api.myip.la/cn?json</a>‘</p>
 <p>curl ‘<a target="_blank" rel="noopener" href="https://ipinfo.io/&#39;">https://ipinfo.io/&#39;</a></p>
-<h3 id="netstat的使用"><a href="#netstat的使用" class="headerlink" title="netstat的使用"></a>netstat的使用</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
+<h2 id="netstat的使用"><a href="#netstat的使用" class="headerlink" title="netstat的使用"></a>netstat的使用</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
 <h2 id="远程桌面连接"><a href="#远程桌面连接" class="headerlink" title="远程桌面连接"></a>远程桌面连接</h2><p>vnc方式：<a target="_blank" rel="noopener" href="https://blog.csdn.net/langyou0/article/details/107959002">https://blog.csdn.net/langyou0/article/details/107959002</a></p>
 <h2 id="df命令"><a href="#df命令" class="headerlink" title="df命令"></a>df命令</h2><p>df</p>
 <p>df -a 显示全部文件系统</p>
@@ -1601,31 +1626,31 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>2.添加 alias name=’command’即可。重启后即可生效,或执行source .bashrc也可立即生效</p>
 <h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhang-jun-jie/p/9266858.html">https://www.cnblogs.com/zhang-jun-jie/p/9266858.html</a></p>
 <h2 id="局域网主机之间测速"><a href="#局域网主机之间测速" class="headerlink" title="局域网主机之间测速"></a>局域网主机之间测速</h2><p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/25648fc16e8c9d9191fd00a0.html">https://jingyan.baidu.com/article/25648fc16e8c9d9191fd00a0.html</a></p>
-<h2 id="实时测速"><a href="#实时测速" class="headerlink" title="实时测速"></a>实时测速</h2><p>添加在上方图标 </p>
+<h2 id="实时测速"><a href="#实时测速" class="headerlink" title="实时测速"></a>实时测速</h2><p>添加在上方图标</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jsdy/p/11461277.html">https://www.cnblogs.com/jsdy/p/11461277.html</a></p>
 <p>命令行 slurm</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_paycolumn_v3&amp;utm_relevant_index=1">https://blog.csdn.net/zhengfushijie/article/details/49050607?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&amp;utm_relevant_index=1</a></p>
-<h2 id="开机自动挂载u盘"><a href="#开机自动挂载u盘" class="headerlink" title="开机自动挂载u盘"></a>开机自动挂载u盘</h2><p>[UUID=************] [挂载磁盘分区] [挂载磁盘格式] 0 2 </p>
+<h2 id="开机自动挂载u盘"><a href="#开机自动挂载u盘" class="headerlink" title="开机自动挂载u盘"></a>开机自动挂载u盘</h2><p>[UUID=************] [挂载磁盘分区] [挂载磁盘格式] 0 2</p>
 <p>添加的行是13行，UUID和挂载目录/home/sqp/Data以及硬盘格式ext4</p>
 <p>第一数字0，0是开机不检查磁盘，1是开机检查磁盘</p>
-<p>第二个数2，0表示交换分区，1表示启动分区，2表示普通分区 </p>
+<p>第二个数2，0表示交换分区，1表示启动分区，2表示普通分区</p>
 <h2 id="script编写"><a href="#script编写" class="headerlink" title="script编写"></a>script编写</h2><h3 id="echo-选项-参数-选项"><a href="#echo-选项-参数-选项" class="headerlink" title="echo(选项)(参数)选项"></a>echo(选项)(参数)选项</h3><p>-e：激活转义字符。使用-e选项时，若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：</p>
 <p>•\a 发出警告声；</p>
-<h3 id="指令运作的顺序："><a href="#指令运作的顺序：" class="headerlink" title="指令运作的顺序："></a>指令运作的顺序：</h3><ol>
-<li>以相对/绝对路径执行指令，例如『 /bin/ls 』或『 ./ls 』； </li>
-<li>由 alias 找到该指令来执行； </li>
-<li>由 bash 内建的 (builtin) 指令来执行； </li>
+<h3 id="指令运作的顺序"><a href="#指令运作的顺序" class="headerlink" title="指令运作的顺序"></a>指令运作的顺序</h3><ol>
+<li>以相对/绝对路径执行指令，例如『 /bin/ls 』或『 ./ls 』；</li>
+<li>由 alias 找到该指令来执行；</li>
+<li>由 bash 内建的 (builtin) 指令来执行；</li>
 <li>透过 $PATH 这个变量的顺序搜寻到的第一个指令来执行。</li>
 </ol>
 <h3 id="快速删除和光标快速移动"><a href="#快速删除和光标快速移动" class="headerlink" title="快速删除和光标快速移动"></a>快速删除和光标快速移动</h3><p>[ctrl]+u/[ctrl]+k 分别是从光标处向前删除指令串 ([ctrl]+u) 及向后删除指令串 ([ctrl]+k)。 [ctrl]+a/[ctrl]+e 分别是让光标移动到整个指令串的最前面 ([ctrl]+a) 或最后面 ([ctrl]+e)</p>
 <h3 id="单引号和双引号的区别"><a href="#单引号和双引号的区别" class="headerlink" title="单引号和双引号的区别"></a>单引号和双引号的区别</h3><p>变量内容若有空格符可使用双引号『”』或单引号『’』将变量内容结合起来，</p>
-<p>但 o双引号内的特殊字符如 $ 等，可以保有原本的特性，如下所示： </p>
-<p>『var=”lang is $LANG”』则『echo $var』可得『lang is zh_TW.UTF-8』 </p>
-<p>单引号内的特殊字符则仅为一般字符 (纯文本)，如下所示： </p>
+<p>但 o双引号内的特殊字符如 $ 等，可以保有原本的特性，如下所示：</p>
+<p>『var=”lang is $LANG”』则『echo $var』可得『lang is zh_TW.UTF-8』</p>
+<p>单引号内的特殊字符则仅为一般字符 (纯文本)，如下所示：</p>
 <p>『var=’lang is $LANG’』则『echo $var』可得『lang is $LANG』</p>
 <h3 id="追加变量内容"><a href="#追加变量内容" class="headerlink" title="追加变量内容"></a>追加变量内容</h3><p>『PATH=”$PATH”:/home/bin』或『PATH=${PATH}:/home/bin』</p>
 <h3 id="使用其他指令提供的信息"><a href="#使用其他指令提供的信息" class="headerlink" title="使用其他指令提供的信息"></a>使用其他指令提供的信息</h3><p>『version=$(uname -r)』再『echo $version』可得『3.10.0-229.el7.x86_64』</p>
-<h1 id="仓库详解"><a href="#仓库详解" class="headerlink" title="仓库详解"></a>仓库详解</h1><h2 id="版本号-代号-时间"><a href="#版本号-代号-时间" class="headerlink" title="版本号 代号 时间"></a>版本号 代号 时间</h2><blockquote>
+<h2 id="仓库详解"><a href="#仓库详解" class="headerlink" title="仓库详解"></a>仓库详解</h2><h3 id="版本号-代号-时间"><a href="#版本号-代号-时间" class="headerlink" title="版本号 代号 时间"></a>版本号 代号 时间</h3><blockquote>
 <p>Ubuntu可谓是Linux世界中的黑马，其第一个正式版本于2004年10月正式推出。需要详细解释的是Ubuntu版本编号的定义，其编号以“年份的最后一位.发布月份”的格式命名，因此Ubuntu的第一个版本就称为4.10(2004.10)。除了代号之外，每个Ubuntu版本在开发之初还有一个开发代号。Ubuntu开发代号比较有意思，格式为“形容词+动物”，且形容词和动物名称的第一个字母要一致，如Ubuntu16.04的开发代号是Xenial Xerus，译为“好客的非洲地松鼠”。 [6]  从Ubuntu 6.06开始，两个词的首字母按照英文字母表的排列顺序取用。</p>
 </blockquote>
 <table>
@@ -1662,11 +1687,11 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <td>2022-04-22</td>
 </tr>
 </tbody></table>
-<h2 id="软件源结构"><a href="#软件源结构" class="headerlink" title="软件源结构"></a>软件源结构</h2><blockquote>
+<h3 id="软件源结构"><a href="#软件源结构" class="headerlink" title="软件源结构"></a>软件源结构</h3><blockquote>
 <p>Ubuntu的软件软分为两部分官方源和ppa，ppa其实是一个网站，即－launchpad.net。Launchpad 是 Ubuntu 母公司 Canonical 有限公司所架设的网站，是一个提供维护、支援或联络 Ubuntu 开发者的平台。由于不是所有的软件都能进入 Ubuntu 的官方的软件库，launchpad.net 提供了 PPA，允许开发者建立自己的软件仓库，自由的上传软件。供用户安装和查看更新。</p>
 </blockquote>
 <p>整个软件源结构可以分解为四个部分:</p>
-<p>第一部分    第二部分    第三部分    第四部分<br>软件包格式    软件包服务器地址    发行版版本代号    软件包的分类目录<br>deb/deb-src    <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a>     xenial/xenial-updates/xenial-security/xenial-backports/proposed    main、restricted、universe、multiverse<br>第一部分的deb是deb软件包，deb-src则是源代码包</p>
+<p>第一部分 第二部分 第三部分 第四部分<br>软件包格式 软件包服务器地址 发行版版本代号 软件包的分类目录<br>deb/deb-src <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a>  xenial/xenial-updates/xenial-security/xenial-backports/proposed main、restricted、universe、multiverse<br>第一部分的deb是deb软件包，deb-src则是源代码包</p>
 <p>第三部分严格来说不算是发行版版本代号，它应该是Ubuntu系统发布之后，在此基础上进行的安全性更新的分类。</p>
 <p>第四部分是按照软件包的自由度来分类的：</p>
 <p>main：即“基本”组件，其中只包含符合Ubuntu的协议要求并由Ubuntu团队维护支持的软件。</p>
@@ -1689,11 +1714,12 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>deb <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> xenial main universe restricted multiverse</p>
 <p>总共五条</p>
 <p>另外为了防止运营商劫持大家可以使用https，但是要求镜像站支持https，一般现在大型镜像站都是支持https的，比如清华镜像站，阿里镜像站，163等等</p>
-<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>版本    开发代号    中译    发布日期    支持结束时间     内核版本<br>桌面版    服务器版<br>4.10    Warty Warthog    多疣的 疣猪    2004-10-20    2006-04-30    2.6.8<br>5.04    Hoary Hedgehog    白发的 刺猬    2005-04-08    2006-10-31    2.6.10<br>5.10    Breezy Badger    活泼的 獾    2005-10-13    2007-04-13    2.6.12<br>6.06 LTS    Dapper Drake    整洁的公 鸭    2006-06-01    2009-07-14    2011-06-01    2.6.15<br>6.10    Edgy Eft    尖利的小 蜥蜴    2006-10-26    2008-04-25    2.6.17<br>7.04    Feisty Fawn    烦躁不安的 鹿    2007-04-19    2008-10-19    2.6.20<br>7.10    Gutsy Gibbon    胆大的 长臂猿    2007-10-18    2009-04-18    2.6.22<br>8.04 LTS    Hardy Heron    坚强的 鹭    2008-04-24    2011-05-12    2013-05-09    2.6.24<br>8.10    Intrepid Ibex    无畏的 羱羊    2008-10-30    2010-04-30    2.6.27<br>9.04    Jaunty Jackalope    活泼的 鹿角兔    2009-04-23    2010-10-23    2.6.28<br>9.10    Karmic Koala    幸运的 树袋熊    2009-10-29    2011-04-30    2.6.31<br>10.04 LTS    Lucid Lynx    清醒的 山猫    2010-04-29    2013-05-09    2015-04-30    2.6.32<br>10.10    Maverick Meerkat    标新立异的 狐獴    2010-10-10    2012-04-10    2.6.35<br>11.04    Natty Narwhal    敏捷的 独角鲸    2011-04-28    2012-10-28    2.6.38<br>11.10    Oneiric Ocelot    有梦的 虎猫    2011-10-13    2013-05-09    3.0<br>12.04 LTS    Precise Pangolin    精准的 穿山甲    2012-04-26 [39]    2017-04-28 [40]    3.2 [41]<br>12.10    Quantal Quetzal    量子的 格查尔鸟    2012-10-18    2014-05-16 [42]    3.5 [43]<br>13.04    Raring Ringtail    铆足了劲的 环尾猫熊    2013-04-25    2014-01-27 [44]    3.8 [45]<br>13.10    Saucy Salamander    活泼的 蝾螈    2013-10-17 [46]    2014-07-17 [47]    3.11<br>14.04 LTS    Trusty Tahr    可靠的 塔尔羊    2014-04-17 [48]    2019-04    3.13<br>14.10    Utopic Unicorn    乌托邦的 独角兽    2014-10-23 [49]    2015-07-23 [50]    3.16 [51]<br>15.04    Vivid Vervet    活泼的 长尾黑颚猴    2015-04-23 [52]    2016-02-04 [53]    3.19 [54]<br>15.10    Wily Werewolf    老谋深算的 狼人    2015-10-22 [55]    2016-07-28 [56]    4.2 [57]<br>16.04 LTS    Xenial Xerus    好客的 非洲地松鼠    2016-04-21 [58]    2021-04    4.4 [59]<br>16.10    Yakkety Yak    喋喋不休的 牦牛    2016-10-13 [60]    2017-07-20    4.8<br>17.04    Zesty Zapus    热情的 美洲林跳鼠    2017-04-13 [61]    2018-01-13    4.10 [62]<br>17.10    Artful Aardvark    巧妙的 土豚    2017-10-19 [63]    2018-07-19    4.13 [64]<br>18.04 LTS    Bionic Beaver [65] [66]    仿生的 海狸    2018-04-26 [67]    2028-04 [68]    4.15<br>18.10    Cosmic Cuttlefish    宇宙的 墨鱼    2018-10-18 [69]    2019-07    4.18 [70]</p>
-<h2 id="19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA"><a href="#19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA" class="headerlink" title="19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA"></a>19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA</h2><h1 id="lt-lt-lt-lt-lt-lt-lt-HEAD"><a href="#lt-lt-lt-lt-lt-lt-lt-HEAD" class="headerlink" title="&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1><h2 id="ROS安装"><a href="#ROS安装" class="headerlink" title="ROS安装"></a>ROS安装</h2><ol>
+<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>版本 开发代号 中译 发布日期 支持结束时间  内核版本<br>桌面版 服务器版<br>4.10 Warty Warthog 多疣的 疣猪 2004-10-20 2006-04-30 2.6.8<br>5.04 Hoary Hedgehog 白发的 刺猬 2005-04-08 2006-10-31 2.6.10<br>5.10 Breezy Badger 活泼的 獾 2005-10-13 2007-04-13 2.6.12<br>6.06 LTS Dapper Drake 整洁的公 鸭 2006-06-01 2009-07-14 2011-06-01 2.6.15<br>6.10 Edgy Eft 尖利的小 蜥蜴 2006-10-26 2008-04-25 2.6.17<br>7.04 Feisty Fawn 烦躁不安的 鹿 2007-04-19 2008-10-19 2.6.20<br>7.10 Gutsy Gibbon 胆大的 长臂猿 2007-10-18 2009-04-18 2.6.22<br>8.04 LTS Hardy Heron 坚强的 鹭 2008-04-24 2011-05-12 2013-05-09 2.6.24<br>8.10 Intrepid Ibex 无畏的 羱羊 2008-10-30 2010-04-30 2.6.27<br>9.04 Jaunty Jackalope 活泼的 鹿角兔 2009-04-23 2010-10-23 2.6.28<br>9.10 Karmic Koala 幸运的 树袋熊 2009-10-29 2011-04-30 2.6.31<br>10.04 LTS Lucid Lynx 清醒的 山猫 2010-04-29 2013-05-09 2015-04-30 2.6.32<br>10.10 Maverick Meerkat 标新立异的 狐獴 2010-10-10 2012-04-10 2.6.35<br>11.04 Natty Narwhal 敏捷的 独角鲸 2011-04-28 2012-10-28 2.6.38<br>11.10 Oneiric Ocelot 有梦的 虎猫 2011-10-13 2013-05-09 3.0<br>12.04 LTS Precise Pangolin 精准的 穿山甲 2012-04-26 [39] 2017-04-28 [40] 3.2 [41]<br>12.10 Quantal Quetzal 量子的 格查尔鸟 2012-10-18 2014-05-16 [42] 3.5 [43]<br>13.04 Raring Ringtail 铆足了劲的 环尾猫熊 2013-04-25 2014-01-27 [44] 3.8 [45]<br>13.10 Saucy Salamander 活泼的 蝾螈 2013-10-17 [46] 2014-07-17 [47] 3.11<br>14.04 LTS Trusty Tahr 可靠的 塔尔羊 2014-04-17 [48] 2019-04 3.13<br>14.10 Utopic Unicorn 乌托邦的 独角兽 2014-10-23 [49] 2015-07-23 [50] 3.16 [51]<br>15.04 Vivid Vervet 活泼的 长尾黑颚猴 2015-04-23 [52] 2016-02-04 [53] 3.19 [54]<br>15.10 Wily Werewolf 老谋深算的 狼人 2015-10-22 [55] 2016-07-28 [56] 4.2 [57]<br>16.04 LTS Xenial Xerus 好客的 非洲地松鼠 2016-04-21 [58] 2021-04 4.4 [59]<br>16.10 Yakkety Yak 喋喋不休的 牦牛 2016-10-13 [60] 2017-07-20 4.8<br>17.04 Zesty Zapus 热情的 美洲林跳鼠 2017-04-13 [61] 2018-01-13 4.10 [62]<br>17.10 Artful Aardvark 巧妙的 土豚 2017-10-19 [63] 2018-07-19 4.13 [64]<br>18.04 LTS Bionic Beaver [65] [66] 仿生的 海狸 2018-04-26 [67] 2028-04 [68] 4.15<br>18.10 Cosmic Cuttlefish 宇宙的 墨鱼 2018-10-18 [69] 2019-07 4.18 [70]</p>
+<p>19.04 Disco Dingo 迪斯可的 澳洲野犬 2019-04-18 [71] 2020-01 TBA</p>
+<h2 id="ROS安装"><a href="#ROS安装" class="headerlink" title="ROS安装"></a>ROS安装</h2><ol>
 <li><p><img src="https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70" alt="img"></p>
 </li>
-<li><p> 设置软件源</p>
+<li><p>设置软件源</p>
 </li>
 </ol>
 <p><code>sudo sh -c &#39;. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;</code></p>
@@ -1715,33 +1741,33 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <li><p>配置环境变量</p>
 <blockquote>
 <p>source /opt/ros/melodic/setup.bash</p>
-<p>#ifconfig查看你的电脑ip地址<br>export ROS_HOSTNAME=localhost<br>export ROS_MASTER_URI=http://${ROS_HOSTNAME}:11311 </p>
+<p>#ifconfig查看你的电脑ip地址<br>export ROS_HOSTNAME=localhost<br>export ROS_MASTER_URI=<a target="_blank" rel="noopener" href="http://${ros_hostname}:11311/">http://${ROS_HOSTNAME}:11311</a></p>
 </blockquote>
 </li>
 </ol>
-<h1 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h1><blockquote>
-<p>export http_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export https_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export http_proxy=”socks5://127.0.0.1:1080”<br>export https_proxy=”socks5://127.0.0.1:1080”<br>export ftp_proxy=http://<user>:<password>@<proxy_server>:<port></p>
+<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><blockquote>
+<p>export http_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export https_proxy=”http://<user>:<password>@<proxy_server>:<port>“<br>export http_proxy=”socks5://127.0.0.1:1080”<br>export https_proxy=”socks5://127.0.0.1:1080”<br>export ftp_proxy=&lt;http://<user>:<password>@<proxy_server>:<port>&gt;</p>
 </blockquote>
-<h1 id="更改文件夹下所有文件的权限"><a href="#更改文件夹下所有文件的权限" class="headerlink" title="更改文件夹下所有文件的权限"></a>更改文件夹下所有文件的权限</h1><blockquote>
+<h2 id="更改文件夹下所有文件的权限"><a href="#更改文件夹下所有文件的权限" class="headerlink" title="更改文件夹下所有文件的权限"></a>更改文件夹下所有文件的权限</h2><blockquote>
 <p>sudo chmod -R 777 filename</p>
 </blockquote>
-<h1 id="git常用操作"><a href="#git常用操作" class="headerlink" title="git常用操作"></a>git常用操作</h1><blockquote>
+<h2 id="git常用操作"><a href="#git常用操作" class="headerlink" title="git常用操作"></a>git常用操作</h2><blockquote>
 <p>$ git config –global user.name “username”</p>
 <p>$ git config –global user.email “email”</p>
 <p>用vscode多方便<br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 </blockquote>
-<h1 id="中文输入法"><a href="#中文输入法" class="headerlink" title="中文输入法"></a>中文输入法</h1><p>ubuntu 在最新的版本中已经可以不用用户自己单独去下载中文输入法使用了，本次使用为 ubuntu18.04LTS版本(登陆是界面选择的是ubuntu on wayland)，设置方式非常简单</p>
+<h2 id="中文输入法"><a href="#中文输入法" class="headerlink" title="中文输入法"></a>中文输入法</h2><p>ubuntu 在最新的版本中已经可以不用用户自己单独去下载中文输入法使用了，本次使用为 ubuntu18.04LTS版本(登陆是界面选择的是ubuntu on wayland)，设置方式非常简单</p>
 <p>1、打开设置，不知道的请点击右上角的工具栏即可看到。</p>
 <p>2、找到设置中语言项，点击语言安装管理，安装中文语言后选择输入方式。</p>
 <p>点击关闭，然后添加输入语言，在其中找到中文拼音添加即可</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yedongsheng8238045/article/details/107185130/">https://blog.csdn.net/yedongsheng8238045/article/details/107185130/</a></p>
-<h1 id="eigen库路径问题"><a href="#eigen库路径问题" class="headerlink" title="eigen库路径问题"></a>eigen库路径问题</h1><p>大多数的程序包含的都是 &lt;Eigen/Dense&gt; 头文件, 如果想这样包含的话需要将 eigen 下的 Eigen 文件提升一级目录, 即将 Eigen 从 /usr/include/eigen3 放到 /usr/include/ 下, 如下命令:</p>
+<h2 id="eigen库路径问题"><a href="#eigen库路径问题" class="headerlink" title="eigen库路径问题"></a>eigen库路径问题</h2><p>大多数的程序包含的都是 &lt;Eigen/Dense&gt; 头文件, 如果想这样包含的话需要将 eigen 下的 Eigen 文件提升一级目录, 即将 Eigen 从 /usr/include/eigen3 放到 /usr/include/ 下, 如下命令:</p>
 <p>sudo cp -r  /usr/include/eigen3/Eigen /usr/include/</p>
-<h1 id="eigen-vector3d"><a href="#eigen-vector3d" class="headerlink" title="eigen:vector3d"></a>eigen:vector3d</h1><p>Eigen::Vector3d默认定义为一个列向量</p>
+<h2 id="eigen-vector3d"><a href="#eigen-vector3d" class="headerlink" title="eigen:vector3d"></a>eigen:vector3d</h2><p>Eigen::Vector3d默认定义为一个列向量</p>
 <p>Eigen::Vector3d T(2, 1, 6)<br>std::cout &lt;&lt; “T = \n” &lt;&lt; T &lt;&lt; std::endl;<br>std::cout &lt;&lt; “T.transpose() = \n” &lt;&lt; T.transpose() &lt;&lt; std::endl;<br>1<br>2<br>3<br>输出结果为：</p>
 <p>T =<br>2<br>1<br>6<br>T.transpose() =<br>2  1  6</p>
-<h1 id="eigen-matrix"><a href="#eigen-matrix" class="headerlink" title="eigen::matrix"></a>eigen::matrix</h1><p>直接输出</p>
-<h1 id="man-zh-cn"><a href="#man-zh-cn" class="headerlink" title="man zh_cn"></a>man zh_cn</h1><p>1.安装中文man手册<br>sudo apt-get install manpages-zh<br>2.查看中文man手册安装路径<br>dpkg -L manpages-zh | less</p>
+<h2 id="eigen-matrix"><a href="#eigen-matrix" class="headerlink" title="eigen::matrix"></a>eigen::matrix</h2><p>直接输出</p>
+<h2 id="man-zh-cn"><a href="#man-zh-cn" class="headerlink" title="man zh_cn"></a>man zh_cn</h2><p>1.安装中文man手册<br>sudo apt-get install manpages-zh<br>2.查看中文man手册安装路径<br>dpkg -L manpages-zh | less</p>
 <p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/man%E4%BD%8D%E7%BD%AE.png"></p>
 <p>可见中文man手册是安装在路径/usr/share/man/zh_CN/下</p>
 <p>3.给中文man设置一个命令<br>为了和系统原来的man区分开，用alias给中文man的命令设置一个别名</p>
@@ -1761,7 +1787,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 </blockquote>
 </blockquote>
 </blockquote>
-<h3 id="网卡驱动安装"><a href="#网卡驱动安装" class="headerlink" title="网卡驱动安装"></a>网卡驱动安装</h3><p><a target="_blank" rel="noopener" href="https://www.lxlinux.net/install-network-card-driver-on-linux.html">https://www.lxlinux.net/install-network-card-driver-on-linux.html</a></p>
+<h2 id="网卡驱动安装"><a href="#网卡驱动安装" class="headerlink" title="网卡驱动安装"></a>网卡驱动安装</h2><p><a target="_blank" rel="noopener" href="https://www.lxlinux.net/install-network-card-driver-on-linux.html">https://www.lxlinux.net/install-network-card-driver-on-linux.html</a></p>
 <h2 id="设置sudo免密"><a href="#设置sudo免密" class="headerlink" title="设置sudo免密"></a>设置sudo免密</h2><p>运行sudo visudo在打开的页面将</p>
 <pre><code class="text">%sudo ALL=(ALL:ALL) ALL
 </code></pre>
@@ -1769,100 +1795,6 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <pre><code class="text">%sudo  ALL=(ALL:ALL) NOPASSWD:ALL 
 </code></pre>
 <h2 id="返回上一次的目录"><a href="#返回上一次的目录" class="headerlink" title="返回上一次的目录"></a>返回上一次的目录</h2><p>cd -</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/03/20/%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="咦蜘蛛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咦蜘蛛的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2022/03/20/%E5%8F%8C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">双系统的安装</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-20 18:11:13" itemprop="dateCreated datePublished" datetime="2022-03-20T18:11:13+08:00">2022-03-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-13 14:49:15" itemprop="dateModified" datetime="2022-10-13T14:49:15+08:00">2022-10-13</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="双硬盘下双系统的安装记录"><a href="#双硬盘下双系统的安装记录" class="headerlink" title="双硬盘下双系统的安装记录"></a>双硬盘下双系统的安装记录</h1><h2 id="硬件条件"><a href="#硬件条件" class="headerlink" title="硬件条件"></a>硬件条件</h2><p>固态装着windows10</p>
-<p>准备在机械中安装ubuntu18.04</p>
-<h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p>按照B站视频讲解安装</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1554y1n7zv?p=16&amp;share_source=copy_web">https://www.bilibili.com/video/BV1554y1n7zv?p=16&amp;share_source=copy_web</a></p>
-<p>我是UEFI引导下的GPT分区</p>
-<h2 id="遇到的问题及措施"><a href="#遇到的问题及措施" class="headerlink" title="遇到的问题及措施"></a>遇到的问题及措施</h2><h3 id="1-安装完ubuntu后无启动项界面"><a href="#1-安装完ubuntu后无启动项界面" class="headerlink" title="1.安装完ubuntu后无启动项界面"></a>1.安装完ubuntu后无启动项界面</h3><p>在bios中取消secure boot</p>
-<p>secure boot作用：体现在主板上只能加载经过认证过的操作系统或者硬件驱动程序，从而防止恶意软件侵入.而secure boot则直接使linux或其它操作系统进行对峙的状态，有你没我，有我没你的现象，所以很多用户安装不了linux系统都与这个安全根有着直接关系。</p>
-<h3 id="2-在启动项界面无windows的boot-manage，无法从grub进入windows"><a href="#2-在启动项界面无windows的boot-manage，无法从grub进入windows" class="headerlink" title="2.在启动项界面无windows的boot manage，无法从grub进入windows"></a>2.在启动项界面无windows的boot manage，无法从grub进入windows</h3><p>在ubuntu终端输入 sudo update-grub</p>
-<p>如果输出有windows的boot manage则重启计算机</p>
-<p>我的情况是windows系统启动引导文件efi在固态中且无法被ubuntu扫描到</p>
-<p>在bios界面中设置sata磁盘工作模式为AHCI。这时grub就能扫描到。</p>
-<p>AHCIl:译为串行ATA高级主控接口，相较于IDE模式主要的区别是增加了热插拔、NCQ、TRIM（针对固态硬盘）等功能。如果需要使用固态硬盘的话，建议将SATA接口设为AHCI模式。当然支持NCQ的机械硬盘也最好让它工作在AHCI模式下。</p>
-<h3 id="3-选择windows-boot-manager无法进入windows中"><a href="#3-选择windows-boot-manager无法进入windows中" class="headerlink" title="3.    选择windows boot manager无法进入windows中"></a>3.    选择windows boot manager无法进入windows中</h3><p>多尝试几次，直到出现修复选项，选择安全模式进入。成功进入安全模式后重启就可以进入windows中了。</p>
-<h2 id="系统的引导过程"><a href="#系统的引导过程" class="headerlink" title="系统的引导过程"></a>系统的引导过程</h2><blockquote>
-<p>通电–&gt;执行UEFI–&gt;查找EFI分区–&gt;执行bootmgfw.efi–&gt;BCD–&gt;执行winload.efi–&gt;加载内核–&gt;系统初始化</p>
-<p>1.按下电源键，电源向主板以及其他设备供电，刚开始电压不稳，主板会持续发送RESET信号给CPU，CPU执行初始化。当电压稳定后，主板停止发送RESET信号，CPU开始执行指令；<br>2.CPU读取UEFI指令，执行UEFI初始化，执行其他设备的初始化；<br>3.查找EFI分区，EFI分区不需要一定是第一个分区；<br>4.加载\EFI\Boot\bootx64.efi;<br>5.bootmgfw,efi会读取BCD文件，BCD是一个数据库文件，如果包含多个系统，信息会包含在BCD中，通过显示一种系统列表供用户选择；<br>6.BCD中包含每个系统的引导文件路径，Windows的是\Windows\System32\winload.efi，加载到内存中并执行；<br>7.winload.efi读取\Windows\bootstat.dat文件，有需要则显示引导菜单，比如安全引导等等。将CPU执行权交给内核程序；<br>8.内核程序执行系统初始化。<br>————————————————<br>版权声明：本文为CSDN博主「无糖大碴粥」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62194364/article/details/123525103">https://blog.csdn.net/qq_62194364/article/details/123525103</a></p>
-</blockquote>
-<p>bootx64.efi:</p>
-<blockquote>
-<p>标题简要说明：</p>
-<p>Windows Boot Manager ——–</p>
-<p>安装完Windows系统后⽽出现的启动选项（相关的信息存储在NVRAM），可以删除和建⽴和</p>
-<p>bcdboot.exe有关Bootmgfw.efi ——–引导Windows的引导⽂件 </p>
-<p>Bootx64.efi ———UEFI的必需引导⽂件</p>
-<p>bcdboot.exe——–修复UEFI启动的命令⾏⼯具，微软出品</p>
-<p>开始前先引进两个概念：</p>
-<p>计算机默认引导-———-就是不管你的计算机有没有操作系统，定义了UEFI启动后将通过Bootx64.efi 引导你的计算机，并进⼊各种模式，维护、安装、计算机或者系统这⾥是Bootx64.efi ，它只是⼀个通⽤名，权限丰富且⼤于Windows 默认，就是说如果你的Windows 默认的启动⽂件不在了，启动计算机默认的引导⽂件Bootx64.efi 也是可以启动计算机的。使⽤计算机默认⽂件随时可以在各种环境下启动计算机，EFI SHELL、ISO、Windows、Linux…都可以，通吃型.</p>
-<p>Windows默认引导——-就是你为计算机安装了操作系统，或者修复了UEFI引导后，启动菜单会有 Windows Boot Manager 选项，该选项默认从bootmgfw.efi 启动系统bootmgfw.efi 该位置的该⽂件只能⽤于启动Windows，不是通⽤名，权限单⼀</p>
-</blockquote>
-<p>ushenem </p>
 
       
     </div>
@@ -1946,20 +1878,20 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
