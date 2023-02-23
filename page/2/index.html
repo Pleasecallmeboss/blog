@@ -155,6 +155,406 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/09/26/1c++primer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2022/09/26/1c++primer/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-26 17:15:39" itemprop="dateCreated datePublished" datetime="2022-09-26T17:15:39+08:00">2022-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-17 19:01:14" itemprop="dateModified" datetime="2022-10-17T19:01:14+08:00">2022-10-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="无符号和有符号赋值超过范围"><a href="#无符号和有符号赋值超过范围" class="headerlink" title="无符号和有符号赋值超过范围"></a>无符号和有符号赋值超过范围</h3><p><img src="C:\Users\Delicious\AppData\Roaming\Typora\typora-user-images\image-20220526210355126.png" alt="image-20220526210355126"></p>
+<h3 id="局部变量定义后未初始化"><a href="#局部变量定义后未初始化" class="headerlink" title="局部变量定义后未初始化"></a>局部变量定义后未初始化</h3><p><img src="C:\Users\Delicious\AppData\Roaming\Typora\typora-user-images\image-20220526211329337.png" alt="image-20220526211329337"></p>
+<p>字符串数组始终会被初始化。  （即使在局部变量）</p>
+<h3 id="初始化的类型"><a href="#初始化的类型" class="headerlink" title="初始化的类型"></a>初始化的类型</h3><p><img src="C:\Users\Delicious\AppData\Roaming\Typora\typora-user-images\image-20220526214601383.png" alt="image-20220526214601383"></p>
+<h3 id="使用getline和-gt-gt-赋值到string"><a href="#使用getline和-gt-gt-赋值到string" class="headerlink" title="使用getline和&gt;&gt;赋值到string"></a>使用getline和&gt;&gt;赋值到string</h3><p>&gt;&gt; 忽略所有空白符</p>
+<p>getline  保留制表符、空格、不保留回车</p>
+<p>即</p>
+<ul>
+<li>类似<code>is &gt;&gt; s</code>的读取：string对象会忽略开头的空白并从第一个真正的字符开始，直到遇见下一<strong>空白</strong>为止。</li>
+<li>类似<code>getline(is, s)</code>的读取：string对象会从输入流中读取字符，直到遇见<strong>换行符</strong>为止。</li>
+</ul>
+<h3 id="c-头文件和c头文件的区别"><a href="#c-头文件和c头文件的区别" class="headerlink" title="c++头文件和c头文件的区别"></a>c++头文件和c头文件的区别</h3><ul>
+<li><p>ctype.h vs. cctype</p>
+<p>：C++修改了c的标准库，名称为去掉</p>
+<pre><code>.h
+</code></pre>
+<p>，前面加</p>
+<pre><code>c
+</code></pre>
+<p>。</p>
+<blockquote>
+<p>如c++版本为<code>cctype</code>，c版本为<code>ctype.h</code></p>
+</blockquote>
+<ul>
+<li><strong>尽量使用c++版本的头文件</strong>，即<code>cctype</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="函数运算顺序"><a href="#函数运算顺序" class="headerlink" title="函数运算顺序"></a>函数运算顺序</h3><ul>
+<li><p>求值顺序</p>
+<p>：</p>
+<pre><code>int i = f1() + f2()
+</code></pre>
+<ul>
+<li>先计算<code>f1() + f2()</code>,再计算<code>int i = f1() + f2()</code>。但是f1和f2的计算<strong>先后不确定</strong></li>
+<li>但是，如果f1、f2都对同一对象进行了修改，因为顺序不确定，所以会编译出错，显示未定义</li>
+</ul>
+</li>
+</ul>
+<h3 id="前置-和后置"><a href="#前置-和后置" class="headerlink" title="前置++和后置++"></a>前置++和后置++</h3><h2 id="递增递减运算符"><a href="#递增递减运算符" class="headerlink" title="递增递减运算符"></a>递增递减运算符</h2><ul>
+<li>前置版本<code>j = ++i</code>，先加一后赋值</li>
+<li>后置版本<code>j = i++</code>，先赋值后加一</li>
+</ul>
+<p><strong>优先使用前置</strong>版本，后置多一步储存原始值。（除非需要变化前的值）</p>
+<h3 id="运算符高于-解引用"><a href="#运算符高于-解引用" class="headerlink" title="++运算符高于*解引用"></a>++运算符高于*解引用</h3><h3 id="混用解引用和递增运算符"><a href="#混用解引用和递增运算符" class="headerlink" title="混用解引用和递增运算符"></a>混用解引用和递增运算符</h3><p><code>*iter++</code>等价于<code>*(iter++)</code>，递增优先级较高</p>
+<pre><code>auto iter = vi.begin();
+while (iter!=vi.end()&amp;&amp;*iter&gt;=0)
+    cout&lt;&lt;*iter++&lt;&lt;endl;    // 输出当前值，指针向前移1
+</code></pre>
+<blockquote>
+<p><strong>简介是一种美德</strong>，追求简洁能降低程序出错可能性</p>
+</blockquote>
+<h3 id="c-与java区别"><a href="#c-与java区别" class="headerlink" title="c++与java区别"></a>c++与java区别</h3><p>C++的设计思想是尽可能地“相信”程序员，将效率最大化。然而这种思想却有着潜在的危害，就是无法控制程序员自身引发的错误。因此 Java 的诞生也是必然，Java的思想就是尽可能地“不相信”程序员。</p>
+<h3 id="什么是溢出"><a href="#什么是溢出" class="headerlink" title="什么是溢出"></a>什么是溢出</h3><p>当计算的结果超出该类型所能表示的范围时就会产生溢出。最终结果为真实结果对类型表示总的个数取模。</p>
+<p>例 char a = 255 ；a+1=0      256%256=0；</p>
+<pre><code>short svalue = 32767; ++svalue; // -32768
+unsigned uivalue = 0; --uivalue;  // 4294967295
+unsigned short usvalue = 65535; ++usvalue;  // 0
+</code></pre>
+<h3 id="内联函数-inline"><a href="#内联函数-inline" class="headerlink" title="内联函数 inline"></a>内联函数 inline</h3><h3 id="内联（inline）函数"><a href="#内联（inline）函数" class="headerlink" title="内联（inline）函数"></a>内联（inline）函数</h3><ul>
+<li>普通函数的缺点：调用函数比求解等价表达式要慢得多。</li>
+<li><code>inline</code>函数可以避免函数调用的开销，可以让编译器在编译时<strong>内联地展开</strong>该函数。</li>
+<li><code>inline</code>函数应该在头文件中定义。</li>
+<li>一般来说，内联机制用于优化规模小、流程直接、频繁调用的函数。</li>
+</ul>
+<h3 id="constexpr函数"><a href="#constexpr函数" class="headerlink" title="constexpr函数"></a>constexpr函数</h3><ul>
+<li>指能用于常量表达式的函数。</li>
+<li><code>constexpr int new_sz() &#123;return 42;&#125;</code></li>
+<li>函数的返回类型及所有形参类型都要是字面值类型。</li>
+<li><code>constexpr</code>函数应该在头文件中定义。</li>
+</ul>
+<h3 id="可变形参initializer-list"><a href="#可变形参initializer-list" class="headerlink" title="可变形参initializer_list"></a>可变形参initializer_list</h3><h3 id="可变形参"><a href="#可变形参" class="headerlink" title="可变形参"></a>可变形参</h3><p><code>initializer_list</code>提供的操作（<code>C++11</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>initializer_list&lt;T&gt; lst;</code></td>
+<td>默认初始化；<code>T</code>类型元素的空列表</td>
+</tr>
+<tr>
+<td><code>initializer_list&lt;T&gt; lst&#123;a,b,c...&#125;;</code></td>
+<td><code>lst</code>的元素数量和初始值一样多；<code>lst</code>的元素是对应初始值的副本；列表中的元素是<code>const</code>。</td>
+</tr>
+<tr>
+<td><code>lst2(lst)</code></td>
+<td>拷贝或赋值一个<code>initializer_list</code>对象不会拷贝列表中的元素；拷贝后，原始列表和副本共享元素。</td>
+</tr>
+<tr>
+<td><code>lst2 = lst</code></td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>lst.size()</code></td>
+<td>列表中的元素数量</td>
+</tr>
+<tr>
+<td><code>lst.begin()</code></td>
+<td>返回指向<code>lst</code>中首元素的指针</td>
+</tr>
+<tr>
+<td><code>lst.end()</code></td>
+<td>返回指向<code>lst</code>中微元素下一位置的指针</td>
+</tr>
+</tbody></table>
+<p><code>initializer_list</code>使用demo：</p>
+<pre><code>void err_msg(ErrCode e, initializer_list&lt;string&gt; il)&#123;
+    cout &lt;&lt; e.msg &lt;&lt; endl;
+    for (auto bed = il.begin(); beg != il.end(); ++ beg)
+        cout &lt;&lt; *beg &lt;&lt; &quot; &quot;;
+    cout &lt;&lt; endl;
+&#125;
+
+err_msg(ErrCode(0), &#123;&quot;functionX&quot;, &quot;okay&#125;);
+</code></pre>
+<ul>
+<li>所有实参类型相同，可以使用 <code>initializer_list</code>的标准库类型。</li>
+<li>实参类型不同，可以使用<code>可变参数模板</code>。</li>
+<li>省略形参符： <code>...</code>，便于<code>C++</code>访问某些C代码，这些C代码使用了 <code>varargs</code>的C标准功能。</li>
+</ul>
+<h3 id="vscode-中文不支持的解决办法"><a href="#vscode-中文不支持的解决办法" class="headerlink" title="vscode 中文不支持的解决办法"></a>vscode 中文不支持的解决办法</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38026359/article/details/107188429">https://blog.csdn.net/qq_38026359/article/details/107188429</a></p>
+<h3 id="vscode设置键盘快捷键"><a href="#vscode设置键盘快捷键" class="headerlink" title="vscode设置键盘快捷键"></a>vscode设置键盘快捷键</h3><p>{<br> “key”: “alt+k”,<br> “command”: “selectPrevSuggestion”,<br> “when”: “editorTextFocus &amp;&amp; suggestWidgetVisible”<br>    },<br>    {<br> “key”: “alt+j”,<br> “command”: “selectNextSuggestion”,<br> “when”: “editorTextFocus &amp;&amp; suggestWidgetVisible”</p>
+<h3 id="struct和class都可以定义类-及区别"><a href="#struct和class都可以定义类-及区别" class="headerlink" title="struct和class都可以定义类 及区别"></a>struct和class都可以定义类 及区别</h3><p>类可以在它的第一个访问说明符之前定义成员，对这种成员的访问权限依赖于类定义的方式。如果我们使用struct关键字，则定义在第一个访问说明符之前的成员是public的；相反，如果我们使用class关键字，则这些成员是private的。</p>
+<h3 id="友元的声明"><a href="#友元的声明" class="headerlink" title="友元的声明"></a>友元的声明</h3><p>友元的声明仅仅指定了访问的权限，而非一个通常意义上的函数声明。如果我们希望类的用户能够调用某个友元函数，那么我们就必须在友元声明之外再专门对函数进行一次声明。</p>
+<p>为了使友元对类的用户可见，我们通常把友元的声明与类本身放置在同一个头文件中（类的外部）。因此，我们的Sales_data头文件应该为read、print和add提供独立的声明（除了类内部的友元声明之外）。</p>
+<h4 id="许多编译器并未强制限定友元函数必须在使用之前在类的外部声明。（cl-exe不需要额外声明）"><a href="#许多编译器并未强制限定友元函数必须在使用之前在类的外部声明。（cl-exe不需要额外声明）" class="headerlink" title="许多编译器并未强制限定友元函数必须在使用之前在类的外部声明。（cl.exe不需要额外声明）"></a>许多编译器并未强制限定友元函数必须在使用之前在类的外部声明。（cl.exe不需要额外声明）</h4><h3 id="友元类"><a href="#友元类" class="headerlink" title="友元类"></a>友元类</h3><p>如果一个类指定了友元类，则友元类的成员函数可以访问此类包括非公有成员在内的所有成员</p>
+<h3 id="类的作用域"><a href="#类的作用域" class="headerlink" title="类的作用域"></a>类的作用域</h3><p>在类外部定义的函数名需要加类名前缀   int class::get(){}</p>
+<p>一旦遇到了类名，定义的剩余部分就在类的作用域之内了，这里的剩余部分包括参数列表和函数体。结果就是，我们可以直接使用类的其他成员而无须再次授权了</p>
+<p>当函数返回类型为类内部定义的类型时，需要加类名前缀   class::myint class::get(){}</p>
+<p>函数的返回类型通常出现在函数名之前。因此当成员函数定义在类的外部时，返回类型中使用的名字都位于类的作用域之外。这时，返回类型必须指明它是哪个类的成员</p>
+<h3 id="构造函数初始值-：xxx"><a href="#构造函数初始值-：xxx" class="headerlink" title="构造函数初始值 ：xxx{}"></a>构造函数初始值 ：xxx{}</h3><p>构造函数的初始值有时必不可少有时我们可以忽略数据成员初始化和赋值之间的差异，但并非总能这样。</p>
+<p>如果<strong>成员是const或者是引用的话，必须将其初始化。</strong>类似的，当成员属于某种类类型且该类没有定义默认构造函数时，也必须将这个成员初始化。</p>
+<p>例如：<img src="C:\Users\Delicious\AppData\Roaming\Typora\typora-user-images\image-20220531113511930.png" alt="image-20220531113511930">和其他常量对象或者引用一样，成员ci和ri都必须被初始化。因此，如果我们没有为它们提供构造函数初始值的话将引发错误：<img src="C:\Users\Delicious\AppData\Roaming\Typora\typora-user-images\image-20220531113527263.png" alt="image-20220531113527263">随着构造函数体一开始执行，初始化就完成了。我们初始化const或者引用类型的数据成员的唯一机会就是通过构造函数初始值，因此该构造函数的正确形式应该是：[<img src="C:\Users\Delicious\AppData\Roaming\Typora\typora-user-images\image-20220531113539925.png" alt="image-20220531113539925">][插图]如果成员是const、引用，或者属于某种未提供默认构造函数的类类型，我们必须通过构造函数初始值列表为这些成员提供初值。</p>
+<p>建议：使用构造函数初始值在很多类中，初始化和赋值的区别事关底层效率问题：前者直接初始化数据成员，后者则先初始化再赋值。</p>
+<p>除了效率问题外更重要的是，一些数据成员必须被初始化。建议读者养成使用构造函数初始值的习惯，这样能避免某些意想不到的编译错误，特别是遇到有的类含有需要构造函数初始值的成员时。</p>
+<h3 id="成员初始化顺序"><a href="#成员初始化顺序" class="headerlink" title="成员初始化顺序"></a>成员初始化顺序</h3><p>构造函数初始值列表只说明用于初始化成员的值，而不限定初始化的具体执行顺序。成员的初始化顺序与它们在类定义中的出现顺序一致：第一个成员先被初始化，然后第二个，以此类推。构造函数初始值列表中初始值的前后位置关系不会影响实际的初始化顺序。</p>
+<h1 id="c-基础"><a href="#c-基础" class="headerlink" title="c++ 基础"></a>c++ 基础</h1><h2 id="修饰访问符"><a href="#修饰访问符" class="headerlink" title="修饰访问符"></a>修饰访问符</h2><blockquote>
+<p>public 成员可以通过对象来访问，private 成员不能通过对象访问。</p>
+<p>protected 成员和 private 成员类似，也不能通过对象访问。但是当存在继承关系时，protected 和 private 就不一样了：基类中的 protected 成员可以在派生类中使用，而基类中的 private 成员不能在派生类中使用</p>
+</blockquote>
+<h2 id="继承方式的修饰访问符"><a href="#继承方式的修饰访问符" class="headerlink" title="继承方式的修饰访问符"></a>继承方式的修饰访问符</h2><blockquote>
+<p>不同的继承方式会影响基类成员在派生类中的访问权限。</p>
+<p><strong>1) public继承方式</strong></p>
+<ul>
+<li>基类中所有 public 成员在派生类中为 public 属性；</li>
+<li>基类中所有 protected 成员在派生类中为 protected 属性；</li>
+<li>基类中所有 private 成员在派生类中不能使用。</li>
+</ul>
+<p><strong>2) protected继承方式</strong></p>
+<ul>
+<li>基类中的所有 public 成员在派生类中为 protected 属性；</li>
+<li>基类中的所有 protected 成员在派生类中为 protected 属性；</li>
+<li>基类中的所有 private 成员在派生类中不能使用。</li>
+</ul>
+<p><strong>3) private继承方式</strong></p>
+<ul>
+<li>基类中的所有 public 成员在派生类中均为 private 属性；</li>
+<li>基类中的所有 protected 成员在派生类中均为 private 属性；</li>
+<li>基类中的所有 private 成员在派生类中不能使用。</li>
+</ul>
+</blockquote>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>基类指针只可以访问派生类的成员变量，不能访问函数</p>
+<p>在基类的同名函数前加入关键字virtual，后此时基类指针可以访问函数</p>
+<blockquote>
+<p>C++提供多态的目的是：可以通过基类指针对所有派生类（包括直接派生和间接派生）的成员变量和成员函数进行“全方位”的访问，尤其是成员函数。如果没有多态，我们只能访问成员变量。</p>
+</blockquote>
+<h1 id="VS-STUDIO-遇到的报错"><a href="#VS-STUDIO-遇到的报错" class="headerlink" title="VS STUDIO 遇到的报错"></a>VS STUDIO 遇到的报错</h1><h2 id="重定义默认参数"><a href="#重定义默认参数" class="headerlink" title="重定义默认参数"></a>重定义默认参数</h2><p>c++ 默认参数 </p>
+<ol>
+<li>只能在声明或定义中出现，不能都出现</li>
+<li>默认参数后的参数都必须为默认参数，后指从左往右</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/09/26/%E6%88%91%E7%9A%84%E7%BB%83%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2022/09/26/%E6%88%91%E7%9A%84%E7%BB%83%E4%B9%A0/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-26 17:15:39" itemprop="dateCreated datePublished" datetime="2022-09-26T17:15:39+08:00">2022-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-27 17:52:40" itemprop="dateModified" datetime="2022-05-27T17:52:40+08:00">2022-05-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="clion-的cmake问题"><a href="#clion-的cmake问题" class="headerlink" title="clion 的cmake问题"></a>clion 的cmake问题</h3><p>在设置中更改toolchains为系统cmake，clion自带cmake存在问题</p>
+<h3 id="clion自定义devle和build路径"><a href="#clion自定义devle和build路径" class="headerlink" title="clion自定义devle和build路径"></a>clion自定义devle和build路径</h3><h3 id="cmakelists-txt文件详解"><a href="#cmakelists-txt文件详解" class="headerlink" title="cmakelists.txt文件详解"></a>cmakelists.txt文件详解</h3><p>ros wiki <a target="_blank" rel="noopener" href="http://wiki.ros.org/catkin/CMakeLists.txt">http://wiki.ros.org/catkin/CMakeLists.txt</a></p>
+<p>generate_messages，指定生成消息文件时的依赖项，比如上面嵌套了其他消息类型geometry_msgs，那么必须注明</p>
+<pre><code>generate_messages必须在catkin_package前面
+generate_messages(
+ DEPENDENCIES
+ geometry_msgs
+)
+</code></pre>
+<p><code>catkin_package</code>设置运行依赖</p>
+<pre><code>catkin_package(
+
+CATKIN_DEPENDS message_runtime
+
+)
+</code></pre>
+<h3 id="cmakelists-txt文件中add-dependencies"><a href="#cmakelists-txt文件中add-dependencies" class="headerlink" title="cmakelists.txt文件中add_dependencies"></a>cmakelists.txt文件中add_dependencies</h3><p>add_dependencies(可执行或库名字 ${${PROJECT_NAME}_EXPORTED_TARGETS}) </p>
+<p>用于自定义消息的头文件的生成</p>
+<h3 id="桌面图标启动clion报错没有source-setup-bash"><a href="#桌面图标启动clion报错没有source-setup-bash" class="headerlink" title="桌面图标启动clion报错没有source setup.bash"></a>桌面图标启动clion报错没有source setup.bash</h3><p>从终端中启动clion</p>
+<h3 id="自定义消息的头文件位置"><a href="#自定义消息的头文件位置" class="headerlink" title="自定义消息的头文件位置"></a>自定义消息的头文件位置</h3><p>编译后的中间文件查看:</p>
+<p>C++ 需要调用的中间文件(…/工作空间/devel/include/包名/xxx.h)</p>
+<p>Python 需要调用的中间文件(…/工作空间/devel/lib/python3/dist-packages/包名/msg)</p>
+<h3 id="新建的py文件需要更改权限"><a href="#新建的py文件需要更改权限" class="headerlink" title="新建的py文件需要更改权限"></a>新建的py文件需要更改权限</h3><h3 id="自定义消息注意"><a href="#自定义消息注意" class="headerlink" title="自定义消息注意"></a>自定义消息注意</h3><p><img src="C:\Users\Delicious\AppData\Roaming\Typora\typora-user-images\image-20220524102926156.png" alt="image-20220524102926156"></p>
+<p>py文件：</p>
+<p>c++文件：</p>
+<p><img src="C:\Users\Delicious\AppData\Roaming\Typora\typora-user-images\image-20220524102910321.png" alt="image-20220524102910321"></p>
+<h3 id="rqt-reconfigure的使用"><a href="#rqt-reconfigure的使用" class="headerlink" title="rqt_reconfigure的使用"></a>rqt_reconfigure的使用</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014610460/article/details/79531616">https://blog.csdn.net/u014610460/article/details/79531616</a>    cmakelists文件的写法</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45590473/article/details/122673314?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-0-122673314-blog-81811728.pc_relevant_paycolumn_v3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3">https://blog.csdn.net/weixin_45590473/article/details/122673314?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-0-122673314-blog-81811728.pc_relevant_paycolumn_v3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3</a>    cfg文件、客户端、服务端的写法</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/09/26/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2022/09/26/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-26 16:59:11" itemprop="dateCreated datePublished" datetime="2022-09-26T16:59:11+08:00">2022-09-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/04/18/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%97%A5%E5%BF%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,7 +586,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-26 10:45:10" itemprop="dateModified" datetime="2022-09-26T10:45:10+08:00">2022-09-26</time>
+                <time title="修改时间：2022-10-22 12:41:37" itemprop="dateModified" datetime="2022-10-22T12:41:37+08:00">2022-10-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,7 +665,7 @@
 <p>因为会运行Gazebo，第一次启动会比较慢，耐心等待（如果报错，请关闭终端再次尝试，我的i5笔记本经常启动失败，这是你的笔记本提示你该花钱了的正常现象）。启动成功后，会看到Gazebo中有一个iris无人机。这时你可以打开QGC地面站，地面站会默认连接这台飞机，你可以尝试利用地面站发送起飞指令测试。</p>
 <p>这个启动脚本位于Firmware/launch文件夹中，同时在此文件夹中，你还能看到其他类似的启动脚本。这里建议大家单独启动Mavros，而不是用它提供的另一个启动脚本同时启动（因为一个终端显示太多东西的话，报错你都看不到）。</p>
 <p>第四步：<strong>运行Mavros</strong></p>
-<p>roslaunch mavros px4.launch fcu_url:=”udp://:<a href="mailto:&#49;&#x34;&#x35;&#52;&#48;&#64;&#49;&#x32;&#x37;&#x2e;&#48;&#46;&#48;&#46;&#49;">&#49;&#x34;&#x35;&#52;&#48;&#64;&#49;&#x32;&#x37;&#x2e;&#48;&#46;&#48;&#46;&#49;</a>:14557”</p>
+<p>roslaunch mavros px4.launch fcu_url:=”udp://:<a href="mailto:&#x31;&#52;&#x35;&#x34;&#x30;&#x40;&#49;&#x32;&#55;&#x2e;&#x30;&#46;&#48;&#x2e;&#x31;">&#x31;&#52;&#x35;&#x34;&#x30;&#x40;&#49;&#x32;&#55;&#x2e;&#x30;&#46;&#48;&#x2e;&#x31;</a>:14557”</p>
 <p>此处我建议Mavros功能包使用二进制安装，比较省事。可以看到这里启动mavros时配置了一些端口参数（端口匹配才能成功连接），后续我会在PX4仿真模块中找到与之对应的参数配置。</p>
 <p>尝试读取飞空的IMU数据，打开终端，输入</p>
 <p>rostopic echo /mavros/imu/data</p>
@@ -281,6 +681,18 @@
 <p>首先编译安装opencv3.4.0（3.2.0版本死活不成功）</p>
 <p>修改cv依赖的头文件和库文件</p>
 <p>过程中还有vtk、flann（<a target="_blank" rel="noopener" href="https://blog.csdn.net/cs_terminal/article/details/117571998%EF%BC%89%E9%97%AE%E9%A2%98">https://blog.csdn.net/cs_terminal/article/details/117571998）问题</a></p>
+<h2 id="vtk相关报错"><a href="#vtk相关报错" class="headerlink" title="vtk相关报错"></a>vtk相关报错</h2><p>The imported target “vtk” references the file<br>“/usr/bin/vtk”<br>but this file does not exist.  Possible reasons include:</p>
+<ul>
+<li>The file was deleted, renamed, or moved to another location.</li>
+<li>An install or uninstall procedure did not complete successfully.</li>
+<li>The installation package was faulty and contained<br>“/usr/lib/cmake/vtk-6.2/VTKTargets.cmake”<br>but not all the files it references.<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>只是由于在Ubuntu下使用的是vtk6造成的<br>在终端中输入该命令：</li>
+</ul>
+<p>sudo ln -s /usr/bin/vtk6 /usr/bin/vtk</p>
+<h2 id="致命错误：Eigen-Dense：没有那个文件或目录"><a href="#致命错误：Eigen-Dense：没有那个文件或目录" class="headerlink" title="致命错误：Eigen/Dense：没有那个文件或目录"></a>致命错误：Eigen/Dense：没有那个文件或目录</h2><p>实际就是编译器找不到这个头文件了，首先要看看是不是已经安装了Eigen3（在/usr/local/include或者/usr/include目录）.</p>
+<p>如果没有，到官网下载一个,解压到/usr/local/include或者/usr/include目录<br>官网：<a target="_blank" rel="noopener" href="http://eigen.tuxfamily.org/index.php?title=Main_Page">http://eigen.tuxfamily.org/index.php?title=Main_Page</a></p>
+<p>或者通过apt安装：sudo apt-get install libeigen3-dev</p>
+<p>安装完成后，编译器会去/usr/local/include或者/usr/include目录找头文件，但找到的是eigen3，并没有Eigen和unsupported，所以需要建立一个软连接链接到这两个文件夹即可</p>
+<p>#要先确定你的Eigen3安装在/usr/local/include还是/usr/include<br>cd /usr/include<br>sudo ln -sf eigen3/Eigen Eigen<br>sudo ln -sf eigen3/unsupported unsupported</p>
 <p>结果 运行map.launch 无报错，进行下一步</p>
 <h3 id="运行macros-包下的px4-launch报错"><a href="#运行macros-包下的px4-launch报错" class="headerlink" title="运行macros 包下的px4.launch报错"></a>运行macros 包下的px4.launch报错</h3><p>1.更改mavros版本从1.3到1.10 没用</p>
 <p>2.更改gazebo版本从9.0到9.19没用</p>
@@ -301,7 +713,7 @@
 <p>sudo apt-get install  libglew-dev  <br>    libtiff5-dev<br>    zlib1g-dev<br>    libjpeg-dev<br>    libpng12-dev \<br>    libjasper-dev \<br>    libavcodec-dev \<br>    libavformat-dev \<br>    libavutil-dev \<br>    libpostproc-dev \<br>    libswscale-dev \<br>    libeigen3-dev \<br>    libtbb-dev \<br>    libgtk2.0-dev \<br>    pkg-config  </p>
 <p>TX2共两块CPU，和一块有256个CUDA核心的GPU。CPU一块是双核的丹佛二，第二快是ARM CortexA57。8G的运行内存，32G flash存储器</p>
 <p>剩下两核的驱动问题：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/JanKin_BY/article/details/120441238">https://blog.csdn.net/JanKin_BY/article/details/120441238</a><br>将/boot/extlinux/exltinux.conf 文件里的isolcpus=1-2修改为isolcpus=</p>
-<p>重启</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>重启<br>=======<br>重启</p>
 <p>nx安装系统<br>nx载板型号：RTSO-6002/E    （tx2载板型号 RTSO-9002U）<br>nx l4t 32.7.1</p>
 <p>opencv依赖包安装</p>
 <p>sudo apt install libjasper1 libjasper-dev</p>
@@ -331,20 +743,138 @@
 </ol>
 <p><a target="_blank" rel="noopener" href="https://opencv.org/releases/">https://opencv.org/releases/</a><br>1<br>2) 照常尽情地在新版本的opencv的目录中使用一下命令:</p>
 <p>mkdir build<br>cd build<br>1<br>2<br>3) 但是使用cmake安装新版本的opencv时,我们需要修改其安装的路径(prefix),否则照常安装的话会把之前版本的opencv覆盖,因为我们opencv是默认安装在/usr/local/中.</p>
-<p>在/usr/local/下新建一个文件夹,文件夹名为opencv4.而后cmake的命令如下:<br>cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/opencv4<br>1<br>2<br>cmake过后,我们会发现在/usr/local/opencv4中出现bin,lib,share,include的文件夹.</p>
+<p>在/usr/local/下新建一个文件夹,文件夹名为opencv340.而后cmake的命令如下:<br>cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/opencv340<br>1<br>2<br>cmake过后,我们会发现在/usr/local/opencv340中出现bin,lib,share,include的文件夹.</p>
 <ol start="4">
 <li>回到build目录中,执行如下命令</li>
 </ol>
 <p>sudo make -j4(自信点的话-j16,-j32也行)<br>=====漫长的编译等待后======祝你成功=======<br>sudo make install<br>1<br>2<br>3<br>5) 安装完成了,然后剩下环境的配置,执行如下的命令</p>
-<p>sudo gedit /etc/ld.so.conf.d/opencv41.conf (我安装的opencv4.1)<br>在里面加入下面这行<br>/usr/local/opencv4/lib<br>然后命令执行<br>sudo ldconfig  //使得刚才的环境配置生效<br>1<br>2<br>3<br>4<br>5<br>6) 又到了愉快地修改环境变量环节,粗暴点,把新版本的opencv的PATH,PKG_CONFIG_PATH,LD_LIBRARY_PATH都加入到环境变量中.(要注意你当前的用户是root还是你自己的账户,配置的时候不要搞错了.如果在root下配置了以下的环境变量,那么在你自己的账户下是不会生效的)</p>
-<p>vim ~/.bashrc<br>底部加入三条命令<br>export PATH=”/usr/local/opencv-4.1.0/build/bin:$PATH”<br>export PKG_CONFIG_PATH=”/usr/local/opencv4/lib/pkgconfig:$PKG_CONFIG_PATH”<br>export LD_LIBRARY_PATH=”/usr/local/opencv4/lib:$LD_LIBRARY_PATH”<br>1<br>2<br>3<br>4<br>5<br>7) 配置完成后source激活一下,重启你的终端或者vscode啥的,环境激活后opencv就变成了新的版本的了.如果想用回旧版本的opencv只需要再次修改环境变量,把上面三条命令注释再source一下就好<br>————————————————<br>版权声明：本文为CSDN博主「剑客无名」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33764934/article/details/103744689">https://blog.csdn.net/qq_33764934/article/details/103744689</a></p>
 </blockquote>
+<p>（x86下的文件名  x86_64-linux-gnu.conf）</p>
+<blockquote>
+<p>sudo gedit /etc/ld.so.conf.d/aarch64-linux-gnu.conf (我安装的opencv4.1)<br>在里面加入下面这行<br>/usr/local/opencv340/lib<br>然后命令执行<br>sudo ldconfig  //使得刚才的环境配置生效<br>1<br>2<br>3<br>4<br>5<br>6) 又到了愉快地修改环境变量环节,粗暴点,把新版本的opencv的PATH,PKG_CONFIG_PATH,LD_LIBRARY_PATH都加入到环境变量中.(要注意你当前的用户是root还是你自己的账户,配置的时候不要搞错了.如果在root下配置了以下的环境变量,那么在你自己的账户下是不会生效的)</p>
+<p>vim <del>/.bashrc<br>底部加入三条命令<br>export PATH=”</del>/Downloads/opencv-3.4.0/build/bin:$PATH”<br>export PKG_CONFIG_PATH=”/usr/local/opencv340/lib/pkgconfig:$PKG_CONFIG_PATH”<br>export LD_LIBRARY_PATH=”/usr/local/opencv340/lib:$LD_LIBRARY_PATH”<br>1<br>2<br>3<br>4<br>5<br>7) 配置完成后source激活一下,重启你的终端或者vscode啥的,环境激活后opencv就变成了新的版本的了.如果想用回旧版本的opencv只需要再次修改环境变量,把上面三条命令注释再source一下就好</p>
+</blockquote>
+<p>查看opencv版本<br>pkg-config –modversion opencv<br>完了把cv_bridge的cmake的opencv路径改了</p>
 <h1 id="cv——bridge寻找opencv版本语句位置"><a href="#cv——bridge寻找opencv版本语句位置" class="headerlink" title="cv——bridge寻找opencv版本语句位置"></a>cv——bridge寻找opencv版本语句位置</h1><blockquote>
 <p>在学习jetson nano时，在编译ROS的package时可能会出现cmake的错误：<br>Project ‘cv_bridge’ specifies ‘/usr/include/opencv’ as an include dir, which is not found.</p>
 <p>这不是因为我们编写的程序有误，而是NVIDIA的32.3.1image自带的是opencv4版本，把opencv命名成了opencv4</p>
 <p>修改方法：只需修改上述路径中的cv_bridgeconfig.cmke文件，将100行附近的两个opencv改成opencv4即可（注意，只需要改动单独一个的opencv,前面有连字符的opencv不需要改动）</p>
-<p>注意：如果jetson nano的版本自带的opencv是3版本，可能不会出现此问题<br>————————————————<br>版权声明：本文为CSDN博主「Xyscut」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43310597/article/details/109256838">https://blog.csdn.net/qq_43310597/article/details/109256838</a></p>
+<p>注意：如果jetson nano的版本自带的opencv是3版本，可能不会出现此问题</p>
 </blockquote>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<h1 id="上午好好的，下午进不去系统"><a href="#上午好好的，下午进不去系统" class="headerlink" title="上午好好的，下午进不去系统"></a>上午好好的，下午进不去系统</h1><blockquote>
+<p>error during i2c read probe board setup failed</p>
+</blockquote>
+<h1 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h1><ol>
+<li><p>选择瑞泰镜像，不能用官方镜像<br>检查方法  dmesg | grep dts<br>显示 <img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/845ce1590e47021e7b37c4bc595896c.jpg">  为官方</p>
+</li>
+<li><p>bsp选择nx目录下，不要选择32.7.1目录下</p>
+</li>
+<li><p>目前的uuidpart    d3b71f11-043d-484e-ae7d-206760bceada</p>
+</li>
+<li><p>烧录手册版本选择1.1</p>
+</li>
+<li><p>烧录外部启动系统时<br>选择external 会报找不到对应uuid的错误<br>需要写入mmcblk1怕</p>
+</li>
+<li><p>sdkmanager<br>安装cuda dnn 不用他，试了几遍都不成功</p>
+</li>
+<li><p>从sd卡启动手册选择版本1.1</p>
+</li>
+<li><p>jtop安装<br>sudo apt install python3-pip<br>sudo -H pip3 install -U jetson-stats<br>sudo systemctl restart jetson_stats.service<br>reboot</p>
+</li>
+</ol>
+<h1 id="ceres-安装"><a href="#ceres-安装" class="headerlink" title="ceres 安装"></a>ceres 安装</h1><p>安装依赖<br>sudo apt-get install -y google-mock libboost-all-dev  libeigen3-dev libgflags-dev libgoogle-glog-dev liblua5.2-dev libprotobuf-dev  libsuitesparse-dev libwebp-dev ninja-build protobuf-compiler python-sphinx  ros-melodic-tf2-eigen libatlas-base-dev libsuitesparse-dev liblapack-dev</p>
+<p>download<br><a target="_blank" rel="noopener" href="https://github.com/ceres-solver/ceres-solver/releases">https://github.com/ceres-solver/ceres-solver/releases</a></p>
+<p>compile<br>mkdir build<br>cd build<br>cmake …<br>make -j6<br>sudo make install<br>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>9fe0423c3a24031c913d166b3ac7ff3ebdfc73d8<br>3d419ebd75fa478d0e144fedfe1049e3bc140131</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="安装软件包"><a href="#安装软件包" class="headerlink" title="安装软件包"></a>安装软件包</h1><p>型号：Xavier nx</p>
+<p>l4t版本和jetpack版本对应关系</p>
+<blockquote>
+<ul>
+<li>JetPack 4.6.1<ul>
+<li>Jetson Xavier NX Series, Jetson TX2 Series, Jetson AGX Xavier Series, Jetson Nano, Jetson TX1 [<a target="_blank" rel="noopener" href="https://developer.nvidia.com/embedded/linux-tegra-r3271">L4T 32.7.1</a>]</li>
+<li><a target="_blank" rel="noopener" href="https://developer.nvidia.com/embedded/jetpack-archive">https://developer.nvidia.com/embedded/jetpack-archive</a></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="第一次失败"><a href="#第一次失败" class="headerlink" title="第一次失败"></a>第一次失败</h2><p>，opencv on target 下载不动，国内国外网站均能访问</p>
+<p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/QQ%E5%9B%BE%E7%89%8720221012191550.png"></p>
+<p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/QQ%E5%9B%BE%E7%89%8720221012191603.png"></p>
+<h2 id="E-Sub-process-usr-bin-dpkg-returned-an-error-code-1"><a href="#E-Sub-process-usr-bin-dpkg-returned-an-error-code-1" class="headerlink" title="E: Sub-process /usr/bin/dpkg returned an error code (1)"></a>E: Sub-process /usr/bin/dpkg returned an error code (1)</h2><blockquote>
+<p>$ sudo mv /var/lib/dpkg/info/ /var/lib/dpkg/info_old/<br>$ sudo mkdir /var/lib/dpkg/info/<br>$ sudo apt-get update<br>$ sudo apt-get -f install<br>$ sudo mv /var/lib/dpkg/info/* /var/lib/dpkg/info_old/<br>$ sudo rm -rf /var/lib/dpkg/info<br>$ sudo mv /var/lib/dpkg/info_old/ /var/lib/dpkg/info/</p>
+</blockquote>
+<h2 id="GPG-error-file-var-cuda-repo-l4t-10-2-local-Release-The-following-signatures-couldn’t-be-verified-because-the-public-key-is-not-available-NO-PUBKEY-F60F4B3D7FA2AF80"><a href="#GPG-error-file-var-cuda-repo-l4t-10-2-local-Release-The-following-signatures-couldn’t-be-verified-because-the-public-key-is-not-available-NO-PUBKEY-F60F4B3D7FA2AF80" class="headerlink" title="GPG error: file:/var/cuda-repo-l4t-10-2-local  Release: The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY F60F4B3D7FA2AF80"></a>GPG error: file:/var/cuda-repo-l4t-10-2-local  Release: The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY F60F4B3D7FA2AF80</h2><blockquote>
+<ol>
+<li>sudo apt-key adv –keyserver keyserver.ubuntu.com –recv-keys F60F4B3D7FA2AF80</li>
+<li>sudo apt-get update &amp;&amp; sudo apt-get check</li>
+</ol>
+</blockquote>
+<h2 id="Could-not-handshake-The-TLS-connection-was-non-properly-terminated-IP-127-0-0-1-12333"><a href="#Could-not-handshake-The-TLS-connection-was-non-properly-terminated-IP-127-0-0-1-12333" class="headerlink" title="Could not handshake: The TLS connection was non-properly terminated. [IP: 127.0.0.1 12333]"></a>Could not handshake: The TLS connection was non-properly terminated. [IP: 127.0.0.1 12333]</h2><p>把源从https改为http</p>
+<h2 id="仓库不在提供发布源"><a href="#仓库不在提供发布源" class="headerlink" title="仓库不在提供发布源"></a>仓库不在提供发布源</h2><p>开启代理后apt使用配置文件apt.conf中将https走了https代理</p>
+<p>在etc/apt/apt.conf中去掉https的s</p>
+<p>换源</p>
+<p>换网络</p>
+<h2 id="multimedia-安装失败，其他成功"><a href="#multimedia-安装失败，其他成功" class="headerlink" title="multimedia 安装失败，其他成功"></a>multimedia 安装失败，其他成功</h2><blockquote>
+<p>BSP Version Mismatch 报错</p>
+</blockquote>
+<h2 id="px4结合mocap动作捕捉系统"><a href="#px4结合mocap动作捕捉系统" class="headerlink" title="px4结合mocap动作捕捉系统"></a>px4结合mocap动作捕捉系统</h2><p>github页面教学<br><a target="_blank" rel="noopener" href="https://github.com/potato77/Amovlab_opensource/tree/master/px4_pos_estiamtor">https://github.com/potato77/Amovlab_opensource/tree/master/px4_pos_estiamtor</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42879437/article/details/117514082">https://blog.csdn.net/qq_42879437/article/details/117514082</a><br>飞控中如何设置</p>
+<p>为了配合机载电脑中传来的定位信息，有两个和ekf2有关的参数需要修改。</p>
+<p>EKF2_AID_MASK 设置为24（即勾选vision position fusion and vision yaw fusion）<br>EKF2_HGT_MODE 设置为VISION （默认为气压计）<br>因为ekf2中默认是不会融合这个外部的定位信息的，这里相当于在ekf2中启用这个功能。至于ekf2参数中还有很多和这个外部定位相关的滤波参数设置，就请参看官网教程吧。我没有改任何参数，但是ekf2代码的话，阿木团队优化过，具体修改笔者也不清楚。</p>
+<p>其他说明：</p>
+<p>做了以上修改之后，水平校准会遇到问题，所以要修改之前校准水平。<br>修改之后，自稳模式会变得有些奇怪，基本上只能使用位置闭环的控制模式了，也就是offboard模式。<br>”<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/101967658?from_voters_page=true%E2%80%9C">https://zhuanlan.zhihu.com/p/101967658?from_voters_page=true“</a></p>
+<h3 id="fix-frame"><a href="#fix-frame" class="headerlink" title="fix frame"></a>fix frame</h3><p>rosrun tf static_transform_publisher 0.0 0.0 0.0 0.0 0.0 0.0 map xxx 100<br>rosrun rqt_tf_tree rqt_tf_tree </p>
+<h3 id="rviz-主界面面板说明"><a href="#rviz-主界面面板说明" class="headerlink" title="rviz 主界面面板说明"></a>rviz 主界面面板说明</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ben_xiao_hai_123/article/details/109258584">https://blog.csdn.net/ben_xiao_hai_123/article/details/109258584</a></p>
+<h3 id="rviz-中文安装-自定义rviz"><a href="#rviz-中文安装-自定义rviz" class="headerlink" title="rviz 中文安装 自定义rviz"></a>rviz 中文安装 自定义rviz</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhang6318/article/details/117964672">https://blog.csdn.net/zhang6318/article/details/117964672</a></p>
+<p>安装colcon<br>sudo apt install python3-colcon-common-extensions</p>
+<h3 id="动捕坐标系和相机世界坐标系位置、姿态转换"><a href="#动捕坐标系和相机世界坐标系位置、姿态转换" class="headerlink" title="动捕坐标系和相机世界坐标系位置、姿态转换"></a>动捕坐标系和相机世界坐标系位置、姿态转换</h3><p>相机内外参、像素坐标系、世界坐标系<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/389653208">https://zhuanlan.zhihu.com/p/389653208</a><br>世界坐标系的方向定义：单目 选第一帧的相机坐标系的方向定义（即右下前）<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/346131786/?utm_id=0">https://zhuanlan.zhihu.com/p/346131786/?utm_id=0</a><br>imu坐标系（左手，右前上）、<br><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/20221019131012.png"><br>坐标系姿态（四元数）转换<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/muzigef/article/details/103650811">https://blog.csdn.net/muzigef/article/details/103650811</a></p>
+<h2 id="xavier-NX-烧录系统"><a href="#xavier-NX-烧录系统" class="headerlink" title="xavier NX 烧录系统"></a>xavier NX 烧录系统</h2><ol>
+<li><p>准备驱动包、根文件系统、realtimesBSP</p>
+<p>在188虚拟机shaolu目录下已有，版本32.7.1(或者台式机下载-压缩-shaolu下)</p>
+</li>
+<li><p>烧录步骤，严格按照指令进行，注意sudo有无和tar的命令参数，直到有success</p>
+<p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/%E6%AD%A5%E9%AA%A4.png"></p>
+</li>
+<li><p>烧录参数 rtso-6002 mmcblk0p1</p>
+<p>sudo ./flash.sh rtso-6002 mmcblk0p1</p>
+</li>
+</ol>
+<h2 id="XAVIER-NX-从SD卡启动"><a href="#XAVIER-NX-从SD卡启动" class="headerlink" title="XAVIER NX 从SD卡启动"></a>XAVIER NX 从SD卡启动</h2><ol>
+<li>partuuid</li>
+</ol>
+<p>31919bfc-57e5-494f-b941-1c6782a7bf60</p>
+<ol start="2">
+<li>dd命令 </li>
+</ol>
+<p>sudo dd if=/dev/foo bs=4M | pv -s 20G | sudo dd of=/dev/baz bs=4M</p>
+<ol start="3">
+<li>flush刷的时候出现can not find partuuid </li>
+</ol>
+<blockquote>
+<p>sudo ./flash.sh rtso-6002 mmcblk1p1 而不是external</p>
+</blockquote>
+<ol start="4">
+<li>故障是不是光重新刷sd卡就可以</li>
+</ol>
+<h2 id="source一个工作空间把另一个也source"><a href="#source一个工作空间把另一个也source" class="headerlink" title="source一个工作空间把另一个也source"></a>source一个工作空间把另一个也source</h2><p>真恶心，<br>编辑devel下的setup util.py文件<br>修改export 变量  export ros_packet_path=”aaaa”</p>
+<h2 id="ros下各个地图"><a href="#ros下各个地图" class="headerlink" title="ros下各个地图"></a>ros下各个地图</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_16643223/article/details/113923203">https://blog.csdn.net/sinat_16643223/article/details/113923203</a></p>
+<h2 id="tf的介绍"><a href="#tf的介绍" class="headerlink" title="tf的介绍"></a>tf的介绍</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sxy370921/p/11726691.html">https://www.cnblogs.com/sxy370921/p/11726691.html</a></p>
+<h2 id="ros-launch-参数"><a href="#ros-launch-参数" class="headerlink" title="ros launch 参数"></a>ros launch 参数</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/157526418">https://zhuanlan.zhihu.com/p/157526418</a><br>全局参数和局部参数，更好 <a target="_blank" rel="noopener" href="https://blog.csdn.net/u013528298/article/details/87937555">https://blog.csdn.net/u013528298/article/details/87937555</a><br>fp_my-ws的地图生成参数还是不理解，报错Unknown substitution command [random_or_load]. Valid commands are [‘find’, ‘env’, ‘optenv’, ‘dirname’, ‘anon’, ‘arg’]</p>
 
       
     </div>
@@ -621,10 +1151,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-03-31 16:54:15 / 修改时间：16:58:30" itemprop="dateCreated datePublished" datetime="2022-03-31T16:54:15+08:00">2022-03-31</time>
+              <time title="创建时间：2022-03-31 16:54:15" itemprop="dateCreated datePublished" datetime="2022-03-31T16:54:15+08:00">2022-03-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-11 16:20:52" itemprop="dateModified" datetime="2022-10-11T16:20:52+08:00">2022-10-11</time>
+              </span>
 
           
 
@@ -639,7 +1175,17 @@
       
           <h2 id="conda的常用命令"><a href="#conda的常用命令" class="headerlink" title="conda的常用命令"></a>conda的常用命令</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hejp_123/article/details/92151293">https://blog.csdn.net/hejp_123/article/details/92151293</a></p>
 <h2 id="Resource-punkt-not-found"><a href="#Resource-punkt-not-found" class="headerlink" title="Resource punkt not found."></a>Resource punkt not found.</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24263553/article/details/105726751">https://blog.csdn.net/qq_24263553/article/details/105726751</a></p>
-
+<h3 id="导入包的问题-sys-path"><a href="#导入包的问题-sys-path" class="headerlink" title="导入包的问题 sys.path"></a>导入包的问题 sys.path</h3><p>直接运行 和 模块运行 的区别<br>python xxx.py<br>python -m xxx.py<br>这是两种加载py文件的方式:<br>1叫做直接运行<br>2把模块当作脚本来启动(注意：但是__name__的值为’main’ )</p>
+<p>直接启动是把xx.py文件，所在的目录放到了sys.path属性中。<br>模块启动是把你输入命令的目录（也就是当前路径），放到了sys.path属性中</p>
+<p>作者：大富帅<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/04701cb81e38">https://www.jianshu.com/p/04701cb81e38</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h3 id="requests-的session的使用-重定向问题"><a href="#requests-的session的使用-重定向问题" class="headerlink" title="requests 的session的使用 重定向问题"></a>requests 的session的使用 重定向问题</h3><p>会话也可用来为请求方法提供缺省数据。这是通过为会话对象的属性提供数据来实现的：</p>
+<p>s = requests.Session()<br>s.auth = (‘user’, ‘pass’)<br>s.headers.update({‘x-test’: ‘true’})</p>
+<h1 id="both-‘x-test’-and-‘x-test2’-are-sent"><a href="#both-‘x-test’-and-‘x-test2’-are-sent" class="headerlink" title="both ‘x-test’ and ‘x-test2’ are sent"></a>both ‘x-test’ and ‘x-test2’ are sent</h1><p>s.get(‘<a target="_blank" rel="noopener" href="http://httpbin.org/headers&#39;">http://httpbin.org/headers&#39;</a>, headers={‘x-test2’: ‘true’})<br>任何你传递给请求方法的字典都会与已设置会话层数据合并。方法层的参数覆盖会话的参数。</p>
+<p>不过需要注意，就算使用了会话，方法级别的参数也不会被跨请求(指两次session.get       )保持。下面的例子只会和第一个请求发送 ​cookie​ ，而非第二个：</p>
+<p>s = requests.Session()</p>
+<p>r = s.get(‘<a target="_blank" rel="noopener" href="http://httpbin.org/cookies&#39;">http://httpbin.org/cookies&#39;</a>, cookies={‘from-my’: ‘browser’})<br>print(r.text)</p>
+<h1 id="‘-“cookies”-“from-my”-“browser”-’"><a href="#‘-“cookies”-“from-my”-“browser”-’" class="headerlink" title="‘{“cookies”: {“from-my”: “browser”}}’"></a>‘{“cookies”: {“from-my”: “browser”}}’</h1><p>r = s.get(‘<a target="_blank" rel="noopener" href="http://httpbin.org/cookies&#39;">http://httpbin.org/cookies&#39;</a>)<br>print(r.text)</p>
+<h1 id="‘-“cookies”-’"><a href="#‘-“cookies”-’" class="headerlink" title="‘{“cookies”: {}}’"></a>‘{“cookies”: {}}’</h1>
       
     </div>
 
@@ -835,7 +1381,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-26 10:42:45" itemprop="dateModified" datetime="2022-09-26T10:42:45+08:00">2022-09-26</time>
+                <time title="修改时间：2022-10-22 10:21:21" itemprop="dateModified" datetime="2022-10-22T10:21:21+08:00">2022-10-22</time>
               </span>
 
           
@@ -849,8 +1395,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="apt和apt-get的区别"><a href="#apt和apt-get的区别" class="headerlink" title="apt和apt-get的区别"></a>apt和apt-get的区别</h2><p>简单来说就是：apt = apt-get、apt-cache 和 apt-config 中最常用命令选项的集合。<br>apt 命令    取代的命令    命令的功能<br>apt install    apt-get install    安装软件包<br>apt remove    apt-get remove    移除软件包<br>apt purge    apt-get purge    移除软件包及配置文件<br>apt update    apt-get update    刷新存储库索引<br>apt upgrade    apt-get upgrade    升级所有可升级的软件包<br>apt autoremove    apt-get autoremove    自动删除不需要的包<br>apt full-upgrade    apt-get dist-upgrade    在升级软件包时自动处理依赖关系<br>apt search    apt-cache search    搜索应用程序<br>apt show    apt-cache show    显示安装细节</p>
-<p>当然，apt 还有一些自己的命令：<br>新的apt命令    命令的功能<br>apt list    列出包含条件的包（已安装，可升级等）<br>apt edit-sources    编辑源列表</p>
+          <h2 id="apt和apt-get的区别"><a href="#apt和apt-get的区别" class="headerlink" title="apt和apt-get的区别"></a>apt和apt-get的区别</h2><ol>
+<li>aptitude 在删除一个包时，会同时删除本身所依赖的包。而apt-get这时做的不彻底，导致包混乱。整个系统更为干净。</li>
+</ol>
+<p>起初GNU/Linux系统中只有.tar.gz。用户 必须自己编译他们想使用的每一个程序。在Debian出现之後，人们认为有必要在系统 中添加一种机 制用来管理 安装在计算机上的软件包。人们将这套系统称为dpkg。至此着名的‘package’首次在GNU/Linux上出现。不久之後红帽子也开始着 手建立自己的包管理系统 ‘rpm’。</p>
+<p>GNU/Linux的创造者们很快又陷入了新的窘境。他们希望通过一种快捷、实用而且高效的方式来安装软件包。这些软件包可以自动处理相互之间 的依赖关系，并且在升级过程中维护他们的配置文件 。Debian又一次充当了开路先锋的角色。她首创了APT（Advanced Packaging Tool）。这一工具後来被Conectiva 移植到红帽子系统中用于对rpm包的管理。在其他一些发行版中我们也能看到她的身影。</p>
+<p>“同时，apt是一个很完整和先进的软件包管理程序，使用它可以让你，又简单，又准确的找到你要的的软件包， 并且安装或卸载都很简洁。 它还可以让你的所有软件都更新到最新状态，而且也可以用来对ubuntu 进行升级。”</p>
+<p>“apt是需要用命令 来操作的软件，不过现在也出现了很多有图形的软件，比如Synaptic, Kynaptic 和 Adept。”</p>
+<p>命令</p>
+<p>下面将要介绍的所有命令都需要sudo！使用时请将“packagename”和“string”替换成您想要安装或者查找的程序。</p>
+<pre><code> * apt-get update——在修改/etc/apt/sources.list或者/etc/apt/preferences之後运行该命令。此外您需要定期运行这一命令以确保您的软件包列表是最新的。
+ * apt-get install packagename——安装一个新软件包（参见下文的aptitude ）
+ * apt-get remove packagename——卸载一个已安装的软件包（保留配置文件）
+ * apt-get --purge remove packagename——卸载一个已安装的软件包（删除配置文件）
+ * dpkg --force-all --purge packagename 有些软件很难卸载，而且还阻止了别的软件的应用 ，就可以用这个，不过有点冒险。
+ * apt-get autoclean apt会把已装或已卸的软件都备份在硬盘上，所以如果需要空间 的话，可以让这个命令来删除你已经删掉的软件
+ * apt-get clean 这个命令会把安装的软件的备份也删除，不过这样不会影响软件的使用的。
+ * apt-get upgrade——更新所有已安装的软件包
+ * apt-get dist-upgrade——将系统升级到新版本
+ * apt-cache search string——在软件包列表中搜索字符串
+ * dpkg -l package-name-pattern——列出所有与模式相匹配的软件包。如果您不知道软件包的全名，您可以使用“*package-name-pattern*”。
+ * aptitude——详细查看已安装或可用的软件包。与apt-get类似，aptitude可以通过命令行方式调用，但仅限于某些命令——最常见的有安装和卸载命令。由于aptitude比apt-get了解更多信息，可以说它更适合用来进行安装和卸载。
+ * apt-cache showpkg pkgs——显示软件包信息。
+ * apt-cache dumpavail——打印可用软件包列表。
+ * apt-cache show pkgs——显示软件包记录，类似于dpkg –print-avail。
+ * apt-cache pkgnames——打印软件包列表中所有软件包的名称。
+ * dpkg -S file——这个文件属于哪个已安装软件包。
+ * dpkg -L package——列出软件包中的所有文件。
+ * apt-file search filename——查找包含特定文件的软件包（不一定是已安装的），这些文件的文件名中含有指定的字符串。apt-file是一个独立的软件包。您必须 先使用apt-get install来安装它，然後运行apt-file update。如果apt-file search filename输出的内容太多，您可以尝试使用apt-file search filename | grep -w filename（只显示指定字符串作为完整的单词出现在其中的那些文件名）或者类似方法，例如：apt-file search filename | grep /qfdgk/（只显示位于诸如/qfdgk或/usr/qfdgk这些文件夹中的文件，如果您要查找的是某个特定的执行文件的话，这样做是有帮助的）。
+</code></pre>
+<p>＊ apt-get autoclean——定期运行这个命令来清除那些已经卸载的软件包的.deb文件。通过这种方式，您可以释放大量的磁盘空间。如果您的需求十分迫切，可 以使用apt-get clean以释放更多空间。这个命令会将已安装软件包裹的.deb文件一并删除。大多数情况下您不会再用到这些.debs文件，因此如果您为磁盘空间不足 而感到焦头烂额，这个办法也许值得一试。</p>
+<p>典型应用</p>
+<p>我是个赛车发烧友，想装个赛车类游戏玩玩。有哪些赛车类游戏可供选择呢？</p>
+<p>apt-cache search racing game</p>
+<p>出来了一大堆结果。看看有没有更多关于torcs这个游戏的信息。</p>
+<p>apt-cache show torcs</p>
+<p>看上去不错。这个游戏是不是已经安装了？最新版本是多少？它属于哪一类软件，universe还是main?</p>
+<p>apt-cache policy torcs</p>
+<p>好吧，现在我要来安装它！</p>
+<p>apt-get install torcs</p>
+<p>在 控制台下我应该调用什么命令来运行这个游戏呢？在这个例子中，直接用torcs就行了，但并不是每次都这么简单。我们可一通过查找哪些文件被安 装到了 “/usr/qfdgk”文件夹下来确定二进制文件名。对于游戏软件，这些二进制文件将被安装到“/usr/games”下面。对于系统管理工具相应的文件夹 是“/usr/sqfdgk”。</p>
+<p>dpkg -L torcs|grep /usr/games/</p>
+<p>这个命令的前面一部分显示软件包“torcs”安装的所有文件（您自己试试看）。通过命令的第二部分，我们告诉系统只显示前一部分的输出结果中含有“/usr/games”的那些行。</p>
+<p>这个游戏很酷哦。说不定还有其他赛道可玩的？</p>
+<p>apt-cache search torcs</p>
+<p>我的磁盘空间不够用了。我得把apt的缓存空间清空才行。</p>
+<p>apt-get clean</p>
+<p>哦不，老妈叫我把机器上的所有游戏都删掉。但是我想把配置文件保留下来，这样待会我只要重装一下就可以继续玩了。</p>
+<p>apt-get remove torcs</p>
+<p>如果我想连配置文件一块删除：</p>
+<p>apt-get remove –purge torcs</p>
+<p>额外的软件包</p>
+<p>deborphan和debfoster工具可以找出已经安装在系统上的不会被用到的软件包。</p>
+<p>提高命令行方式下的工作效率</p>
+<p>您可以通过定义别名（alias）来提高这些命令的输入速度。例如，您可以在您的*~/.bashrc*文件中添加下列内容</p>
+<p>alias acs=’apt-cache search’<br>alias agu=’sudo apt-get update’<br>alias agg=’sudo apt-get upgrade’<br>alias agd=’sudo apt-get dist-upgrade’<br>alias agi=’sudo apt-get install’<br>alias agr=’sudo apt-get remove’</p>
+<p>或者使用前面介绍的aptitude命令，如“alias agi=’sudo aptitude install’”。</p>
+<hr>
+<p>aptitude 与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大的包管理工具。与 apt-get 不同的是，aptitude 在处理依赖问题上更佳一些。举例来说，aptitude 在删除一个包时，会同时删除本身所依赖的包。这样，系统中不会残留无用的包，整个系统更为干净。以下是笔者总结的一些常用 aptitude 命令，仅供参考。<br>命令 作用<br>aptitude update 更新可用的包列表<br>aptitude upgrade 升级可用的包<br>aptitude dist-upgrade 将系统升级到新的发行版<br>aptitude install pkgname 安装包<br>aptitude remove pkgname 删除包<br>aptitude purge pkgname 删除包及其配置文件<br>aptitude search string 搜索包<br>aptitude show pkgname 显示包的详细信息<br>aptitude clean 删除下载的包文件<br>aptitude autoclean 仅删除过期的包文件</p>
+<p>当然，你也可以在文本界面模式中使用 aptitude。</p>
 <h1 id="挂载命令："><a href="#挂载命令：" class="headerlink" title="挂载命令："></a>挂载命令：</h1><p>mount [-t vfstype] [-o options] device dir<br>umount /mnt/cdrom</p>
 <p>systemd:</p>
 <p>hostnamectl:查看主机名，操作系统，内核，架构<br>systemd启动的第一个进程<br>Systemd 默认从目录/etc/systemd/system/读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录/usr/lib/systemd/system/，真正的配置文件存放在那个目录。</p>
@@ -1022,7 +1625,47 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>『var=’lang is $LANG’』则『echo $var』可得『lang is $LANG』</p>
 <h3 id="追加变量内容"><a href="#追加变量内容" class="headerlink" title="追加变量内容"></a>追加变量内容</h3><p>『PATH=”$PATH”:/home/bin』或『PATH=${PATH}:/home/bin』</p>
 <h3 id="使用其他指令提供的信息"><a href="#使用其他指令提供的信息" class="headerlink" title="使用其他指令提供的信息"></a>使用其他指令提供的信息</h3><p>『version=$(uname -r)』再『echo $version』可得『3.10.0-229.el7.x86_64』</p>
-<h3 id="仓库详解"><a href="#仓库详解" class="headerlink" title="仓库详解"></a>仓库详解</h3><p>整个软件源结构可以分解为四个部分:</p>
+<h1 id="仓库详解"><a href="#仓库详解" class="headerlink" title="仓库详解"></a>仓库详解</h1><h2 id="版本号-代号-时间"><a href="#版本号-代号-时间" class="headerlink" title="版本号 代号 时间"></a>版本号 代号 时间</h2><blockquote>
+<p>Ubuntu可谓是Linux世界中的黑马，其第一个正式版本于2004年10月正式推出。需要详细解释的是Ubuntu版本编号的定义，其编号以“年份的最后一位.发布月份”的格式命名，因此Ubuntu的第一个版本就称为4.10(2004.10)。除了代号之外，每个Ubuntu版本在开发之初还有一个开发代号。Ubuntu开发代号比较有意思，格式为“形容词+动物”，且形容词和动物名称的第一个字母要一致，如Ubuntu16.04的开发代号是Xenial Xerus，译为“好客的非洲地松鼠”。 [6]  从Ubuntu 6.06开始，两个词的首字母按照英文字母表的排列顺序取用。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>版本号</th>
+<th>代号</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4.10（初始发布版本）</td>
+<td>Warty Warthog</td>
+<td>2004-10-20</td>
+</tr>
+<tr>
+<td>16.04 LTS</td>
+<td>Xenial Xerus</td>
+<td>2016-04-21</td>
+</tr>
+<tr>
+<td>18.04 LTS</td>
+<td>Bionic Beaver</td>
+<td>2018-04-26</td>
+</tr>
+<tr>
+<td>20.04 LTS</td>
+<td>Focal Fossa</td>
+<td>2020-04-23</td>
+</tr>
+<tr>
+<td>22.04</td>
+<td>Jammy Jellyfish</td>
+<td>2022-04-22</td>
+</tr>
+</tbody></table>
+<h2 id="软件源结构"><a href="#软件源结构" class="headerlink" title="软件源结构"></a>软件源结构</h2><blockquote>
+<p>Ubuntu的软件软分为两部分官方源和ppa，ppa其实是一个网站，即－launchpad.net。Launchpad 是 Ubuntu 母公司 Canonical 有限公司所架设的网站，是一个提供维护、支援或联络 Ubuntu 开发者的平台。由于不是所有的软件都能进入 Ubuntu 的官方的软件库，launchpad.net 提供了 PPA，允许开发者建立自己的软件仓库，自由的上传软件。供用户安装和查看更新。</p>
+</blockquote>
+<p>整个软件源结构可以分解为四个部分:</p>
 <p>第一部分    第二部分    第三部分    第四部分<br>软件包格式    软件包服务器地址    发行版版本代号    软件包的分类目录<br>deb/deb-src    <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a>     xenial/xenial-updates/xenial-security/xenial-backports/proposed    main、restricted、universe、multiverse<br>第一部分的deb是deb软件包，deb-src则是源代码包</p>
 <p>第三部分严格来说不算是发行版版本代号，它应该是Ubuntu系统发布之后，在此基础上进行的安全性更新的分类。</p>
 <p>第四部分是按照软件包的自由度来分类的：</p>
@@ -1047,7 +1690,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>总共五条</p>
 <p>另外为了防止运营商劫持大家可以使用https，但是要求镜像站支持https，一般现在大型镜像站都是支持https的，比如清华镜像站，阿里镜像站，163等等</p>
 <h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>版本    开发代号    中译    发布日期    支持结束时间     内核版本<br>桌面版    服务器版<br>4.10    Warty Warthog    多疣的 疣猪    2004-10-20    2006-04-30    2.6.8<br>5.04    Hoary Hedgehog    白发的 刺猬    2005-04-08    2006-10-31    2.6.10<br>5.10    Breezy Badger    活泼的 獾    2005-10-13    2007-04-13    2.6.12<br>6.06 LTS    Dapper Drake    整洁的公 鸭    2006-06-01    2009-07-14    2011-06-01    2.6.15<br>6.10    Edgy Eft    尖利的小 蜥蜴    2006-10-26    2008-04-25    2.6.17<br>7.04    Feisty Fawn    烦躁不安的 鹿    2007-04-19    2008-10-19    2.6.20<br>7.10    Gutsy Gibbon    胆大的 长臂猿    2007-10-18    2009-04-18    2.6.22<br>8.04 LTS    Hardy Heron    坚强的 鹭    2008-04-24    2011-05-12    2013-05-09    2.6.24<br>8.10    Intrepid Ibex    无畏的 羱羊    2008-10-30    2010-04-30    2.6.27<br>9.04    Jaunty Jackalope    活泼的 鹿角兔    2009-04-23    2010-10-23    2.6.28<br>9.10    Karmic Koala    幸运的 树袋熊    2009-10-29    2011-04-30    2.6.31<br>10.04 LTS    Lucid Lynx    清醒的 山猫    2010-04-29    2013-05-09    2015-04-30    2.6.32<br>10.10    Maverick Meerkat    标新立异的 狐獴    2010-10-10    2012-04-10    2.6.35<br>11.04    Natty Narwhal    敏捷的 独角鲸    2011-04-28    2012-10-28    2.6.38<br>11.10    Oneiric Ocelot    有梦的 虎猫    2011-10-13    2013-05-09    3.0<br>12.04 LTS    Precise Pangolin    精准的 穿山甲    2012-04-26 [39]    2017-04-28 [40]    3.2 [41]<br>12.10    Quantal Quetzal    量子的 格查尔鸟    2012-10-18    2014-05-16 [42]    3.5 [43]<br>13.04    Raring Ringtail    铆足了劲的 环尾猫熊    2013-04-25    2014-01-27 [44]    3.8 [45]<br>13.10    Saucy Salamander    活泼的 蝾螈    2013-10-17 [46]    2014-07-17 [47]    3.11<br>14.04 LTS    Trusty Tahr    可靠的 塔尔羊    2014-04-17 [48]    2019-04    3.13<br>14.10    Utopic Unicorn    乌托邦的 独角兽    2014-10-23 [49]    2015-07-23 [50]    3.16 [51]<br>15.04    Vivid Vervet    活泼的 长尾黑颚猴    2015-04-23 [52]    2016-02-04 [53]    3.19 [54]<br>15.10    Wily Werewolf    老谋深算的 狼人    2015-10-22 [55]    2016-07-28 [56]    4.2 [57]<br>16.04 LTS    Xenial Xerus    好客的 非洲地松鼠    2016-04-21 [58]    2021-04    4.4 [59]<br>16.10    Yakkety Yak    喋喋不休的 牦牛    2016-10-13 [60]    2017-07-20    4.8<br>17.04    Zesty Zapus    热情的 美洲林跳鼠    2017-04-13 [61]    2018-01-13    4.10 [62]<br>17.10    Artful Aardvark    巧妙的 土豚    2017-10-19 [63]    2018-07-19    4.13 [64]<br>18.04 LTS    Bionic Beaver [65] [66]    仿生的 海狸    2018-04-26 [67]    2028-04 [68]    4.15<br>18.10    Cosmic Cuttlefish    宇宙的 墨鱼    2018-10-18 [69]    2019-07    4.18 [70]</p>
-<h2 id="19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA"><a href="#19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA" class="headerlink" title="19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA"></a>19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA</h2><h2 id="ROS安装"><a href="#ROS安装" class="headerlink" title="ROS安装"></a>ROS安装</h2><ol>
+<h2 id="19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA"><a href="#19-04-Disco-Dingo-迪斯可的-澳洲野犬-2019-04-18-71-2020-01-TBA" class="headerlink" title="19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA"></a>19.04    Disco Dingo    迪斯可的 澳洲野犬    2019-04-18 [71]    2020-01    TBA</h2><h1 id="lt-lt-lt-lt-lt-lt-lt-HEAD"><a href="#lt-lt-lt-lt-lt-lt-lt-HEAD" class="headerlink" title="&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1><h2 id="ROS安装"><a href="#ROS安装" class="headerlink" title="ROS安装"></a>ROS安装</h2><ol>
 <li><p><img src="https://img-blog.csdnimg.cn/20191118143433409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUwODEx,size_16,color_FFFFFF,t_70" alt="img"></p>
 </li>
 <li><p> 设置软件源</p>
@@ -1085,8 +1728,47 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <h1 id="git常用操作"><a href="#git常用操作" class="headerlink" title="git常用操作"></a>git常用操作</h1><blockquote>
 <p>$ git config –global user.name “username”</p>
 <p>$ git config –global user.email “email”</p>
-<p>用vscode多方便</p>
+<p>用vscode多方便<br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 </blockquote>
+<h1 id="中文输入法"><a href="#中文输入法" class="headerlink" title="中文输入法"></a>中文输入法</h1><p>ubuntu 在最新的版本中已经可以不用用户自己单独去下载中文输入法使用了，本次使用为 ubuntu18.04LTS版本(登陆是界面选择的是ubuntu on wayland)，设置方式非常简单</p>
+<p>1、打开设置，不知道的请点击右上角的工具栏即可看到。</p>
+<p>2、找到设置中语言项，点击语言安装管理，安装中文语言后选择输入方式。</p>
+<p>点击关闭，然后添加输入语言，在其中找到中文拼音添加即可</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yedongsheng8238045/article/details/107185130/">https://blog.csdn.net/yedongsheng8238045/article/details/107185130/</a></p>
+<h1 id="eigen库路径问题"><a href="#eigen库路径问题" class="headerlink" title="eigen库路径问题"></a>eigen库路径问题</h1><p>大多数的程序包含的都是 &lt;Eigen/Dense&gt; 头文件, 如果想这样包含的话需要将 eigen 下的 Eigen 文件提升一级目录, 即将 Eigen 从 /usr/include/eigen3 放到 /usr/include/ 下, 如下命令:</p>
+<p>sudo cp -r  /usr/include/eigen3/Eigen /usr/include/</p>
+<h1 id="eigen-vector3d"><a href="#eigen-vector3d" class="headerlink" title="eigen:vector3d"></a>eigen:vector3d</h1><p>Eigen::Vector3d默认定义为一个列向量</p>
+<p>Eigen::Vector3d T(2, 1, 6)<br>std::cout &lt;&lt; “T = \n” &lt;&lt; T &lt;&lt; std::endl;<br>std::cout &lt;&lt; “T.transpose() = \n” &lt;&lt; T.transpose() &lt;&lt; std::endl;<br>1<br>2<br>3<br>输出结果为：</p>
+<p>T =<br>2<br>1<br>6<br>T.transpose() =<br>2  1  6</p>
+<h1 id="eigen-matrix"><a href="#eigen-matrix" class="headerlink" title="eigen::matrix"></a>eigen::matrix</h1><p>直接输出</p>
+<h1 id="man-zh-cn"><a href="#man-zh-cn" class="headerlink" title="man zh_cn"></a>man zh_cn</h1><p>1.安装中文man手册<br>sudo apt-get install manpages-zh<br>2.查看中文man手册安装路径<br>dpkg -L manpages-zh | less</p>
+<p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/man%E4%BD%8D%E7%BD%AE.png"></p>
+<p>可见中文man手册是安装在路径/usr/share/man/zh_CN/下</p>
+<p>3.给中文man设置一个命令<br>为了和系统原来的man区分开，用alias给中文man的命令设置一个别名</p>
+<p>alias cman=’man -M /usr/share/man/zh_CN’<br>为永久生效，可把上面的命令写进启动文件中<br>如：修改 ~/.bashrc ，添加上面的命令<br>我修改的是 /etc/bash.bashrc<br>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>9fe0423c3a24031c913d166b3ac7ff3ebdfc73d8<br>3d419ebd75fa478d0e144fedfe1049e3bc140131</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="网卡驱动安装"><a href="#网卡驱动安装" class="headerlink" title="网卡驱动安装"></a>网卡驱动安装</h3><p><a target="_blank" rel="noopener" href="https://www.lxlinux.net/install-network-card-driver-on-linux.html">https://www.lxlinux.net/install-network-card-driver-on-linux.html</a></p>
+<h2 id="设置sudo免密"><a href="#设置sudo免密" class="headerlink" title="设置sudo免密"></a>设置sudo免密</h2><p>运行sudo visudo在打开的页面将</p>
+<pre><code class="text">%sudo ALL=(ALL:ALL) ALL
+</code></pre>
+<p>改为</p>
+<pre><code class="text">%sudo  ALL=(ALL:ALL) NOPASSWD:ALL 
+</code></pre>
+<h2 id="返回上一次的目录"><a href="#返回上一次的目录" class="headerlink" title="返回上一次的目录"></a>返回上一次的目录</h2><p>cd -</p>
 
       
     </div>
@@ -1137,7 +1819,7 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-26 16:59:11" itemprop="dateModified" datetime="2022-09-26T16:59:11+08:00">2022-09-26</time>
+                <time title="修改时间：2022-10-13 14:49:15" itemprop="dateModified" datetime="2022-10-13T14:49:15+08:00">2022-10-13</time>
               </span>
 
           
@@ -1164,432 +1846,23 @@ $ sudo ln -s &#39;/usr/lib/systemd/system/clamd@scan.service&#39; &#39;/etc/syst
 <p>在bios界面中设置sata磁盘工作模式为AHCI。这时grub就能扫描到。</p>
 <p>AHCIl:译为串行ATA高级主控接口，相较于IDE模式主要的区别是增加了热插拔、NCQ、TRIM（针对固态硬盘）等功能。如果需要使用固态硬盘的话，建议将SATA接口设为AHCI模式。当然支持NCQ的机械硬盘也最好让它工作在AHCI模式下。</p>
 <h3 id="3-选择windows-boot-manager无法进入windows中"><a href="#3-选择windows-boot-manager无法进入windows中" class="headerlink" title="3.    选择windows boot manager无法进入windows中"></a>3.    选择windows boot manager无法进入windows中</h3><p>多尝试几次，直到出现修复选项，选择安全模式进入。成功进入安全模式后重启就可以进入windows中了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/03/16/Typora%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="咦蜘蛛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咦蜘蛛的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2022/03/16/Typora%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Typora常用方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-16 19:54:10" itemprop="dateCreated datePublished" datetime="2022-03-16T19:54:10+08:00">2022-03-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-26 16:59:11" itemprop="dateModified" datetime="2022-09-26T16:59:11+08:00">2022-09-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Typora使用技巧"><a href="#Typora使用技巧" class="headerlink" title="Typora使用技巧"></a>Typora使用技巧</h1><h2 id="常用快捷键和语法"><a href="#常用快捷键和语法" class="headerlink" title="常用快捷键和语法"></a>常用快捷键和语法</h2><p>标题：Ctrl+1、2、3…对应一、二、三…级标题（光标定位到需要设置为标题的行，按快捷键）</p>
-<p><strong>加粗</strong>：Ctrl+B（选中要加粗的文本，按快捷键）</p>
-<p><em>斜体</em>：Ctrl+I（选中要设置斜体的文本，按快捷键）</p>
-<p>下划线：Ctrl+U（选中要加下划线的文本，按快捷键）</p>
-<p>删除线：Alt+Shift+5（选中要加删除线的文本，按快捷键）</p>
-<p><code>代码片段</code>：Ctrl+Shift+`（选中要设置为代码片段的文本，按快捷键）</p>
-<p>代码块：Ctrl+Shift+K（任意位置按快捷键，选择编程语言然后在代码块中输入代码）</p>
-<p>切换到下一行：Ctrl+Enter（任意位置按快捷键，在代码块中可以跳出代码块另起一行）</p>
-<p><a href="https://link.zhihu.com/?target=https://www.baidu.com/">链接</a>：Ctrl+K（先复制链接，然后选中要加链接的文本，按快捷键。Ctrl+左键点击文本可跳转到对应链接）</p>
-<p>取消格式：再次按相同的快捷键即可</p>
-<p>有序列表：数字+点+空格</p>
-<p>任务列表：加号或减号+空格</p>
-<p>切换到列表下一行：Space+Enter</p>
-<p>嵌套列表：按Tab键</p>
-<p>退出列表：按 Shift+Tab</p>
-<p>插入表格：Ctrl+T</p>
-<p>引用（段落）：输入&gt;后面加空格，或者Ctrl+Shift+Q</p>
-<h2 id="Front-matter预定义参数"><a href="#Front-matter预定义参数" class="headerlink" title="Front-matter预定义参数"></a>Front-matter预定义参数</h2><pre><code class="text">  layout  布局  默认为true，如果你不想你的文章被处理，可以设置为false
-  title  标题  标题会显示在最上方居中位置     
-  date  建立日期    如果不指定则为默认值-文件创建日期，可以自定义。
-  update  更新日期  如果不指定则为默认值-文件修改后重新生成静态文件的日期。
-  comments  是否开启文章的评论功能 默认值为true
-  tags  标签（不适用于页面page布局）
-  categoreies  分类（不适用于页面page布局）
-  permalink  覆盖文章网址
-  keywords  仅用于 meta 标签和 Open Graph 的关键词（不推荐使用）
-</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/03/16/%E5%85%B3%E4%BA%8E%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%BA%8B%E6%83%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="咦蜘蛛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咦蜘蛛的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2022/03/16/%E5%85%B3%E4%BA%8E%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%BA%8B%E6%83%85/" class="post-title-link" itemprop="url">关于树莓派的事情</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-16 19:49:25" itemprop="dateCreated datePublished" datetime="2022-03-16T19:49:25+08:00">2022-03-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-26 16:59:11" itemprop="dateModified" datetime="2022-09-26T16:59:11+08:00">2022-09-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>使用树莓派遇到的问题</p>
-<h2 id="在SD卡中重装系统"><a href="#在SD卡中重装系统" class="headerlink" title="在SD卡中重装系统"></a>在SD卡中重装系统</h2><p>需要对SD卡格式化，Windows下可见的fat32文件系统和不可见的文件系统都需要格式化</p>
-<h2 id="danted-使用教程"><a href="#danted-使用教程" class="headerlink" title="danted 使用教程"></a>danted 使用教程</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hzl289894452/article/details/113744913">https://blog.csdn.net/hzl289894452/article/details/113744913</a></p>
-<p>netstat -anp | grep 1080</p>
-<h2 id="透明网关"><a href="#透明网关" class="headerlink" title="透明网关"></a>透明网关</h2><p><a target="_blank" rel="noopener" href="https://www.kidscoding8.com/30154.html">https://www.kidscoding8.com/30154.html</a></p>
-<h2 id="拨号上网、"><a href="#拨号上网、" class="headerlink" title="拨号上网、"></a>拨号上网、</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chouzhou9701/article/details/123372072">https://blog.csdn.net/chouzhou9701/article/details/123372072</a></p>
-<h2 id="Debian是什么"><a href="#Debian是什么" class="headerlink" title="Debian是什么"></a>Debian是什么</h2><p>Debian是由xxx在1993年创建的最初的发行版，Ubuntu是xxx在2004年基于Debian创建的发行版。</p>
-<p>Debian、Arch、Red Hat是其中几个不派生与其他发行版的使用最广的发行版。</p>
-<h2 id="树莓派安装kde桌面"><a href="#树莓派安装kde桌面" class="headerlink" title="树莓派安装kde桌面"></a>树莓派安装kde桌面</h2><ol>
-<li><h3 id="已安装ubuntu时"><a href="#已安装ubuntu时" class="headerlink" title="已安装ubuntu时"></a>已安装ubuntu时</h3><pre><code>#添加PPA源
-sudo add-apt-repository ppa:kubuntu-ppa/backports
-#更新源
-sudo apt-get update
-#安装Plasma
-sudo apt-get install plasma-desktop
-sudo apt-get install lightdm-kde-greeter
-#修改lightdm配置
-#编辑/etc/lightdm/lightdm.conf内容为：
-[Seat:*]
-autologin-guest=false
-#autologin-user=pi
-#autologin-user-timeout=0
-greeter-session=lightdm-kde-greeter
-user-session=kde-plasma-kf5
-#搞定，重启即为Plasma桌面！
-</code></pre>
-</li>
-</ol>
-<h4 id="PPA源："><a href="#PPA源：" class="headerlink" title="PPA源："></a>PPA源：</h4><p>PPA是Personal Package Archives首字母简写。翻译为中文意思是：个人软件包文档</p>
-<p>使用PPA的好处是Ubuntu系统中使用PPA源的软件可以让你在第一时间体验到最新版本的软件。</p>
-<p>有很多PPA软件源提供多个版本，包括正式稳定版、每日创建版，开发版、测试版等等。</p>
-<p>例如，chromium 浏览器的源：</p>
-<ul>
-<li>chromium daily（每日创建版）</li>
-<li>chromium dev（开发版）</li>
-<li>chromium stable（稳定版）</li>
-<li>chromium beta（测试版）</li>
-</ul>
-<p>每日创建版源地址：<a target="_blank" rel="noopener" href="https://launchpad.net/~chromium-daily/+archive/daily">https://launchpad.net/~chromium-daily/+archive/daily</a></p>
-<p>添加该源的方法，打开终端，输入下面的命令：</p>
-<pre><code>sudo add-apt-repository ppa:chromium-daily/stable
-</code></pre>
-<p>稳定版源地址：<a target="_blank" rel="noopener" href="https://launchpad.net/~chromium-daily/+archive/stable">https://launchpad.net/~chromium-daily/+archive/stable</a></p>
-<p>添加该源的方法，打开终端，输入下面的命令：</p>
-<pre><code>sudo add-apt-repository ppa:chromium-daily/daily
-</code></pre>
-<p>一个完整的通过PPA源安装软件的命令，例如添加VLC播放器源并安装的命令：</p>
-<pre><code>sudo add-apt-repository ppa:videolan/stable-daily 【命令解释】这条命令是添加源
-sudo apt-get update 【命令解释】更新系统源
-sudo apt-get install vlc 【命令解释】安装VLC软件
-</code></pre>
-<p>不要试图去猜测PPA的地址，直接上<a target="_blank" rel="noopener" href="https://launchpad.net/">launchpad.net</a>搜索相关软件，比如搜索VLC，进入详情页面<a target="_blank" rel="noopener" href="https://launchpad.net/~videolan/+archive/ubuntu/master-daily">https://launchpad.net/~videolan/+archive/ubuntu/master-daily</a></p>
-<p><a target="_blank" rel="noopener" href="https://images2015.cnblogs.com/blog/417876/201707/417876-20170705063430175-1001412827.png"><img src="https://images2015.cnblogs.com/blog/417876/201707/417876-20170705063430175-1001412827.png" alt="img"></a></p>
-<p>这个就是地址。</p>
-<h4 id="LightDM"><a href="#LightDM" class="headerlink" title="LightDM"></a><em>LightDM</em></h4><p>即：Light Display Manager，是一个全新的、轻量的Linux桌面的桌面显示管理器，而传统的Ubuntu用的是GNOME桌面标准的GDM。</p>
-<ol start="2">
-<li><h3 id="已安装Debian10（桌面版）时"><a href="#已安装Debian10（桌面版）时" class="headerlink" title="已安装Debian10（桌面版）时"></a>已安装Debian10（桌面版）时</h3></li>
-</ol>
-<p>从Debian 10（Buster）安装KDE桌面，安装期间添加了官方上游存储库，运行：</p>
-<pre><code class="bash">sudo apt -y install task-kde-desktopCOPY
-</code></pre>
-<p>安装完成，注销或重启后开始使用Debian 10 Buster上的KDE桌面环境：</p>
-<pre><code class="bash">logout 或者 rebootCOPY
-</code></pre>
-<p>使用登录屏幕上的桌面环境切换器选择KDE Plasma：</p>
-<p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/NPTUCTF/kde1.png"></p>
-<p>反正最后没成功，无法切换到kde的桌面。</p>
-<h3 id="路由表-子网掩码和网关为什么是0-0-0-0"><a href="#路由表-子网掩码和网关为什么是0-0-0-0" class="headerlink" title="路由表 子网掩码和网关为什么是0.0.0.0"></a>路由表 子网掩码和网关为什么是0.0.0.0</h3><p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/NPTUCTF/20220319125729.png" alt="路由表"></p>
-<h4 id="一：第一条表项中0-0-0-0的意义"><a href="#一：第一条表项中0-0-0-0的意义" class="headerlink" title="一：第一条表项中0.0.0.0的意义"></a><strong>一：第一条表项中0.0.0.0的意义</strong></h4><p>这里的0.0.0.0已经不是一个真正意义上的IP地址了。它表示的是这样一个<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E9%9B%86%E5%90%88&spm=1001.2101.3001.7020">集合</a>：所有不清楚的主机和目的网络。这里的“不清楚”是指在本机的路由表里没有特定条目指明如何到达。这个其实就是计算机网络课本里面提到的默认路由。如果你像我一样在网络设置中设置了缺省网关，那么系统会自动产生一个目的地址为0.0.0.0的缺省路由。那么这么设计的意义是什么呢？</p>
-<p>这就涉及到路由表的匹配原理：<br>当需要查询路由表以确定下一个转发目的地址的时候，会用你的IP地址去跟路由表项中的子网掩码进行 “与” 运算，运算的结果跟目标IP进行对比，看是否相同？是就传给改表项指出的下一跳地址，即 “网关地址” ，那么跟0.0.0.0这个子网掩码与运算的结果一定是全0，那么也一定跟第一条表项的目标IP相同，那么就传给网关192.168.72.2。意义就是当匹配不到的时候就转发给网关。</p>
-<h4 id="二：其他表项中0-0-0-0的意义"><a href="#二：其他表项中0-0-0-0的意义" class="headerlink" title="二：其他表项中0.0.0.0的意义"></a><strong>二：其他表项中0.0.0.0的意义</strong></h4><p>第三条表项中网关0.0.0.0的意义不是说你的网关真的是0.0.0.0，而是说对于你跟该表项的子网掩码相与后的结果，跟目标IP相比如果相同，那么我们是直连情况，处于同一个网段。</p>
-<p>解析：子网掩码的作用是：一个IP地址与子网掩码相 “与” 可以用于确定网络号的位数。比如我的IP：192.168.2.198跟255.255.255.0相 “与”可以得出我所在的网段为192.168.2.0。也就是表项第三条的网段了，其他相似的192.168.2.X “与”出来的结果也是192.168.2.0，那么就可以确定是处于同一个网段的，那么是不需要路由的。</p>
-<h3 id="route的规则和使用"><a href="#route的规则和使用" class="headerlink" title="route的规则和使用"></a>route的规则和使用</h3><p>route 命令的输出项说明</p>
-<table>
-<thead>
-<tr>
-<th align="left">输出项</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Destination</td>
-<td align="left">目标网段或者主机</td>
-</tr>
-<tr>
-<td align="left">Gateway</td>
-<td align="left">网关地址，”*” 表示目标是本主机所属的网络，不需要路由</td>
-</tr>
-<tr>
-<td align="left">Genmask</td>
-<td align="left">网络掩码</td>
-</tr>
-<tr>
-<td align="left">Flags</td>
-<td align="left">标记。一些可能的标记如下：</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">U — 路由是活动的</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">H — 目标是一个主机</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">G — 路由指向网关</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">R — 恢复动态路由产生的表项</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">D — 由路由的后台程序动态地安装</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">M — 由路由的后台程序修改</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">! — 拒绝路由</td>
-</tr>
-<tr>
-<td align="left">Metric</td>
-<td align="left">路由距离，到达指定网络所需的中转数（linux 内核中没有使用）</td>
-</tr>
-<tr>
-<td align="left">Ref</td>
-<td align="left">路由项引用次数（linux 内核中没有使用）</td>
-</tr>
-<tr>
-<td align="left">Use</td>
-<td align="left">此路由项被路由软件查找的次数</td>
-</tr>
-<tr>
-<td align="left">Iface</td>
-<td align="left">该路由表项对应的输出接口</td>
-</tr>
-</tbody></table>
-<p>设置和查看路由表都可以用 route 命令，设置内核路由表的命令格式是：</p>
-<pre><code># route  [add|del] [-net|-host] target [netmask Nm] [gw Gw] [[dev] If]
-</code></pre>
-<p>其中：</p>
-<ul>
-<li>add : 添加一条路由规则</li>
-<li>del : 删除一条路由规则</li>
-<li>-net : 目的地址是一个网络</li>
-<li>-host : 目的地址是一个主机</li>
-<li>target : 目的网络或主机</li>
-<li>netmask : 目的地址的网络掩码</li>
-<li>gw : 路由数据包通过的网关</li>
-<li>dev : 为路由指定的网络接口</li>
-</ul>
-<h3 id="route-命令使用举例"><a href="#route-命令使用举例" class="headerlink" title="route 命令使用举例"></a>route 命令使用举例</h3><p>添加到主机的路由</p>
-<pre><code># route add -host 192.168.1.2 dev eth0:0
-# route add -host 10.20.30.148 gw 10.20.30.40
-</code></pre>
-<p>添加到网络的路由</p>
-<pre><code># route add -net 10.20.30.40 netmask 255.255.255.248 eth0
-# route add -net 10.20.30.48 netmask 255.255.255.248 gw 10.20.30.41
-# route add -net 192.168.1.0/24 eth1
-</code></pre>
-<p>添加默认路由</p>
-<pre><code># route add default gw 192.168.1.1
-</code></pre>
-<p>删除路由</p>
-<pre><code># route del -host 192.168.1.2 dev eth0:0
-# route del -host 10.20.30.148 gw 10.20.30.40
-# route del -net 10.20.30.40 netmask 255.255.255.248 eth0
-# route del -net 10.20.30.48 netmask 255.255.255.248 gw 10.20.30.41
-# route del -net 192.168.1.0/24 eth1
-# route del default gw 192.168.1.1
-</code></pre>
-<p>原来有个问题是使用无线 能ping局域网的设备，不能ping网关，不能ping百度</p>
-<p>删除添加了新的路由表项后神奇的可以了</p>
-<h3 id="树莓派的dns服务器设置文件位置"><a href="#树莓派的dns服务器设置文件位置" class="headerlink" title="树莓派的dns服务器设置文件位置"></a>树莓派的dns服务器设置文件位置</h3><p>/etc/resolve.conf</p>
-<h3 id="DIG命令的使用"><a href="#DIG命令的使用" class="headerlink" title="DIG命令的使用"></a>DIG命令的使用</h3><pre><code class="tsx">dig @server name type
-</code></pre>
-<p>从根服务器开始追踪一个域名的解析过程:</p>
-<pre><code class="css">dig xmgd.com +trace
-</code></pre>
-<h3 id="共享文件samba的使用"><a href="#共享文件samba的使用" class="headerlink" title="共享文件samba的使用"></a>共享文件samba的使用</h3><p>使用</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/droyon/article/details/48804021">https://blog.csdn.net/droyon/article/details/48804021</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/266495858">https://zhuanlan.zhihu.com/p/266495858</a></p>
-<p>树莓派官网</p>
-<p><a target="_blank" rel="noopener" href="https://shumeipai.nxez.com/2013/08/24/install-nas-on-raspberrypi.html">https://shumeipai.nxez.com/2013/08/24/install-nas-on-raspberrypi.html</a></p>
-<p>打开映射网络驱动器</p>
-<p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/c35dbcb0ea464dc817fcbc75.html">如何在 Windows 10 上映射网络驱动器-百度经验 (baidu.com)</a></p>
-<p>ubuntu访问samba</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Wolf-Dreams/p/11241198.html">https://www.cnblogs.com/Wolf-Dreams/p/11241198.html</a></p>
-<h2 id="查看温度"><a href="#查看温度" class="headerlink" title="查看温度"></a>查看温度</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b0384b667bf0">https://www.jianshu.com/p/b0384b667bf0</a></p>
-<pre><code class="sh">cat /sys/class/thermal/thermal_zone0/temp
-&gt;&gt;&gt; 62838
-</code></pre>
-<pre><code class="sh">watch -n 0.1 cat /sys/class/thermal/thermal_zone0/temp
-</code></pre>
-<h2 id="aria2的配置"><a href="#aria2的配置" class="headerlink" title="aria2的配置"></a>aria2的配置</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kxwinxp/article/details/80288006%EF%BC%88serviece%E4%B8%8D%E5%AF%B9%EF%BC%89%E4%BD%BF%E7%94%A8%E4%B8%8B%E9%9D%A2%E7%9A%84">https://blog.csdn.net/kxwinxp/article/details/80288006（serviece不对）使用下面的</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/162075204">https://zhuanlan.zhihu.com/p/162075204</a></p>
-<p>aria2的配置文件使用<a target="_blank" rel="noopener" href="https://github.com/P3TERX/aria2.conf">https://github.com/P3TERX/aria2.conf</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/02/23/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E4%BD%93%E9%AA%8C%E5%AE%9E%E6%84%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="咦蜘蛛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咦蜘蛛的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2022/02/23/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E4%BD%93%E9%AA%8C%E5%AE%9E%E6%84%9F/" class="post-title-link" itemprop="url">路由器工作模式体验实感</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-23 19:51:42" itemprop="dateCreated datePublished" datetime="2022-02-23T19:51:42+08:00">2022-02-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-26 16:59:11" itemprop="dateModified" datetime="2022-09-26T16:59:11+08:00">2022-09-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>路由器型号 磊科(Netcore)nw614<br>在网上找到的路由器的说明书，贼好使。（记得配置完后需要重启后才能生效）</p>
-<ol>
-<li>   client模式<br>最后感觉这时的路由就是个无线网卡，完全感受不到从路由器的存在，ip地址都是由主路由器分配的，这时也无法进去从路由器的管理界面。</li>
-<li>   无线中继模式<br>在主路由器地址池中分给一个既没有设备占用有不在dhcp分配范围内的ip，主路由器管理界面看不到从路由器，无法进入从路由器管理界面。此时可以通过无线有线方式连接从路由器，就像连接主路由器一样。无线的名字可以和原来一样也可以不一样。</li>
-<li></li>
-</ol>
+<h2 id="系统的引导过程"><a href="#系统的引导过程" class="headerlink" title="系统的引导过程"></a>系统的引导过程</h2><blockquote>
+<p>通电–&gt;执行UEFI–&gt;查找EFI分区–&gt;执行bootmgfw.efi–&gt;BCD–&gt;执行winload.efi–&gt;加载内核–&gt;系统初始化</p>
+<p>1.按下电源键，电源向主板以及其他设备供电，刚开始电压不稳，主板会持续发送RESET信号给CPU，CPU执行初始化。当电压稳定后，主板停止发送RESET信号，CPU开始执行指令；<br>2.CPU读取UEFI指令，执行UEFI初始化，执行其他设备的初始化；<br>3.查找EFI分区，EFI分区不需要一定是第一个分区；<br>4.加载\EFI\Boot\bootx64.efi;<br>5.bootmgfw,efi会读取BCD文件，BCD是一个数据库文件，如果包含多个系统，信息会包含在BCD中，通过显示一种系统列表供用户选择；<br>6.BCD中包含每个系统的引导文件路径，Windows的是\Windows\System32\winload.efi，加载到内存中并执行；<br>7.winload.efi读取\Windows\bootstat.dat文件，有需要则显示引导菜单，比如安全引导等等。将CPU执行权交给内核程序；<br>8.内核程序执行系统初始化。<br>————————————————<br>版权声明：本文为CSDN博主「无糖大碴粥」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62194364/article/details/123525103">https://blog.csdn.net/qq_62194364/article/details/123525103</a></p>
+</blockquote>
+<p>bootx64.efi:</p>
+<blockquote>
+<p>标题简要说明：</p>
+<p>Windows Boot Manager ——–</p>
+<p>安装完Windows系统后⽽出现的启动选项（相关的信息存储在NVRAM），可以删除和建⽴和</p>
+<p>bcdboot.exe有关Bootmgfw.efi ——–引导Windows的引导⽂件 </p>
+<p>Bootx64.efi ———UEFI的必需引导⽂件</p>
+<p>bcdboot.exe——–修复UEFI启动的命令⾏⼯具，微软出品</p>
+<p>开始前先引进两个概念：</p>
+<p>计算机默认引导-———-就是不管你的计算机有没有操作系统，定义了UEFI启动后将通过Bootx64.efi 引导你的计算机，并进⼊各种模式，维护、安装、计算机或者系统这⾥是Bootx64.efi ，它只是⼀个通⽤名，权限丰富且⼤于Windows 默认，就是说如果你的Windows 默认的启动⽂件不在了，启动计算机默认的引导⽂件Bootx64.efi 也是可以启动计算机的。使⽤计算机默认⽂件随时可以在各种环境下启动计算机，EFI SHELL、ISO、Windows、Linux…都可以，通吃型.</p>
+<p>Windows默认引导——-就是你为计算机安装了操作系统，或者修复了UEFI引导后，启动菜单会有 Windows Boot Manager 选项，该选项默认从bootmgfw.efi 启动系统bootmgfw.efi 该位置的该⽂件只能⽤于启动Windows，不是通⽤名，权限单⼀</p>
+</blockquote>
+<p>ushenem </p>
 
       
     </div>
@@ -1673,7 +1946,7 @@ sudo apt-get install vlc 【命令解释】安装VLC软件
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1713,7 +1986,7 @@ sudo apt-get install vlc 【命令解释】安装VLC软件
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

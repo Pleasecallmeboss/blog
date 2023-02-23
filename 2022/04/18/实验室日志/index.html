@@ -30,8 +30,13 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/073795d2bfa6434f97297f4f9ec37b91.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAemhhbmd6cTAy,size_16,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/900154a8096240d68d0ea6921e21226b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAemhhbmd6cTAy,size_16,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-edf5188525a2ea5f4b326b36d6ba99c5_720w.png">
+<meta property="og:image" content="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/845ce1590e47021e7b37c4bc595896c.jpg">
+<meta property="og:image" content="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/QQ%E5%9B%BE%E7%89%8720221012191550.png">
+<meta property="og:image" content="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/QQ%E5%9B%BE%E7%89%8720221012191603.png">
+<meta property="og:image" content="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/20221019131012.png">
+<meta property="og:image" content="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/%E6%AD%A5%E9%AA%A4.png">
 <meta property="article:published_time" content="2022-04-18T06:00:18.000Z">
-<meta property="article:modified_time" content="2022-09-26T02:45:10.036Z">
+<meta property="article:modified_time" content="2022-10-22T04:41:37.321Z">
 <meta property="article:author" content="咦蜘蛛">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/073795d2bfa6434f97297f4f9ec37b91.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAemhhbmd6cTAy,size_16,color_FFFFFF,t_70,g_se,x_16">
@@ -194,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-26 10:45:10" itemprop="dateModified" datetime="2022-09-26T10:45:10+08:00">2022-09-26</time>
+                <time title="修改时间：2022-10-22 12:41:37" itemprop="dateModified" datetime="2022-10-22T12:41:37+08:00">2022-10-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,7 +278,7 @@
 <p>因为会运行Gazebo，第一次启动会比较慢，耐心等待（如果报错，请关闭终端再次尝试，我的i5笔记本经常启动失败，这是你的笔记本提示你该花钱了的正常现象）。启动成功后，会看到Gazebo中有一个iris无人机。这时你可以打开QGC地面站，地面站会默认连接这台飞机，你可以尝试利用地面站发送起飞指令测试。</p>
 <p>这个启动脚本位于Firmware/launch文件夹中，同时在此文件夹中，你还能看到其他类似的启动脚本。这里建议大家单独启动Mavros，而不是用它提供的另一个启动脚本同时启动（因为一个终端显示太多东西的话，报错你都看不到）。</p>
 <p>第四步：<strong>运行Mavros</strong></p>
-<p>roslaunch mavros px4.launch fcu_url:=”udp://:<a href="mailto:&#49;&#x34;&#x35;&#52;&#48;&#64;&#49;&#x32;&#x37;&#x2e;&#48;&#46;&#48;&#46;&#49;">&#49;&#x34;&#x35;&#52;&#48;&#64;&#49;&#x32;&#x37;&#x2e;&#48;&#46;&#48;&#46;&#49;</a>:14557”</p>
+<p>roslaunch mavros px4.launch fcu_url:=”udp://:<a href="mailto:&#x31;&#52;&#x35;&#x34;&#x30;&#x40;&#49;&#x32;&#55;&#x2e;&#x30;&#46;&#48;&#x2e;&#x31;">&#x31;&#52;&#x35;&#x34;&#x30;&#x40;&#49;&#x32;&#55;&#x2e;&#x30;&#46;&#48;&#x2e;&#x31;</a>:14557”</p>
 <p>此处我建议Mavros功能包使用二进制安装，比较省事。可以看到这里启动mavros时配置了一些端口参数（端口匹配才能成功连接），后续我会在PX4仿真模块中找到与之对应的参数配置。</p>
 <p>尝试读取飞空的IMU数据，打开终端，输入</p>
 <p>rostopic echo /mavros/imu/data</p>
@@ -289,6 +294,18 @@
 <p>首先编译安装opencv3.4.0（3.2.0版本死活不成功）</p>
 <p>修改cv依赖的头文件和库文件</p>
 <p>过程中还有vtk、flann（<a target="_blank" rel="noopener" href="https://blog.csdn.net/cs_terminal/article/details/117571998%EF%BC%89%E9%97%AE%E9%A2%98">https://blog.csdn.net/cs_terminal/article/details/117571998）问题</a></p>
+<h2 id="vtk相关报错"><a href="#vtk相关报错" class="headerlink" title="vtk相关报错"></a>vtk相关报错</h2><p>The imported target “vtk” references the file<br>“/usr/bin/vtk”<br>but this file does not exist.  Possible reasons include:</p>
+<ul>
+<li>The file was deleted, renamed, or moved to another location.</li>
+<li>An install or uninstall procedure did not complete successfully.</li>
+<li>The installation package was faulty and contained<br>“/usr/lib/cmake/vtk-6.2/VTKTargets.cmake”<br>but not all the files it references.<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>只是由于在Ubuntu下使用的是vtk6造成的<br>在终端中输入该命令：</li>
+</ul>
+<p>sudo ln -s /usr/bin/vtk6 /usr/bin/vtk</p>
+<h2 id="致命错误：Eigen-Dense：没有那个文件或目录"><a href="#致命错误：Eigen-Dense：没有那个文件或目录" class="headerlink" title="致命错误：Eigen/Dense：没有那个文件或目录"></a>致命错误：Eigen/Dense：没有那个文件或目录</h2><p>实际就是编译器找不到这个头文件了，首先要看看是不是已经安装了Eigen3（在/usr/local/include或者/usr/include目录）.</p>
+<p>如果没有，到官网下载一个,解压到/usr/local/include或者/usr/include目录<br>官网：<a target="_blank" rel="noopener" href="http://eigen.tuxfamily.org/index.php?title=Main_Page">http://eigen.tuxfamily.org/index.php?title=Main_Page</a></p>
+<p>或者通过apt安装：sudo apt-get install libeigen3-dev</p>
+<p>安装完成后，编译器会去/usr/local/include或者/usr/include目录找头文件，但找到的是eigen3，并没有Eigen和unsupported，所以需要建立一个软连接链接到这两个文件夹即可</p>
+<p>#要先确定你的Eigen3安装在/usr/local/include还是/usr/include<br>cd /usr/include<br>sudo ln -sf eigen3/Eigen Eigen<br>sudo ln -sf eigen3/unsupported unsupported</p>
 <p>结果 运行map.launch 无报错，进行下一步</p>
 <h3 id="运行macros-包下的px4-launch报错"><a href="#运行macros-包下的px4-launch报错" class="headerlink" title="运行macros 包下的px4.launch报错"></a>运行macros 包下的px4.launch报错</h3><p>1.更改mavros版本从1.3到1.10 没用</p>
 <p>2.更改gazebo版本从9.0到9.19没用</p>
@@ -309,7 +326,7 @@
 <p>sudo apt-get install  libglew-dev  <br>    libtiff5-dev<br>    zlib1g-dev<br>    libjpeg-dev<br>    libpng12-dev \<br>    libjasper-dev \<br>    libavcodec-dev \<br>    libavformat-dev \<br>    libavutil-dev \<br>    libpostproc-dev \<br>    libswscale-dev \<br>    libeigen3-dev \<br>    libtbb-dev \<br>    libgtk2.0-dev \<br>    pkg-config  </p>
 <p>TX2共两块CPU，和一块有256个CUDA核心的GPU。CPU一块是双核的丹佛二，第二快是ARM CortexA57。8G的运行内存，32G flash存储器</p>
 <p>剩下两核的驱动问题：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/JanKin_BY/article/details/120441238">https://blog.csdn.net/JanKin_BY/article/details/120441238</a><br>将/boot/extlinux/exltinux.conf 文件里的isolcpus=1-2修改为isolcpus=</p>
-<p>重启</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>重启<br>=======<br>重启</p>
 <p>nx安装系统<br>nx载板型号：RTSO-6002/E    （tx2载板型号 RTSO-9002U）<br>nx l4t 32.7.1</p>
 <p>opencv依赖包安装</p>
 <p>sudo apt install libjasper1 libjasper-dev</p>
@@ -339,20 +356,138 @@
 </ol>
 <p><a target="_blank" rel="noopener" href="https://opencv.org/releases/">https://opencv.org/releases/</a><br>1<br>2) 照常尽情地在新版本的opencv的目录中使用一下命令:</p>
 <p>mkdir build<br>cd build<br>1<br>2<br>3) 但是使用cmake安装新版本的opencv时,我们需要修改其安装的路径(prefix),否则照常安装的话会把之前版本的opencv覆盖,因为我们opencv是默认安装在/usr/local/中.</p>
-<p>在/usr/local/下新建一个文件夹,文件夹名为opencv4.而后cmake的命令如下:<br>cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/opencv4<br>1<br>2<br>cmake过后,我们会发现在/usr/local/opencv4中出现bin,lib,share,include的文件夹.</p>
+<p>在/usr/local/下新建一个文件夹,文件夹名为opencv340.而后cmake的命令如下:<br>cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/opencv340<br>1<br>2<br>cmake过后,我们会发现在/usr/local/opencv340中出现bin,lib,share,include的文件夹.</p>
 <ol start="4">
 <li>回到build目录中,执行如下命令</li>
 </ol>
 <p>sudo make -j4(自信点的话-j16,-j32也行)<br>=====漫长的编译等待后======祝你成功=======<br>sudo make install<br>1<br>2<br>3<br>5) 安装完成了,然后剩下环境的配置,执行如下的命令</p>
-<p>sudo gedit /etc/ld.so.conf.d/opencv41.conf (我安装的opencv4.1)<br>在里面加入下面这行<br>/usr/local/opencv4/lib<br>然后命令执行<br>sudo ldconfig  //使得刚才的环境配置生效<br>1<br>2<br>3<br>4<br>5<br>6) 又到了愉快地修改环境变量环节,粗暴点,把新版本的opencv的PATH,PKG_CONFIG_PATH,LD_LIBRARY_PATH都加入到环境变量中.(要注意你当前的用户是root还是你自己的账户,配置的时候不要搞错了.如果在root下配置了以下的环境变量,那么在你自己的账户下是不会生效的)</p>
-<p>vim ~/.bashrc<br>底部加入三条命令<br>export PATH=”/usr/local/opencv-4.1.0/build/bin:$PATH”<br>export PKG_CONFIG_PATH=”/usr/local/opencv4/lib/pkgconfig:$PKG_CONFIG_PATH”<br>export LD_LIBRARY_PATH=”/usr/local/opencv4/lib:$LD_LIBRARY_PATH”<br>1<br>2<br>3<br>4<br>5<br>7) 配置完成后source激活一下,重启你的终端或者vscode啥的,环境激活后opencv就变成了新的版本的了.如果想用回旧版本的opencv只需要再次修改环境变量,把上面三条命令注释再source一下就好<br>————————————————<br>版权声明：本文为CSDN博主「剑客无名」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33764934/article/details/103744689">https://blog.csdn.net/qq_33764934/article/details/103744689</a></p>
 </blockquote>
+<p>（x86下的文件名  x86_64-linux-gnu.conf）</p>
+<blockquote>
+<p>sudo gedit /etc/ld.so.conf.d/aarch64-linux-gnu.conf (我安装的opencv4.1)<br>在里面加入下面这行<br>/usr/local/opencv340/lib<br>然后命令执行<br>sudo ldconfig  //使得刚才的环境配置生效<br>1<br>2<br>3<br>4<br>5<br>6) 又到了愉快地修改环境变量环节,粗暴点,把新版本的opencv的PATH,PKG_CONFIG_PATH,LD_LIBRARY_PATH都加入到环境变量中.(要注意你当前的用户是root还是你自己的账户,配置的时候不要搞错了.如果在root下配置了以下的环境变量,那么在你自己的账户下是不会生效的)</p>
+<p>vim <del>/.bashrc<br>底部加入三条命令<br>export PATH=”</del>/Downloads/opencv-3.4.0/build/bin:$PATH”<br>export PKG_CONFIG_PATH=”/usr/local/opencv340/lib/pkgconfig:$PKG_CONFIG_PATH”<br>export LD_LIBRARY_PATH=”/usr/local/opencv340/lib:$LD_LIBRARY_PATH”<br>1<br>2<br>3<br>4<br>5<br>7) 配置完成后source激活一下,重启你的终端或者vscode啥的,环境激活后opencv就变成了新的版本的了.如果想用回旧版本的opencv只需要再次修改环境变量,把上面三条命令注释再source一下就好</p>
+</blockquote>
+<p>查看opencv版本<br>pkg-config –modversion opencv<br>完了把cv_bridge的cmake的opencv路径改了</p>
 <h1 id="cv——bridge寻找opencv版本语句位置"><a href="#cv——bridge寻找opencv版本语句位置" class="headerlink" title="cv——bridge寻找opencv版本语句位置"></a>cv——bridge寻找opencv版本语句位置</h1><blockquote>
 <p>在学习jetson nano时，在编译ROS的package时可能会出现cmake的错误：<br>Project ‘cv_bridge’ specifies ‘/usr/include/opencv’ as an include dir, which is not found.</p>
 <p>这不是因为我们编写的程序有误，而是NVIDIA的32.3.1image自带的是opencv4版本，把opencv命名成了opencv4</p>
 <p>修改方法：只需修改上述路径中的cv_bridgeconfig.cmke文件，将100行附近的两个opencv改成opencv4即可（注意，只需要改动单独一个的opencv,前面有连字符的opencv不需要改动）</p>
-<p>注意：如果jetson nano的版本自带的opencv是3版本，可能不会出现此问题<br>————————————————<br>版权声明：本文为CSDN博主「Xyscut」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43310597/article/details/109256838">https://blog.csdn.net/qq_43310597/article/details/109256838</a></p>
+<p>注意：如果jetson nano的版本自带的opencv是3版本，可能不会出现此问题</p>
 </blockquote>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<h1 id="上午好好的，下午进不去系统"><a href="#上午好好的，下午进不去系统" class="headerlink" title="上午好好的，下午进不去系统"></a>上午好好的，下午进不去系统</h1><blockquote>
+<p>error during i2c read probe board setup failed</p>
+</blockquote>
+<h1 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h1><ol>
+<li><p>选择瑞泰镜像，不能用官方镜像<br>检查方法  dmesg | grep dts<br>显示 <img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/845ce1590e47021e7b37c4bc595896c.jpg">  为官方</p>
+</li>
+<li><p>bsp选择nx目录下，不要选择32.7.1目录下</p>
+</li>
+<li><p>目前的uuidpart    d3b71f11-043d-484e-ae7d-206760bceada</p>
+</li>
+<li><p>烧录手册版本选择1.1</p>
+</li>
+<li><p>烧录外部启动系统时<br>选择external 会报找不到对应uuid的错误<br>需要写入mmcblk1怕</p>
+</li>
+<li><p>sdkmanager<br>安装cuda dnn 不用他，试了几遍都不成功</p>
+</li>
+<li><p>从sd卡启动手册选择版本1.1</p>
+</li>
+<li><p>jtop安装<br>sudo apt install python3-pip<br>sudo -H pip3 install -U jetson-stats<br>sudo systemctl restart jetson_stats.service<br>reboot</p>
+</li>
+</ol>
+<h1 id="ceres-安装"><a href="#ceres-安装" class="headerlink" title="ceres 安装"></a>ceres 安装</h1><p>安装依赖<br>sudo apt-get install -y google-mock libboost-all-dev  libeigen3-dev libgflags-dev libgoogle-glog-dev liblua5.2-dev libprotobuf-dev  libsuitesparse-dev libwebp-dev ninja-build protobuf-compiler python-sphinx  ros-melodic-tf2-eigen libatlas-base-dev libsuitesparse-dev liblapack-dev</p>
+<p>download<br><a target="_blank" rel="noopener" href="https://github.com/ceres-solver/ceres-solver/releases">https://github.com/ceres-solver/ceres-solver/releases</a></p>
+<p>compile<br>mkdir build<br>cd build<br>cmake …<br>make -j6<br>sudo make install<br>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>9fe0423c3a24031c913d166b3ac7ff3ebdfc73d8<br>3d419ebd75fa478d0e144fedfe1049e3bc140131</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="安装软件包"><a href="#安装软件包" class="headerlink" title="安装软件包"></a>安装软件包</h1><p>型号：Xavier nx</p>
+<p>l4t版本和jetpack版本对应关系</p>
+<blockquote>
+<ul>
+<li>JetPack 4.6.1<ul>
+<li>Jetson Xavier NX Series, Jetson TX2 Series, Jetson AGX Xavier Series, Jetson Nano, Jetson TX1 [<a target="_blank" rel="noopener" href="https://developer.nvidia.com/embedded/linux-tegra-r3271">L4T 32.7.1</a>]</li>
+<li><a target="_blank" rel="noopener" href="https://developer.nvidia.com/embedded/jetpack-archive">https://developer.nvidia.com/embedded/jetpack-archive</a></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="第一次失败"><a href="#第一次失败" class="headerlink" title="第一次失败"></a>第一次失败</h2><p>，opencv on target 下载不动，国内国外网站均能访问</p>
+<p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/QQ%E5%9B%BE%E7%89%8720221012191550.png"></p>
+<p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/QQ%E5%9B%BE%E7%89%8720221012191603.png"></p>
+<h2 id="E-Sub-process-usr-bin-dpkg-returned-an-error-code-1"><a href="#E-Sub-process-usr-bin-dpkg-returned-an-error-code-1" class="headerlink" title="E: Sub-process /usr/bin/dpkg returned an error code (1)"></a>E: Sub-process /usr/bin/dpkg returned an error code (1)</h2><blockquote>
+<p>$ sudo mv /var/lib/dpkg/info/ /var/lib/dpkg/info_old/<br>$ sudo mkdir /var/lib/dpkg/info/<br>$ sudo apt-get update<br>$ sudo apt-get -f install<br>$ sudo mv /var/lib/dpkg/info/* /var/lib/dpkg/info_old/<br>$ sudo rm -rf /var/lib/dpkg/info<br>$ sudo mv /var/lib/dpkg/info_old/ /var/lib/dpkg/info/</p>
+</blockquote>
+<h2 id="GPG-error-file-var-cuda-repo-l4t-10-2-local-Release-The-following-signatures-couldn’t-be-verified-because-the-public-key-is-not-available-NO-PUBKEY-F60F4B3D7FA2AF80"><a href="#GPG-error-file-var-cuda-repo-l4t-10-2-local-Release-The-following-signatures-couldn’t-be-verified-because-the-public-key-is-not-available-NO-PUBKEY-F60F4B3D7FA2AF80" class="headerlink" title="GPG error: file:/var/cuda-repo-l4t-10-2-local  Release: The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY F60F4B3D7FA2AF80"></a>GPG error: file:/var/cuda-repo-l4t-10-2-local  Release: The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY F60F4B3D7FA2AF80</h2><blockquote>
+<ol>
+<li>sudo apt-key adv –keyserver keyserver.ubuntu.com –recv-keys F60F4B3D7FA2AF80</li>
+<li>sudo apt-get update &amp;&amp; sudo apt-get check</li>
+</ol>
+</blockquote>
+<h2 id="Could-not-handshake-The-TLS-connection-was-non-properly-terminated-IP-127-0-0-1-12333"><a href="#Could-not-handshake-The-TLS-connection-was-non-properly-terminated-IP-127-0-0-1-12333" class="headerlink" title="Could not handshake: The TLS connection was non-properly terminated. [IP: 127.0.0.1 12333]"></a>Could not handshake: The TLS connection was non-properly terminated. [IP: 127.0.0.1 12333]</h2><p>把源从https改为http</p>
+<h2 id="仓库不在提供发布源"><a href="#仓库不在提供发布源" class="headerlink" title="仓库不在提供发布源"></a>仓库不在提供发布源</h2><p>开启代理后apt使用配置文件apt.conf中将https走了https代理</p>
+<p>在etc/apt/apt.conf中去掉https的s</p>
+<p>换源</p>
+<p>换网络</p>
+<h2 id="multimedia-安装失败，其他成功"><a href="#multimedia-安装失败，其他成功" class="headerlink" title="multimedia 安装失败，其他成功"></a>multimedia 安装失败，其他成功</h2><blockquote>
+<p>BSP Version Mismatch 报错</p>
+</blockquote>
+<h2 id="px4结合mocap动作捕捉系统"><a href="#px4结合mocap动作捕捉系统" class="headerlink" title="px4结合mocap动作捕捉系统"></a>px4结合mocap动作捕捉系统</h2><p>github页面教学<br><a target="_blank" rel="noopener" href="https://github.com/potato77/Amovlab_opensource/tree/master/px4_pos_estiamtor">https://github.com/potato77/Amovlab_opensource/tree/master/px4_pos_estiamtor</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42879437/article/details/117514082">https://blog.csdn.net/qq_42879437/article/details/117514082</a><br>飞控中如何设置</p>
+<p>为了配合机载电脑中传来的定位信息，有两个和ekf2有关的参数需要修改。</p>
+<p>EKF2_AID_MASK 设置为24（即勾选vision position fusion and vision yaw fusion）<br>EKF2_HGT_MODE 设置为VISION （默认为气压计）<br>因为ekf2中默认是不会融合这个外部的定位信息的，这里相当于在ekf2中启用这个功能。至于ekf2参数中还有很多和这个外部定位相关的滤波参数设置，就请参看官网教程吧。我没有改任何参数，但是ekf2代码的话，阿木团队优化过，具体修改笔者也不清楚。</p>
+<p>其他说明：</p>
+<p>做了以上修改之后，水平校准会遇到问题，所以要修改之前校准水平。<br>修改之后，自稳模式会变得有些奇怪，基本上只能使用位置闭环的控制模式了，也就是offboard模式。<br>”<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/101967658?from_voters_page=true%E2%80%9C">https://zhuanlan.zhihu.com/p/101967658?from_voters_page=true“</a></p>
+<h3 id="fix-frame"><a href="#fix-frame" class="headerlink" title="fix frame"></a>fix frame</h3><p>rosrun tf static_transform_publisher 0.0 0.0 0.0 0.0 0.0 0.0 map xxx 100<br>rosrun rqt_tf_tree rqt_tf_tree </p>
+<h3 id="rviz-主界面面板说明"><a href="#rviz-主界面面板说明" class="headerlink" title="rviz 主界面面板说明"></a>rviz 主界面面板说明</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ben_xiao_hai_123/article/details/109258584">https://blog.csdn.net/ben_xiao_hai_123/article/details/109258584</a></p>
+<h3 id="rviz-中文安装-自定义rviz"><a href="#rviz-中文安装-自定义rviz" class="headerlink" title="rviz 中文安装 自定义rviz"></a>rviz 中文安装 自定义rviz</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhang6318/article/details/117964672">https://blog.csdn.net/zhang6318/article/details/117964672</a></p>
+<p>安装colcon<br>sudo apt install python3-colcon-common-extensions</p>
+<h3 id="动捕坐标系和相机世界坐标系位置、姿态转换"><a href="#动捕坐标系和相机世界坐标系位置、姿态转换" class="headerlink" title="动捕坐标系和相机世界坐标系位置、姿态转换"></a>动捕坐标系和相机世界坐标系位置、姿态转换</h3><p>相机内外参、像素坐标系、世界坐标系<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/389653208">https://zhuanlan.zhihu.com/p/389653208</a><br>世界坐标系的方向定义：单目 选第一帧的相机坐标系的方向定义（即右下前）<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/346131786/?utm_id=0">https://zhuanlan.zhihu.com/p/346131786/?utm_id=0</a><br>imu坐标系（左手，右前上）、<br><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/20221019131012.png"><br>坐标系姿态（四元数）转换<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/muzigef/article/details/103650811">https://blog.csdn.net/muzigef/article/details/103650811</a></p>
+<h2 id="xavier-NX-烧录系统"><a href="#xavier-NX-烧录系统" class="headerlink" title="xavier NX 烧录系统"></a>xavier NX 烧录系统</h2><ol>
+<li><p>准备驱动包、根文件系统、realtimesBSP</p>
+<p>在188虚拟机shaolu目录下已有，版本32.7.1(或者台式机下载-压缩-shaolu下)</p>
+</li>
+<li><p>烧录步骤，严格按照指令进行，注意sudo有无和tar的命令参数，直到有success</p>
+<p><img src="https://gitee.com/Pleasecallmeboss/tuchuang/raw/master/Note/%E6%AD%A5%E9%AA%A4.png"></p>
+</li>
+<li><p>烧录参数 rtso-6002 mmcblk0p1</p>
+<p>sudo ./flash.sh rtso-6002 mmcblk0p1</p>
+</li>
+</ol>
+<h2 id="XAVIER-NX-从SD卡启动"><a href="#XAVIER-NX-从SD卡启动" class="headerlink" title="XAVIER NX 从SD卡启动"></a>XAVIER NX 从SD卡启动</h2><ol>
+<li>partuuid</li>
+</ol>
+<p>31919bfc-57e5-494f-b941-1c6782a7bf60</p>
+<ol start="2">
+<li>dd命令 </li>
+</ol>
+<p>sudo dd if=/dev/foo bs=4M | pv -s 20G | sudo dd of=/dev/baz bs=4M</p>
+<ol start="3">
+<li>flush刷的时候出现can not find partuuid </li>
+</ol>
+<blockquote>
+<p>sudo ./flash.sh rtso-6002 mmcblk1p1 而不是external</p>
+</blockquote>
+<ol start="4">
+<li>故障是不是光重新刷sd卡就可以</li>
+</ol>
+<h2 id="source一个工作空间把另一个也source"><a href="#source一个工作空间把另一个也source" class="headerlink" title="source一个工作空间把另一个也source"></a>source一个工作空间把另一个也source</h2><p>真恶心，<br>编辑devel下的setup util.py文件<br>修改export 变量  export ros_packet_path=”aaaa”</p>
+<h2 id="ros下各个地图"><a href="#ros下各个地图" class="headerlink" title="ros下各个地图"></a>ros下各个地图</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_16643223/article/details/113923203">https://blog.csdn.net/sinat_16643223/article/details/113923203</a></p>
+<h2 id="tf的介绍"><a href="#tf的介绍" class="headerlink" title="tf的介绍"></a>tf的介绍</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sxy370921/p/11726691.html">https://www.cnblogs.com/sxy370921/p/11726691.html</a></p>
+<h2 id="ros-launch-参数"><a href="#ros-launch-参数" class="headerlink" title="ros launch 参数"></a>ros launch 参数</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/157526418">https://zhuanlan.zhihu.com/p/157526418</a><br>全局参数和局部参数，更好 <a target="_blank" rel="noopener" href="https://blog.csdn.net/u013528298/article/details/87937555">https://blog.csdn.net/u013528298/article/details/87937555</a><br>fp_my-ws的地图生成参数还是不理解，报错Unknown substitution command [random_or_load]. Valid commands are [‘find’, ‘env’, ‘optenv’, ‘dirname’, ‘anon’, ‘arg’]</p>
 
     </div>
 
@@ -433,7 +568,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2022-4-18-%E5%91%A8%E4%B8%80"><span class="nav-number">1.</span> <span class="nav-text">2022.4.18 周一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PX4%E7%9A%84%E4%BB%BF%E7%9C%9F%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%9A%84%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">PX4的仿真是如何进行的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS%E4%B8%8B%E7%9A%84Gazebo%E4%BB%BF%E7%9C%9F"><span class="nav-number">3.</span> <span class="nav-text">ROS下的Gazebo仿真</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E4%BB%A3%E7%A0%81%E5%A4%8D%E5%88%B6%E8%BF%87%E6%9D%A5%E8%BF%90%E8%A1%8Cmapping%E5%8C%85%E7%9A%84map-launch%E6%8A%A5%E9%94%99%EF%BC%8C%E5%85%B7%E4%BD%93%E4%B8%BAcv-bridge%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">原代码复制过来运行mapping包的map.launch报错，具体为cv_bridge函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8Cmacros-%E5%8C%85%E4%B8%8B%E7%9A%84px4-launch%E6%8A%A5%E9%94%99"><span class="nav-number">3.2.</span> <span class="nav-text">运行macros 包下的px4.launch报错</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Project-%E2%80%98cv-bridge%E2%80%98-specifies-%E2%80%98-usr-include-opencv%E2%80%98-as-an-include-dir-which-is-not-found-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number"></span> <span class="nav-text">Project ‘cv_bridge‘ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv‘ as an include dir, which is not found.的解决方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cmake%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%98%AF%E9%9C%80%E8%A6%81CMakeLists-txt%E6%89%BE%E5%88%B0-cmake-%E6%96%87%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">cmake编译原理是需要CMakeLists.txt找到 .cmake 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#opencv%E5%A4%9A%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85"><span class="nav-number"></span> <span class="nav-text">opencv多版本安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cv%E2%80%94%E2%80%94bridge%E5%AF%BB%E6%89%BEopencv%E7%89%88%E6%9C%AC%E8%AF%AD%E5%8F%A5%E4%BD%8D%E7%BD%AE"><span class="nav-number"></span> <span class="nav-text">cv——bridge寻找opencv版本语句位置</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2022-4-18-%E5%91%A8%E4%B8%80"><span class="nav-number">1.</span> <span class="nav-text">2022.4.18 周一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PX4%E7%9A%84%E4%BB%BF%E7%9C%9F%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%9A%84%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">PX4的仿真是如何进行的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS%E4%B8%8B%E7%9A%84Gazebo%E4%BB%BF%E7%9C%9F"><span class="nav-number">3.</span> <span class="nav-text">ROS下的Gazebo仿真</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E4%BB%A3%E7%A0%81%E5%A4%8D%E5%88%B6%E8%BF%87%E6%9D%A5%E8%BF%90%E8%A1%8Cmapping%E5%8C%85%E7%9A%84map-launch%E6%8A%A5%E9%94%99%EF%BC%8C%E5%85%B7%E4%BD%93%E4%B8%BAcv-bridge%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">原代码复制过来运行mapping包的map.launch报错，具体为cv_bridge函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vtk%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%94%99"><span class="nav-number">4.</span> <span class="nav-text">vtk相关报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%B4%E5%91%BD%E9%94%99%E8%AF%AF%EF%BC%9AEigen-Dense%EF%BC%9A%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="nav-number">5.</span> <span class="nav-text">致命错误：Eigen&#x2F;Dense：没有那个文件或目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8Cmacros-%E5%8C%85%E4%B8%8B%E7%9A%84px4-launch%E6%8A%A5%E9%94%99"><span class="nav-number">5.1.</span> <span class="nav-text">运行macros 包下的px4.launch报错</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Project-%E2%80%98cv-bridge%E2%80%98-specifies-%E2%80%98-usr-include-opencv%E2%80%98-as-an-include-dir-which-is-not-found-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number"></span> <span class="nav-text">Project ‘cv_bridge‘ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv‘ as an include dir, which is not found.的解决方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cmake%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%98%AF%E9%9C%80%E8%A6%81CMakeLists-txt%E6%89%BE%E5%88%B0-cmake-%E6%96%87%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">cmake编译原理是需要CMakeLists.txt找到 .cmake 文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#opencv%E5%A4%9A%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85"><span class="nav-number"></span> <span class="nav-text">opencv多版本安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cv%E2%80%94%E2%80%94bridge%E5%AF%BB%E6%89%BEopencv%E7%89%88%E6%9C%AC%E8%AF%AD%E5%8F%A5%E4%BD%8D%E7%BD%AE"><span class="nav-number"></span> <span class="nav-text">cv——bridge寻找opencv版本语句位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E5%8D%88%E5%A5%BD%E5%A5%BD%E7%9A%84%EF%BC%8C%E4%B8%8B%E5%8D%88%E8%BF%9B%E4%B8%8D%E5%8E%BB%E7%B3%BB%E7%BB%9F"><span class="nav-number"></span> <span class="nav-text">上午好好的，下午进不去系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%83%A7%E5%BD%95%E7%B3%BB%E7%BB%9F"><span class="nav-number"></span> <span class="nav-text">烧录系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ceres-%E5%AE%89%E8%A3%85"><span class="nav-number"></span> <span class="nav-text">ceres 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number"></span> <span class="nav-text">安装软件包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5"><span class="nav-number">1.</span> <span class="nav-text">第一次失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E-Sub-process-usr-bin-dpkg-returned-an-error-code-1"><span class="nav-number">2.</span> <span class="nav-text">E: Sub-process &#x2F;usr&#x2F;bin&#x2F;dpkg returned an error code (1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GPG-error-file-var-cuda-repo-l4t-10-2-local-Release-The-following-signatures-couldn%E2%80%99t-be-verified-because-the-public-key-is-not-available-NO-PUBKEY-F60F4B3D7FA2AF80"><span class="nav-number">3.</span> <span class="nav-text">GPG error: file:&#x2F;var&#x2F;cuda-repo-l4t-10-2-local  Release: The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY F60F4B3D7FA2AF80</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Could-not-handshake-The-TLS-connection-was-non-properly-terminated-IP-127-0-0-1-12333"><span class="nav-number">4.</span> <span class="nav-text">Could not handshake: The TLS connection was non-properly terminated. [IP: 127.0.0.1 12333]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%93%E5%BA%93%E4%B8%8D%E5%9C%A8%E6%8F%90%E4%BE%9B%E5%8F%91%E5%B8%83%E6%BA%90"><span class="nav-number">5.</span> <span class="nav-text">仓库不在提供发布源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multimedia-%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5%EF%BC%8C%E5%85%B6%E4%BB%96%E6%88%90%E5%8A%9F"><span class="nav-number">6.</span> <span class="nav-text">multimedia 安装失败，其他成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#px4%E7%BB%93%E5%90%88mocap%E5%8A%A8%E4%BD%9C%E6%8D%95%E6%8D%89%E7%B3%BB%E7%BB%9F"><span class="nav-number">7.</span> <span class="nav-text">px4结合mocap动作捕捉系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fix-frame"><span class="nav-number">7.1.</span> <span class="nav-text">fix frame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rviz-%E4%B8%BB%E7%95%8C%E9%9D%A2%E9%9D%A2%E6%9D%BF%E8%AF%B4%E6%98%8E"><span class="nav-number">7.2.</span> <span class="nav-text">rviz 主界面面板说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rviz-%E4%B8%AD%E6%96%87%E5%AE%89%E8%A3%85-%E8%87%AA%E5%AE%9A%E4%B9%89rviz"><span class="nav-number">7.3.</span> <span class="nav-text">rviz 中文安装 自定义rviz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%8D%95%E5%9D%90%E6%A0%87%E7%B3%BB%E5%92%8C%E7%9B%B8%E6%9C%BA%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87%E7%B3%BB%E4%BD%8D%E7%BD%AE%E3%80%81%E5%A7%BF%E6%80%81%E8%BD%AC%E6%8D%A2"><span class="nav-number">7.4.</span> <span class="nav-text">动捕坐标系和相机世界坐标系位置、姿态转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xavier-NX-%E7%83%A7%E5%BD%95%E7%B3%BB%E7%BB%9F"><span class="nav-number">8.</span> <span class="nav-text">xavier NX 烧录系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XAVIER-NX-%E4%BB%8ESD%E5%8D%A1%E5%90%AF%E5%8A%A8"><span class="nav-number">9.</span> <span class="nav-text">XAVIER NX 从SD卡启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source%E4%B8%80%E4%B8%AA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E6%8A%8A%E5%8F%A6%E4%B8%80%E4%B8%AA%E4%B9%9Fsource"><span class="nav-number">10.</span> <span class="nav-text">source一个工作空间把另一个也source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ros%E4%B8%8B%E5%90%84%E4%B8%AA%E5%9C%B0%E5%9B%BE"><span class="nav-number">11.</span> <span class="nav-text">ros下各个地图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">12.</span> <span class="nav-text">tf的介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ros-launch-%E5%8F%82%E6%95%B0"><span class="nav-number">13.</span> <span class="nav-text">ros launch 参数</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -446,7 +581,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -486,7 +621,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
