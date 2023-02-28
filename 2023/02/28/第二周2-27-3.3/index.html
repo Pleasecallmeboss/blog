@@ -20,22 +20,22 @@
     var CONFIG = {"hostname":"pleasecallmeboss.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="第二周2.20-2.24实验工作周二下午 没想到仿真如何进行，想通过实验飞行验证猜想 两次飞行。第一次，从3，3飞行到4，4. 不能确定是UWB定位转圈移动还是规划移动。 第二次，进入offboard模式后UWB定位丢失，表现为位置突然为0，无人机在获得错误的自身定位和原本的预期位置后急速飞行。有录屏和录像。 等待uwb定位？无法100%确定规划坐标系方向是对的。 周三 飞行中途y坐标变为0 周四">
+  <meta name="description" content="第三周2.27-3.3实验工作 周二使用uwb坐标系，进行坐标转换（从前左上到enu），实验搜索成功问题：无法在起飞点搜索；飞行位置偏差大  知识点 KinoDynamic A*  启发代价计算启发代价的计算需要计算一元四次方程和一元三次方程。一元四次方程使用费拉里方法，函数名quartic。一元三次方程判别式大于零使用求根公式，小于零使用三角函数法，函数名cubic。   哈密顿函数和Optim">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第二周工作日志">
-<meta property="og:url" content="https://pleasecallmeboss.github.io/blog/2023/02/22/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:title" content="第三周工作日志">
+<meta property="og:url" content="https://pleasecallmeboss.github.io/blog/2023/02/28/%E7%AC%AC%E4%BA%8C%E5%91%A82-27-3.3/index.html">
 <meta property="og:site_name" content="咦蜘蛛的个人博客">
-<meta property="og:description" content="第二周2.20-2.24实验工作周二下午 没想到仿真如何进行，想通过实验飞行验证猜想 两次飞行。第一次，从3，3飞行到4，4. 不能确定是UWB定位转圈移动还是规划移动。 第二次，进入offboard模式后UWB定位丢失，表现为位置突然为0，无人机在获得错误的自身定位和原本的预期位置后急速飞行。有录屏和录像。 等待uwb定位？无法100%确定规划坐标系方向是对的。 周三 飞行中途y坐标变为0 周四">
+<meta property="og:description" content="第三周2.27-3.3实验工作 周二使用uwb坐标系，进行坐标转换（从前左上到enu），实验搜索成功问题：无法在起飞点搜索；飞行位置偏差大  知识点 KinoDynamic A*  启发代价计算启发代价的计算需要计算一元四次方程和一元三次方程。一元四次方程使用费拉里方法，函数名quartic。一元三次方程判别式大于零使用求根公式，小于零使用三角函数法，函数名cubic。   哈密顿函数和Optim">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="c:/Users/ljy/AppData/Roaming/Typora/typora-user-images/image-20230223132143634.png">
-<meta property="article:published_time" content="2023-02-22T03:02:40.000Z">
-<meta property="article:modified_time" content="2023-02-28T09:36:49.935Z">
+<meta property="article:published_time" content="2023-02-28T09:29:29.898Z">
+<meta property="article:modified_time" content="2023-02-28T09:35:51.836Z">
 <meta property="article:author" content="咦蜘蛛">
 <meta property="article:tag" content="记录">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:/Users/ljy/AppData/Roaming/Typora/typora-user-images/image-20230223132143634.png">
 
-<link rel="canonical" href="https://pleasecallmeboss.github.io/blog/2023/02/22/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">
+<link rel="canonical" href="https://pleasecallmeboss.github.io/blog/2023/02/28/%E7%AC%AC%E4%BA%8C%E5%91%A82-27-3.3/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>第二周工作日志 | 咦蜘蛛的个人博客</title>
+  <title>第三周工作日志 | 咦蜘蛛的个人博客</title>
   
 
 
@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2023/02/22/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2023/02/28/%E7%AC%AC%E4%BA%8C%E5%91%A82-27-3.3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/avatar.gif">
@@ -176,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          第二周工作日志
+          第三周工作日志
         </h1>
 
         <div class="post-meta">
@@ -185,16 +185,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-02-22 11:02:40" itemprop="dateCreated datePublished" datetime="2023-02-22T11:02:40+08:00">2023-02-22</time>
+              <time title="创建时间：2023-02-28 17:29:29 / 修改时间：17:35:51" itemprop="dateCreated datePublished" datetime="2023-02-28T17:29:29+08:00">2023-02-28</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-28 17:36:49" itemprop="dateModified" datetime="2023-02-28T17:36:49+08:00">2023-02-28</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -216,23 +210,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="第二周2-20-2-24"><a href="#第二周2-20-2-24" class="headerlink" title="第二周2.20-2.24"></a>第二周2.20-2.24</h2><h2 id="实验工作"><a href="#实验工作" class="headerlink" title="实验工作"></a>实验工作</h2><p>周二下午</p>
-<p>没想到仿真如何进行，想通过实验飞行验证猜想</p>
-<p>两次飞行。第一次，从3，3飞行到4，4. 不能确定是UWB定位转圈移动还是规划移动。</p>
-<p>第二次，进入offboard模式后UWB定位丢失，表现为位置突然为0，无人机在获得错误的自身定位和原本的预期位置后急速飞行。有录屏和录像。</p>
-<p>等待uwb定位？无法100%确定规划坐标系方向是对的。</p>
-<p>周三</p>
-<p>飞行中途y坐标变为0</p>
-<p>周四</p>
-<p>1.切换offboard后一直碰撞发生重规划</p>
-<p>2.重规划的起点一直没有变</p>
-<p>3.给飞控的位置应该一直在原来位置，为什么会向东北方向一直飞？</p>
+        <h2 id="第三周2-27-3-3"><a href="#第三周2-27-3-3" class="headerlink" title="第三周2.27-3.3"></a>第三周2.27-3.3</h2><h2 id="实验工作"><a href="#实验工作" class="headerlink" title="实验工作"></a>实验工作</h2><ol>
+<li>周二<br>使用uwb坐标系，进行坐标转换（从前左上到enu），实验搜索成功<br>问题：无法在起飞点搜索；飞行位置偏差大</li>
+</ol>
 <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ol>
-<li><p>tf树</p>
-<p>坐标系的转换工具。单向流动。静态转换节点static_transform_publisher的使用。<br><code>&lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;camera_link_broadcaster&quot; args=&quot;0.1 0 0 -1.5707963 0 -1.5707963 base_link camera_link 50 &quot; /&gt;</code></p>
-<p>其中args的前六个数字代表具体的tf矩阵，之后的两个字符串代表是谁和谁之间的tf，最后一个数字代表发布频率。</p>
+<li><p>KinoDynamic A*</p>
+<ol>
+<li>启发代价计算<br>启发代价的计算需要计算一元四次方程和一元三次方程。一元四次方程使用费拉里方法，函数名quartic。一元三次方程判别式大于零使用求根公式，小于零使用三角函数法，函数名cubic。</li>
+</ol>
 </li>
-<li><p>catkin_make 和catkin build</p>
+<li><p>哈密顿函数和Optimal Control Boundary Value Problem(OBVP 最优控制边界问题)<br>哈密顿函数（Hamiltonian function）是一个在动力学中非常重要的概念，它描述了一个系统的总能量，包括系统的动能和势能。<br>最优控制问题（Optimal Control Problem）是指在一定的约束条件下，使一个系统的某种性能指标（如能量最小或者时间最短）达到最优。在最优控制问题中，通常将目标函数表示为哈密顿函数，这种表示方式被称为哈密顿表述（Hamiltonian formulation）。<br>具体来说，<em>哈密顿表述将最优控制问题的目标函数（例如能量）表示为一个函数</em>，这个函数包含了系统的状态、控制输入以及约束条件等信息。同时，哈密顿表述也引入了一个新的变量——共轭变量，用于描述系统状态和目标函数之间的关系。<em>这种描述方式使得最优控制问题可以转化为一个变分问题（Variational problem），从而可以应用变分法等数学工具来求解。</em><br>OBVP是Optimal Control Boundary Value Problem的缩写，即最优控制边界值问题。这是一类最优控制问题，其中目标是找到一个控制策略，使得一个系统从一个初始状态到达一个给定的目标状态，并在控制输入和状态变量满足一定的边界条件的情况下最小化一个给定的性能指标。</p>
+</li>
+<li><p>Kinematic：运动学约束，例如避障。<br>Dynamic：动力学约束，例如加速度(acceleration)、力(force)</p>
+</li>
+<li><p>State Lattice Planning 状态栅格规划<br>&emsp;&emsp;假设机器人并不能只表示一个质点，而需要充分考虑机器人的动力学和运动学约束。因此我们需要一个可行的运动连接的图，这种图也被称为Lattice Graph。<br>&emsp;&emsp;建立这种图有两种方法，可分为控制采样和状态采样。Reverse direction：在状态空间(state space)中进行采样，将状态空间进行离散，找一条从当前状态到某一状态的可行的运动连接。<br>&emsp;&emsp;关于如何仅通过两点状态，来得到最优的输入量u 和时间T ,请见下一章的OBVP原理讲解。</p>
+</li>
+<li><p>OBVP原理介绍<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45369294/article/details/124760279">https://blog.csdn.net/qq_45369294/article/details/124760279</a></p>
 </li>
 </ol>
 <h2 id="代码阅读"><a href="#代码阅读" class="headerlink" title="代码阅读"></a>代码阅读</h2><h3 id="rviz图像"><a href="#rviz图像" class="headerlink" title="rviz图像"></a>rviz图像</h3><ol>
@@ -281,7 +274,7 @@
 <p>能够计算标签在相机坐标系下的姿态</p>
 </li>
 </ol>
-<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>公众号 空中机器人前沿 讲的挺好的</p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>CSDN 月夕花晨TS 讲得不错</p>
 
     </div>
 
@@ -300,13 +293,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/blog/2022/10/09/Fiddler%E4%BD%BF%E7%94%A8/" rel="prev" title="Fiddler使用">
-      <i class="fa fa-chevron-left"></i> Fiddler使用
+    <a href="/blog/2023/02/22/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" rel="prev" title="第二周工作日志">
+      <i class="fa fa-chevron-left"></i> 第二周工作日志
     </a></div>
-      <div class="post-nav-item">
-    <a href="/blog/2023/02/28/%E7%AC%AC%E4%BA%8C%E5%91%A82-27-3.3/" rel="next" title="第三周工作日志">
-      第三周工作日志 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -365,7 +355,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%91%A82-20-2-24"><span class="nav-number">1.</span> <span class="nav-text">第二周2.20-2.24</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">实验工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB"><span class="nav-number">4.</span> <span class="nav-text">代码阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rviz%E5%9B%BE%E5%83%8F"><span class="nav-number">4.1.</span> <span class="nav-text">rviz图像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E5%AE%9E%E9%AA%8C%E9%AA%8C%E8%AF%81"><span class="nav-number">5.</span> <span class="nav-text">需实验验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E9%98%85%E8%AF%BB"><span class="nav-number">6.</span> <span class="nav-text">拓展阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8"><span class="nav-number">7.</span> <span class="nav-text">备注</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%91%A82-27-3-3"><span class="nav-number">1.</span> <span class="nav-text">第三周2.27-3.3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">实验工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB"><span class="nav-number">4.</span> <span class="nav-text">代码阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rviz%E5%9B%BE%E5%83%8F"><span class="nav-number">4.1.</span> <span class="nav-text">rviz图像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E5%AE%9E%E9%AA%8C%E9%AA%8C%E8%AF%81"><span class="nav-number">5.</span> <span class="nav-text">需实验验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E9%98%85%E8%AF%BB"><span class="nav-number">6.</span> <span class="nav-text">拓展阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8"><span class="nav-number">7.</span> <span class="nav-text">备注</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

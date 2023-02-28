@@ -155,6 +155,138 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2023/02/28/%E7%AC%AC%E4%BA%8C%E5%91%A82-27-3.3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="咦蜘蛛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咦蜘蛛的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2023/02/28/%E7%AC%AC%E4%BA%8C%E5%91%A82-27-3.3/" class="post-title-link" itemprop="url">第三周工作日志</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-28 17:29:29 / 修改时间：17:35:51" itemprop="dateCreated datePublished" datetime="2023-02-28T17:29:29+08:00">2023-02-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%AE%9E%E9%AA%8C%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">实验工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="第三周2-27-3-3"><a href="#第三周2-27-3-3" class="headerlink" title="第三周2.27-3.3"></a>第三周2.27-3.3</h2><h2 id="实验工作"><a href="#实验工作" class="headerlink" title="实验工作"></a>实验工作</h2><ol>
+<li>周二<br>使用uwb坐标系，进行坐标转换（从前左上到enu），实验搜索成功<br>问题：无法在起飞点搜索；飞行位置偏差大</li>
+</ol>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ol>
+<li><p>KinoDynamic A*</p>
+<ol>
+<li>启发代价计算<br>启发代价的计算需要计算一元四次方程和一元三次方程。一元四次方程使用费拉里方法，函数名quartic。一元三次方程判别式大于零使用求根公式，小于零使用三角函数法，函数名cubic。</li>
+</ol>
+</li>
+<li><p>哈密顿函数和Optimal Control Boundary Value Problem(OBVP 最优控制边界问题)<br>哈密顿函数（Hamiltonian function）是一个在动力学中非常重要的概念，它描述了一个系统的总能量，包括系统的动能和势能。<br>最优控制问题（Optimal Control Problem）是指在一定的约束条件下，使一个系统的某种性能指标（如能量最小或者时间最短）达到最优。在最优控制问题中，通常将目标函数表示为哈密顿函数，这种表示方式被称为哈密顿表述（Hamiltonian formulation）。<br>具体来说，<em>哈密顿表述将最优控制问题的目标函数（例如能量）表示为一个函数</em>，这个函数包含了系统的状态、控制输入以及约束条件等信息。同时，哈密顿表述也引入了一个新的变量——共轭变量，用于描述系统状态和目标函数之间的关系。<em>这种描述方式使得最优控制问题可以转化为一个变分问题（Variational problem），从而可以应用变分法等数学工具来求解。</em><br>OBVP是Optimal Control Boundary Value Problem的缩写，即最优控制边界值问题。这是一类最优控制问题，其中目标是找到一个控制策略，使得一个系统从一个初始状态到达一个给定的目标状态，并在控制输入和状态变量满足一定的边界条件的情况下最小化一个给定的性能指标。</p>
+</li>
+<li><p>Kinematic：运动学约束，例如避障。<br>Dynamic：动力学约束，例如加速度(acceleration)、力(force)</p>
+</li>
+<li><p>State Lattice Planning 状态栅格规划<br>&emsp;&emsp;假设机器人并不能只表示一个质点，而需要充分考虑机器人的动力学和运动学约束。因此我们需要一个可行的运动连接的图，这种图也被称为Lattice Graph。<br>&emsp;&emsp;建立这种图有两种方法，可分为控制采样和状态采样。Reverse direction：在状态空间(state space)中进行采样，将状态空间进行离散，找一条从当前状态到某一状态的可行的运动连接。<br>&emsp;&emsp;关于如何仅通过两点状态，来得到最优的输入量u 和时间T ,请见下一章的OBVP原理讲解。</p>
+</li>
+<li><p>OBVP原理介绍<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45369294/article/details/124760279">https://blog.csdn.net/qq_45369294/article/details/124760279</a></p>
+</li>
+</ol>
+<h2 id="代码阅读"><a href="#代码阅读" class="headerlink" title="代码阅读"></a>代码阅读</h2><h3 id="rviz图像"><a href="#rviz图像" class="headerlink" title="rviz图像"></a>rviz图像</h3><ol>
+<li><p>position_cmd</p>
+<p><img src="C:\Users\ljy\AppData\Roaming\Typora\typora-user-images\image-20230223132143634.png" alt="image-20230223132143634"></p>
+<p>topic : /planning/position_cmd_vis</p>
+<p>type: visualization_msgs::Marker</p>
+<p>功能：表示cmd下一时刻的位置朝向</p>
+<p>代码位置：traj_server.cpp</p>
+<p>执行逻辑：traj_server从话题planning/bspline获取轨迹数据保存在<code>vector&lt;NonUniformBspline&gt; traj_</code>中，定时0.01s画出箭头</p>
+</li>
+<li><p>executed_traj</p>
+<p>topic : /planning/travel_traj</p>
+<p>type: visualization_msgs::Marker</p>
+<p>功能：表示所有发给traj_server的pos集合</p>
+<p>代码位置：traj_server.cpp</p>
+<p>执行逻辑：traj_server从话题planning/bspline获取轨迹pos数据保存在vector<a href="Eigen::Vector3d">Eigen::Vector3d</a>中，定时0.25s画出箭头</p>
+</li>
+<li><p>bspline_traj</p>
+<p>topic : /planning_vis/trajectory</p>
+<p>type:visualization_msgs::Marker</p>
+<p>功能：1.画出淡黄色的kino_path_ 2.画出红色的bspline</p>
+<p>代码位置：kino_replan_fsm.cpp</p>
+<p>执行逻辑：1. kino_replan_fsm有负责规划控制的planner_manager_类指针。规划数据保存在planner_manager_类的plan_data(MidPlanData)-&gt;kino_path_(vector<a href="Eigen::Vector3d">Eigen::Vector3d</a>)变量。b样条优化成功后kino_replan_fsm使用PlanningVisualization类指针调用drawGeometricPath方法画出_kino_path。</p>
+<p>​ 2.planner_manager_-&gt;local_data_（LocalTrajData）-&gt;position_traj_(NonUniformBspline).规划的轨迹保存在local_data中，规划数据包括（position_traj_, velocity_traj_, acceleration_traj_, yaw_traj_, yawdot_traj_,yawdotdot_traj_）。b样条优化成功后kino_replan_fsm使用PlanningVisualization类指针调用drawBspline方法画出b样条轨迹和控制点（可选）。</p>
+</li>
+</ol>
+<h2 id="需实验验证"><a href="#需实验验证" class="headerlink" title="需实验验证"></a>需实验验证</h2><ol>
+<li><p>在gazebo下的static_transform_publisher</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/456831527">https://zhuanlan.zhihu.com/p/456831527</a></p>
+</li>
+</ol>
+<p>2.</p>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ol>
+<li><p>t265图像的矫正和去失真</p>
+<table>
+<thead>
+<tr>
+<th><code>roslaunch vision_to_mavros t265_fisheye_undistort.launch</code></th>
+<th>订阅原始立体图像的节点，对其进行去失真和矫正，然后发布矫正后的图像以及相应的<code>camera_info</code>主题。</th>
+</tr>
+</thead>
+</table>
+</li>
+<li><p>apriltag_ros</p>
+<p>能够计算标签在相机坐标系下的姿态</p>
+</li>
+</ol>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>CSDN 月夕花晨TS 讲得不错</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2023/02/22/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -169,7 +301,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2023/02/22/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">每周工作日志</a>
+            <a href="/blog/2023/02/22/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">第二周工作日志</a>
         </h2>
 
         <div class="post-meta">
@@ -186,7 +318,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-23 20:57:34" itemprop="dateModified" datetime="2023-02-23T20:57:34+08:00">2023-02-23</time>
+                <time title="修改时间：2023-02-28 17:36:49" itemprop="dateModified" datetime="2023-02-28T17:36:49+08:00">2023-02-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,22 +354,20 @@
 <p>3.给飞控的位置应该一直在原来位置，为什么会向东北方向一直飞？</p>
 <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ol>
 <li><p>tf树</p>
-<p>坐标系的转换工具。单向流动。静态转换节点static_transform_publisher的使用。</p>
-<node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster" args="0.1 0 0 -1.5707963 0 -1.5707963 base_link camera_link 50 " />
-
+<p>坐标系的转换工具。单向流动。静态转换节点static_transform_publisher的使用。<br><code>&lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;camera_link_broadcaster&quot; args=&quot;0.1 0 0 -1.5707963 0 -1.5707963 base_link camera_link 50 &quot; /&gt;</code></p>
 <p>其中args的前六个数字代表具体的tf矩阵，之后的两个字符串代表是谁和谁之间的tf，最后一个数字代表发布频率。</p>
 </li>
 <li><p>catkin_make 和catkin build</p>
 </li>
 </ol>
 <h2 id="代码阅读"><a href="#代码阅读" class="headerlink" title="代码阅读"></a>代码阅读</h2><h3 id="rviz图像"><a href="#rviz图像" class="headerlink" title="rviz图像"></a>rviz图像</h3><ol>
-<li><p>position_cmd </p>
+<li><p>position_cmd</p>
 <p><img src="C:\Users\ljy\AppData\Roaming\Typora\typora-user-images\image-20230223132143634.png" alt="image-20230223132143634"></p>
 <p>topic : /planning/position_cmd_vis</p>
 <p>type: visualization_msgs::Marker</p>
 <p>功能：表示cmd下一时刻的位置朝向</p>
 <p>代码位置：traj_server.cpp</p>
-<p>执行逻辑：traj_server从话题planning/bspline获取轨迹数据保存在vector<NonUniformBspline> traj_中，定时0.01s画出箭头</p>
+<p>执行逻辑：traj_server从话题planning/bspline获取轨迹数据保存在<code>vector&lt;NonUniformBspline&gt; traj_</code>中，定时0.01s画出箭头</p>
 </li>
 <li><p>executed_traj</p>
 <p>topic : /planning/travel_traj</p>
@@ -250,17 +380,17 @@
 <p>topic : /planning_vis/trajectory</p>
 <p>type:visualization_msgs::Marker</p>
 <p>功能：1.画出淡黄色的kino_path_ 2.画出红色的bspline</p>
-<p>代码位置：kino_replan_fsm.cpp </p>
+<p>代码位置：kino_replan_fsm.cpp</p>
 <p>执行逻辑：1. kino_replan_fsm有负责规划控制的planner_manager_类指针。规划数据保存在planner_manager_类的plan_data(MidPlanData)-&gt;kino_path_(vector<a href="Eigen::Vector3d">Eigen::Vector3d</a>)变量。b样条优化成功后kino_replan_fsm使用PlanningVisualization类指针调用drawGeometricPath方法画出_kino_path。</p>
-<p>​    2.planner_manager_-&gt;local_data_（LocalTrajData）-&gt;position_traj_(NonUniformBspline).规划的轨迹保存在local_data中，规划数据包括（position_traj_, velocity_traj_, acceleration_traj_, yaw_traj_, yawdot_traj_,yawdotdot_traj_）。b样条优化成功后kino_replan_fsm使用PlanningVisualization类指针调用drawBspline方法画出b样条轨迹和控制点（可选）。</p>
+<p>​ 2.planner_manager_-&gt;local_data_（LocalTrajData）-&gt;position_traj_(NonUniformBspline).规划的轨迹保存在local_data中，规划数据包括（position_traj_, velocity_traj_, acceleration_traj_, yaw_traj_, yawdot_traj_,yawdotdot_traj_）。b样条优化成功后kino_replan_fsm使用PlanningVisualization类指针调用drawBspline方法画出b样条轨迹和控制点（可选）。</p>
 </li>
 </ol>
 <h2 id="需实验验证"><a href="#需实验验证" class="headerlink" title="需实验验证"></a>需实验验证</h2><ol>
 <li><p>在gazebo下的static_transform_publisher</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/456831527">https://zhuanlan.zhihu.com/p/456831527</a></p>
 </li>
-<li></li>
 </ol>
+<p>2.</p>
 <h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ol>
 <li><p>t265图像的矫正和去失真</p>
 <table>
@@ -277,66 +407,6 @@
 </li>
 </ol>
 <h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>公众号 空中机器人前沿 讲的挺好的</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pleasecallmeboss.github.io/blog/2022/10/09/PowerShell%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="咦蜘蛛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咦蜘蛛的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2022/10/09/PowerShell%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">PowerShell使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-09 11:03:14 / 修改时间：11:03:50" itemprop="dateCreated datePublished" datetime="2022-10-09T11:03:14+08:00">2022-10-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="无法加载文件-，因为在此系统上禁止运行脚本"><a href="#无法加载文件-，因为在此系统上禁止运行脚本" class="headerlink" title="无法加载文件 ，因为在此系统上禁止运行脚本"></a>无法加载文件 ，因为在此系统上禁止运行脚本</h3><p>用管理员身份打开shell命令行，输入以下命令即可：</p>
-<p>set-executionpolicy remotesigned</p>
 
       
     </div>
@@ -847,7 +917,7 @@ mat.rowwise()：返回矩阵每行的值
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-08 10:06:02" itemprop="dateModified" datetime="2022-06-08T10:06:02+08:00">2022-06-08</time>
+                <time title="修改时间：2023-02-28 17:39:13" itemprop="dateModified" datetime="2023-02-28T17:39:13+08:00">2023-02-28</time>
               </span>
 
           
@@ -1157,14 +1227,14 @@ mat.rowwise()：返回矩阵每行的值
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
